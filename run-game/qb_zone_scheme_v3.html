@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QB Zone Run Cheat Sheet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0c0f14;
+    --surface: #131823;
+    --card: #1b2333;
+    --border: #263045;
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.08);
+    --green-border: rgba(34,197,94,0.35);
+    --red: #f87171;
+    --red-bg: rgba(248,113,113,0.08);
+    --red-border: rgba(248,113,113,0.35);
+    --yellow: #fbbf24;
+    --yellow-bg: rgba(251,191,36,0.08);
+    --blue: #60a5fa;
+    --blue-bg: rgba(96,165,250,0.08);
+    --muted: #64748b;
+    --light: #94a3b8;
+    --white: #f1f5f9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 11.5px;
+    padding: 8px;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--yellow);
+    border-radius: 8px;
+    padding: 10px 16px;
+    gap: 16px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--yellow);
+    line-height: 1;
+  }
+
+  .header p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .call-structure {
+    text-align: right;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .call-structure span {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 3px;
+    margin-left: 4px;
+    font-size: 0.68rem;
+  }
+
+  .cs-f { background: rgba(96,165,250,0.15); color: var(--blue); }
+  .cs-p { background: rgba(251,191,36,0.12); color: var(--yellow); }
+  .cs-pl { background: rgba(34,197,94,0.15); color: var(--green); }
+  .cs-r { background: rgba(248,113,113,0.15); color: var(--red); }
+
+  .core-rule {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .rule-block {
+    border-radius: 8px;
+    padding: 9px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .rule-block.read { background: var(--green-bg); border: 1px solid var(--green-border); }
+  .rule-block.rpo  { background: var(--red-bg);   border: 1px solid var(--red-border);   }
+
+  .rule-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .rule-block.read .rule-title { color: var(--green); }
+  .rule-block.rpo  .rule-title { color: var(--red);   }
+
+  .rule-trigger {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 2px;
+    align-self: flex-start;
+  }
+
+  .rule-block.read .rule-trigger { background: rgba(34,197,94,0.2); color: var(--green); }
+  .rule-block.rpo  .rule-trigger { background: rgba(248,113,113,0.2); color: var(--red); }
+
+  .rule-desc { font-size: 0.74rem; color: var(--light); line-height: 1.4; }
+  .rule-desc strong { color: var(--white); }
+
+  .mesh-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--yellow);
+    border-radius: 8px;
+    padding: 6px 12px;
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .mesh-bar .mb-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: var(--yellow);
+    white-space: nowrap;
+  }
+
+  .mesh-rule { display: flex; flex-direction: column; gap: 2px; }
+
+  .mesh-rule .mr-head {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .mesh-rule.read .mr-head { color: var(--green); }
+  .mesh-rule.rpo  .mr-head { color: var(--red);   }
+
+  .mesh-rule .mr-body { font-size: 0.72rem; color: var(--light); line-height: 1.35; }
+
+  .sec-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-left: 10px;
+    border-left: 2px solid var(--yellow);
+    margin-bottom: -2px;
+  }
+
+  .plays-read { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; }
+  .plays-give { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; }
+
+  .pcard { background: var(--card); border-radius: 8px; overflow: hidden; }
+  .pcard.read { border: 1px solid var(--green-border); }
+  .pcard.give { border: 1px solid var(--red-border); }
+
+  .pcard-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+  }
+
+  .pcard.read .pcard-head { background: var(--green-bg); border-bottom: 2px solid var(--green-border); }
+  .pcard.give .pcard-head { background: var(--red-bg);   border-bottom: 2px solid var(--red-border);   }
+
+  .pname { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 1px; line-height: 1; }
+  .pcard.read .pname { color: var(--green); }
+  .pcard.give .pname { color: var(--red);   }
+
+  .pbadge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  .pcard.read .pbadge { background: rgba(34,197,94,0.18);  color: var(--green); }
+  .pcard.give .pbadge { background: rgba(248,113,113,0.18); color: var(--red);   }
+
+  .pcard-body { padding: 5px 9px; display: flex; flex-direction: column; gap: 3px; }
+
+  .prow { display: grid; grid-template-columns: 52px 1fr; gap: 5px; font-size: 0.74rem; line-height: 1.3; }
+
+  .plabel {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.67rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 1px;
+  }
+
+  .pval { color: var(--light); }
+
+  .pdecision { margin-top: 2px; padding: 4px 6px; border-radius: 4px; font-size: 0.72rem; line-height: 1.4; }
+  .pcard.read .pdecision { background: rgba(34,197,94,0.06);  border-left: 2px solid var(--green); }
+  .pcard.give .pdecision { background: rgba(248,113,113,0.06); border-left: 2px solid var(--red);   }
+
+  .drow { display: flex; gap: 5px; }
+  .darr { color: var(--yellow); font-weight: 700; min-width: 10px; }
+  .dtext { color: var(--light); }
+  .dtext strong { color: var(--white); }
+
+  .footwork { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+
+  .footwork table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+
+  .footwork thead { background: var(--yellow-bg); border-bottom: 2px solid rgba(251,191,36,0.4); }
+
+  .footwork th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.63rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    padding: 5px 8px;
+    text-align: left;
+  }
+
+  .footwork td {
+    padding: 5px 8px;
+    border-bottom: 1px solid var(--border);
+    color: var(--light);
+    line-height: 1.3;
+    vertical-align: top;
+  }
+
+  .footwork tr:last-child td { border-bottom: none; }
+  .footwork .fam { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; color: var(--yellow); }
+  .footwork .plays-list { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.75rem; color: var(--green); }
+  .footwork .plays-list.give { color: var(--red); }
+
+  .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+
+  .key { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 9px; text-align: center; }
+
+  .key-icon { font-size: 1rem; margin-bottom: 2px; }
+
+  .key-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    color: var(--yellow);
+  }
+
+  .key-desc { font-size: 0.68rem; color: var(--muted); line-height: 1.35; }
+
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .sum-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .pills { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+
+  .pill {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .pill.read { background: rgba(34,197,94,0.15);  color: var(--green); border: 1px solid var(--green-border); }
+  .pill.give { background: rgba(248,113,113,0.15); color: var(--red);   border: 1px solid var(--red-border);   }
+  .pill-sep  { color: var(--border); font-weight: 700; font-size: 1rem; }
+
+  @media print {
+    body { background: white; color: black; padding: 4px; font-size: 9.5px; }
+    .card, .pcard, .footwork, .key, .summary, .mesh-bar, .rule-block { border: 1px solid #ccc !important; }
+    .page { gap: 5px; }
+    @page { margin: 0.4in; size: letter; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- FULL SCREEN BUTTON -->
+  <div style="text-align:right;margin-bottom:-2px;">
+    <a href="https://drive.google.com/file/d/14t13BNvMO4TUZ5LYCe6jW8BbRVNGTghx/view?usp=sharing" target="_blank"
+      style="display:inline-flex;align-items:center;gap:6px;background:#fbbf24;color:#0c0f14;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:5px;text-decoration:none;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0c0f14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 3h6v6M10 14L21 3M19 13v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h7"/>
+      </svg>
+      Open Full Screen
+    </a>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>QB Zone Run Cheat Sheet</h1>
+      <p>Shotgun · Long Mesh · Fast Trigger · Read the End</p>
+    </div>
+    <div class="call-structure">
+      Call Structure<br>
+      <span class="cs-f">Formation</span>
+      <span class="cs-p">Protection</span>
+      <span class="cs-pl">Play</span>
+      <span class="cs-r">RPO Tag</span>
+    </div>
+  </div>
+
+  <!-- FAKE ACCOUNTABILITY BANNER -->
+  <div style="background:linear-gradient(135deg,rgba(251,191,36,0.12),rgba(251,191,36,0.04));border:1px solid rgba(251,191,36,0.5);border-left:4px solid var(--yellow);border-radius:8px;padding:7px 14px;display:flex;align-items:center;gap:12px;">
+    <div style="font-size:1.3rem;line-height:1;">🎭</div>
+    <div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:2px;color:var(--yellow);">THE QB IS ALWAYS ON THE FIELD</div>
+      <div style="font-size:0.75rem;color:var(--light);line-height:1.4;margin-top:1px;">
+        A great fake accounts for <strong style="color:var(--white);">+1 defender in the box</strong> — your fake is a block. Spectators sit in the stands.
+        Hand off or pull, you are still running a play. <strong style="color:var(--white);">Every give has a fake. Every pull has a purpose. Never watch. Never stop.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORE RULE -->
+  <div class="core-rule">
+    <div class="rule-block read">
+      <div class="rule-trigger">No TE Tag = Read Play</div>
+      <div class="rule-title">C-Gap DE is YOUR read — RIDE HIM</div>
+      <div class="rule-desc">
+        <strong>Set the track</strong> — toes point to RB's aiming point, eyes on C-Gap DE at cadence. Ride as long as possible. DE declares → give or pull at last moment.
+        <span style="color:var(--blue);">RPO tagged + DE surfing → throw if conflict enters box.</span>
+        <div style="font-size:0.68rem;color:var(--yellow);margin-top:3px;">★ Track check: ruler across toe fronts points to RB's aim point.</div>
+      </div>
+    </div>
+    <div class="rule-block rpo">
+      <div class="rule-trigger">TE Tag = DE is Blocked</div>
+      <div class="rule-title">No ride — Eyes to RPO Key</div>
+      <div class="rule-desc">
+        <strong>Pre-read RPO key before the snap.</strong> Set the track → power give or fast pull — no hesitation.
+        Give = open hand after → sells the naked / boot. Pull = deliver immediately.
+        <div style="font-size:0.68rem;color:var(--red);margin-top:3px;">★ Decision made before the snap — confirm it, don't discover it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MESH MECHANIC BAR -->
+  <div class="mesh-bar">
+    <div class="mb-label">Mesh<br>Mechanics</div>
+    <div class="mesh-rule read">
+      <div class="mr-head">🟢 Read Play — Long Mesh</div>
+      <div class="mr-body">
+        Snap → <strong>set the track</strong> → eyes lock on C-Gap DE → RB runs into mesh → <strong>ride as long as possible</strong>
+        → DE declares → give or pull at last moment. RPO tagged + DE <em>surfing</em> → throw if conflict enters box.
+      </div>
+    </div>
+    <div class="mesh-rule rpo">
+      <div class="mr-head">🔴 TE Tag / Give — No Ride</div>
+      <div class="mr-body">
+        Snap → <strong>set the track</strong> → eyes immediately to <strong>RPO key</strong>
+        → pass = pull fast, no fake, deliver → run = power give, open hand, sell the boot.
+        Decision is made before the snap — no mesh hesitation.
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY REMINDERS -->
+  <div class="keys">
+    <div class="key">
+      <div class="key-icon">👀</div>
+      <div class="key-title">Pre-Snap Eyes</div>
+      <div class="key-desc">ID the C-Gap DE before the snap. RPO tagged? Pre-read that key too.</div>
+    </div>
+    <div class="key">
+      <div class="key-icon">⏳</div>
+      <div class="key-title">Ride Long (1st Level)</div>
+      <div class="key-desc">Squeeze → Pull. Screams upfield → Give. Surfing + RPO → Throw if conflict enters box.</div>
+    </div>
+    <div class="key">
+      <div class="key-icon">⚡</div>
+      <div class="key-title">Fast Trigger (2nd Level)</div>
+      <div class="key-desc">Pull the moment you know it's pass. No run fake — sell the throw, not your legs.</div>
+    </div>
+    <div class="key">
+      <div class="key-icon">⚓</div>
+      <div class="key-title">Stay Downhill</div>
+      <div class="key-desc">Don't drift back. Step → plant → decide. Flat footwork kills the read and the RB.</div>
+    </div>
+  </div>
+
+  <!-- 1ST LEVEL READ PLAYS -->
+  <div class="sec-label">🟢 1st Level Read — C-Gap DE Unblocked — LONG MESH — Give = RUN FAKE · +RPO Tag = 3-Way Decision</div>
+  <div class="plays-read" style="grid-template-columns:1fr 1fr 1fr 1fr;">
+
+    <!-- ZEBRA -->
+    <div class="pcard read">
+      <div class="pcard-head">
+        <div class="pname">Zebra</div>
+        <div class="pbadge">Read DE · IZ</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">Inside Zone Read</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Center's playside butt cheek</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Set the track → step downhill → ride deep</div></div>
+        <div class="prow"><div class="plabel">Read Key</div><div class="pval">C-Gap DE — ID pre-snap</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">DE squeezes toward RB → <strong>PULL late</strong></div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">DE screams upfield → <strong>GIVE late</strong> → run fake, cut away 5 yds</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext" style="color:var(--blue);">DE <em>surfing</em> + RPO tagged → <strong>THROW</strong> if conflict enters box</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">Ride until forced — no RPO tag = Give or Pull only</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OSCAR -->
+    <div class="pcard read">
+      <div class="pcard-head">
+        <div class="pname">Oscar</div>
+        <div class="pbadge">Read DE · OZ</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">Outside Zone Read</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Outside leg of TE / phantom TE</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Set the track → gain width → ride stretch path</div></div>
+        <div class="prow"><div class="plabel">Read Key</div><div class="pval">C-Gap DE — ID pre-snap</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">DE squeezes toward RB → <strong>PULL late</strong></div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">DE screams upfield → <strong>GIVE late</strong> → run fake, cut away 5 yds</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext" style="color:var(--blue);">DE <em>surfing</em> + RPO tagged → <strong>THROW</strong> if conflict enters box</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">Stretch mesh longer than IZ — no RPO tag = Give or Pull only</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARINE -->
+    <div class="pcard read">
+      <div class="pcard-head">
+        <div class="pname">Marine</div>
+        <div class="pbadge">Read DE · Insert IZ</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">Insert IZ — F leads playside LB</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Center's playside butt cheek</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Set the track → same as Zebra → downhill → long ride</div></div>
+        <div class="prow"><div class="plabel">Read Key</div><div class="pval">C-Gap DE — F handles LB</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">DE squeezes toward RB → <strong>PULL late</strong></div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">DE screams upfield → <strong>GIVE late</strong> → run fake, cut away 5 yds</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext" style="color:var(--blue);">DE <em>surfing</em> + RPO tagged → <strong>THROW</strong> if conflict enters box</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">Same read as Zebra — no RPO tag = Give or Pull only</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOE -->
+    <div class="pcard read">
+      <div class="pcard-head">
+        <div class="pname">Moe</div>
+        <div class="pbadge">Read DE · Insert OZ</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">Insert OZ — F leads playside LB</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Outside leg of TE / phantom TE</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Set the track → same as Oscar → gain width → ride stretch</div></div>
+        <div class="prow"><div class="plabel">Read Key</div><div class="pval">C-Gap DE — F handles LB</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">DE squeezes toward RB → <strong>PULL late</strong></div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">DE screams upfield → <strong>GIVE late</strong> → run fake, cut away 5 yds</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext" style="color:var(--blue);">DE <em>surfing</em> + RPO tagged → <strong>THROW</strong> if conflict enters box</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">Same read as Oscar — no RPO tag = Give or Pull only</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PAGE BREAK -->
+  <div style="page-break-before:always;"></div>
+
+  <!-- 2ND LEVEL GIVE / RPO PLAYS -->
+  <div class="sec-label">🔴 2nd Level — DE Blocked — Give = FAKE THE PASS — Pull = Fast Trigger, No Hesitation</div>
+  <div class="plays-give">
+
+    <!-- ZUES / ODIN -->
+    <div class="pcard give">
+      <div class="pcard-head">
+        <div class="pname">Zues / Odin</div>
+        <div class="pbadge">2nd Level · Lock</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">6-Man Zone — DE locked by extra OL</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Zues → Center's playside butt cheek · Odin → outside leg of TE / phantom TE</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Set the track → short mesh → eyes to RPO key immediately</div></div>
+        <div class="prow"><div class="plabel">RPO Key</div><div class="pval">Tagged concept — ID pre-snap</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Key says pass → <strong>PULL FAST</strong> → fake the pass, deliver</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Key says run → give → <strong>fake the pass</strong> after handoff</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--red);font-size:0.7rem;">Don't run — sell the throw on a give</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZELDA / ODELL -->
+    <div class="pcard give">
+      <div class="pcard-head">
+        <div class="pname">Zelda / Odell</div>
+        <div class="pbadge">2nd Level · Split</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">Split Zone — F kicks backside DE</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Center's playside butt cheek (IZ track)</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Set the track → short mesh → eyes to RPO key immediately</div></div>
+        <div class="prow"><div class="plabel">RPO Key</div><div class="pval">Tagged concept — ID pre-snap</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Key says pass → <strong>PULL FAST</strong> → fake the pass, deliver</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Key says run → give → <strong>fake the pass</strong> after handoff</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--red);font-size:0.7rem;">F kicks DE — never peek at him</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TE TAG EXPLANATION -->
+    <div class="pcard" style="border:1px solid rgba(251,191,36,0.4);background:rgba(251,191,36,0.04);">
+      <div class="pcard-head" style="background:rgba(251,191,36,0.08);border-bottom:2px solid rgba(251,191,36,0.35);">
+        <div class="pname" style="color:var(--yellow);">TE Tag</div>
+        <div class="pbadge" style="background:rgba(251,191,36,0.18);color:var(--yellow);">Any Play</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">What It Does</div><div class="pval">TE locks C-Gap DE — no read, no ride. Eyes to RPO key pre-snap.</div></div>
+        <div class="prow"><div class="plabel">QB Rule</div><div class="pval"><strong>No mesh ride.</strong> Set the track → power handoff → open hand sets up naked / boot</div></div>
+        <div class="prow"><div class="plabel">RPO Key</div><div class="pval">Tagged concept after play name — ID and pre-read pre-snap</div></div>
+        <div class="prow"><div class="plabel">On Give</div><div class="pval">Power handoff → <strong>open hand after</strong> → sell the naked / boot</div></div>
+        <div class="prow"><div class="plabel">On Pass</div><div class="pval">Pull fast — get out and deliver immediately</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SHOTGUN FOOTWORK TABLE -->
+  <div class="sec-label">⚡ Shotgun Footwork — Set the Track · Toes Point to RB Aiming Point</div>
+  <div class="footwork">
+    <table>
+      <thead>
+        <tr>
+          <th>Family</th>
+          <th>Plays</th>
+          <th>RB Aim (Track)</th>
+          <th>Mesh</th>
+          <th>Decision</th>
+          <th>On Give</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fam">IZ · 1st Level</td>
+          <td class="plays-list">Zebra · Marine</td>
+          <td>Center's playside butt cheek</td>
+          <td>Step downhill, ride deep</td>
+          <td>Late as possible</td>
+          <td style="color:var(--green);font-weight:600;">Run fake — cut away, 5 yds · <span style="color:var(--blue);font-weight:400;font-size:0.7rem;">+RPO: throw if DE surfs &amp; conflict enters box</span></td>
+        </tr>
+        <tr>
+          <td class="fam">OZ · 1st Level</td>
+          <td class="plays-list">Oscar · Moe <span style="color:var(--muted);font-weight:400;font-size:0.7rem;">(Moe + F lead)</span></td>
+          <td>Outside leg of TE / phantom TE</td>
+          <td>Gain width, ride stretch</td>
+          <td>Late as possible</td>
+          <td style="color:var(--green);font-weight:600;">Run fake — cut away, 5 yds · <span style="color:var(--blue);font-weight:400;font-size:0.7rem;">+RPO: throw if DE surfs &amp; conflict enters box</span></td>
+        </tr>
+        <tr>
+          <td class="fam">IZ · 2nd Level</td>
+          <td class="plays-list give">Zues · Zelda</td>
+          <td>Center's playside butt cheek</td>
+          <td>Short mesh, eyes to RPO key</td>
+          <td>Fast trigger</td>
+          <td style="color:var(--red);font-weight:600;">Fake the pass</td>
+        </tr>
+        <tr>
+          <td class="fam">OZ · 2nd Level</td>
+          <td class="plays-list give">Odin · Odell</td>
+          <td>Outside leg of TE / phantom TE</td>
+          <td>Short mesh w/ width, eyes to key</td>
+          <td>Fast trigger</td>
+          <td style="color:var(--red);font-weight:600;">Fake the pass</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- COACHING POINTS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--yellow);border-radius:8px;padding:6px 9px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--yellow);margin-bottom:3px;">🎭 Disguise the Give — Body Language Wins</div>
+      <div style="font-size:0.7rem;color:var(--light);line-height:1.35;"><strong style="color:var(--white);">Chest square, hips stay on the mesh path</strong> — do not rotate toward the pull side early. The defense reads your hips, not the ball. An early hip turn telegraphs the give before the DE declares. Stay on the mesh path through the handoff, then execute the fake. <strong style="color:var(--white);">The DE should not know it's a give until the ball is gone.</strong></div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--yellow);border-radius:8px;padding:6px 9px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--yellow);margin-bottom:3px;">⚡ Pull Footwork — Attack the C-Gap</div>
+      <div style="font-size:0.7rem;color:var(--light);line-height:1.35;">On a pull, your first step is <strong style="color:var(--white);">upfield at a slight angle into the C-gap</strong> — not laterally down the line. Attacking the C-gap makes the DE's squeeze decision wrong faster and threatens the edge immediately. A lateral pull gives the DE time to recover and lets the defense string you out. <strong style="color:var(--white);">Pull upfield first, then work to space.</strong> Flat pulls are kills.</div>
+    </div>
+
+  </div>
+
+  <!-- ZONE READ DETAILS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:8px;padding:6px 9px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:3px;">⚠ What Does "Surfing" Look Like?</div>
+      <div style="font-size:0.7rem;color:var(--light);line-height:1.35;">The DE is <strong style="color:var(--white);">moving laterally down the LOS</strong> — not squeezing, not screaming upfield. He is reading and reacting, trying to play both. This is the hardest read. <strong style="color:var(--blue);">Squeeze = Pull · Upfield = Give · Surfing + RPO = Throw.</strong> No RPO tagged — <strong style="color:var(--white);">default Give.</strong> Do not pull into indecision.</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:8px;padding:6px 9px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:3px;">🏃 After the Give — Naked / Boot</div>
+      <div style="font-size:0.7rem;color:var(--light);line-height:1.35;">The open hand is not an accident — it is a threat. <strong style="color:var(--white);">Boot away from the run.</strong> Get 2–3 steps depth, work down the LOS with eyes downfield. Make a defender hesitate — you are a blocker, just a moving one. <strong style="color:var(--white);">Never give and watch. Boot with intent every time.</strong></div>
+    </div>
+
+  </div>
+
+  <!-- PRE-SNAP CHECKLIST -->
+  <div class="sec-label">🧠 Pre-Snap Checklist — Numbers · Grass · Leverage</div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border);">
+
+      <div style="padding:6px 9px;border-right:1px solid var(--border);display:flex;align-items:flex-start;gap:7px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--green);line-height:1;min-width:18px;">1</div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:2px;">Numbers</div>
+          <div style="font-size:0.7rem;color:var(--light);line-height:1.35;">Hat for hat in the box with the QB reading one — <strong style="color:var(--white);">we have the advantage. Hand it off.</strong> If they add a defender to the box, they are now short in the secondary. <strong style="color:var(--white);">3 WRs vs 2 defenders — throw the ball.</strong> The defense cannot have it both ways. Make them pay for loading the box.</div>
+        </div>
+      </div>
+
+      <div style="padding:6px 9px;border-right:1px solid var(--border);display:flex;align-items:flex-start;gap:7px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--green);line-height:1;min-width:18px;">2</div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:2px;">Grass</div>
+          <div style="font-size:0.7rem;color:var(--light);line-height:1.35;">Take what the defense gives you. <strong style="color:var(--white);">Corner playing 10+ yards off — throw the quick route now.</strong> RB releasing to the swing with no defender to account for him — throw it. Grass means open space is available pre-snap. <strong style="color:var(--white);">Don't force the run when the defense is handing you free yards.</strong></div>
+        </div>
+      </div>
+
+      <div style="padding:6px 9px;display:flex;align-items:flex-start;gap:7px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--green);line-height:1;min-width:18px;">3</div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:2px;">Leverage</div>
+          <div style="font-size:0.7rem;color:var(--light);line-height:1.35;"><strong style="color:var(--white);">Pre-snap alignment tells you everything.</strong> A defender aligned too far inside cannot close on an outside throw. Too wide and he cannot stop the run. <strong style="color:var(--white);">ID the leverage pre-snap — easy answers show up before the ball is ever snapped.</strong></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="padding:4px 12px;background:rgba(34,197,94,0.06);display:flex;align-items:center;gap:8px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.63rem;letter-spacing:2px;text-transform:uppercase;color:var(--green);">Every Snap</div>
+      <div style="font-size:0.7rem;color:var(--light);">Numbers → Grass → Leverage → <strong style="color:var(--white);">Six for six? Hand it off. Down a hat? Use your tag. In doubt? Run first.</strong></div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="sum-label">Quick Ref</div>
+    <div class="pills">
+      <span class="pill read">1st Level: Zebra · Oscar · Marine · Moe</span>
+      <span class="pill-sep">|</span>
+      <span class="pill give">2nd Level: Zues · Odin · Zelda · Odell</span>
+      <span class="pill" style="background:rgba(251,191,36,0.12);color:var(--yellow);border:1px solid rgba(251,191,36,0.4);">TE Tag = No Read → RPO Key</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
