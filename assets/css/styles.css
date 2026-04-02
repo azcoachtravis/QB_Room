@@ -1,0 +1,14 @@
+/* QB Room — Shared Stylesheet
+   Individual pages import this for consistent branding.
+   Currently a placeholder — populated as shared components are built.
+*/
+
+:root {
+  --navy:  #0f1b2d;
+  --navy2: #162438;
+  --navy3: #1a2d44;
+  --gold:  #f0a500;
+  --white: #ffffff;
+  --border:#d0cdc5;
+  --muted: #6b7280;
+}
