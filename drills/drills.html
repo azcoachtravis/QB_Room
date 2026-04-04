@@ -8,136 +8,134 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --navy:#0f1b2d;--navy2:#162438;--navy3:#1a2d44;
-  --gold:#f0a500;--white:#fff;--border:#d0cdc5;
-  --bg:#f5f3ee;--muted:#555;
+  --navy:#0f1b2d;--navy2:#162438;--navy3:#1a2d44;--navy4:#1e3352;
+  --gold:#f0a500;--white:#fff;--border:#d0cdc5;--bg:#f5f3ee;--muted:#555;
   --s1:#22c55e;--s2:#3b82f6;--s3:#eab308;--s4:#ef4444;
 }
 body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
 
 /* ── NAV ── */
-.nav{background:var(--navy);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;}
-.nav-brand{display:flex;align-items:center;gap:10px;}
-.nav-icon{width:36px;height:36px;background:var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:var(--navy);}
-.nav-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;line-height:1;}
-.nav-sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.55);text-transform:uppercase;}
-.nav-links{display:flex;gap:6px;flex-wrap:wrap;}
-.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.72);text-decoration:none;padding:4px 9px;border-radius:2px;border:1px solid rgba(255,255,255,0.2);transition:all .15s;}
+.nav{background:var(--navy);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:50px;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:34px;height:34px;background:var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--navy);}
+.nav-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;line-height:1;}
+.nav-sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;}
+.nav-links{display:flex;gap:5px;flex-wrap:wrap;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;padding:4px 9px;border-radius:2px;border:1px solid rgba(255,255,255,0.18);transition:all .15s;}
 .nav-links a:hover{color:var(--gold);border-color:var(--gold);}
 .nav-links a.active{background:var(--gold);color:var(--navy);border-color:var(--gold);}
 
 /* ── HEADER ── */
-.page-header{background:var(--navy);padding:32px 24px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
-.header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1100px;margin:0 auto;}
-.header-left{}
-.page-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px;}
-.page-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(28px,5vw,48px);letter-spacing:2px;text-transform:uppercase;color:var(--gold);line-height:1;margin-bottom:4px;}
-.page-sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;color:rgba(255,255,255,0.65);letter-spacing:0.5px;}
-.header-stats{display:flex;gap:20px;align-items:flex-end;flex-shrink:0;flex-wrap:wrap;}
-.stat-box{background:rgba(240,165,0,0.1);border:1px solid rgba(240,165,0,0.3);border-radius:4px;padding:10px 16px;text-align:center;}
-.stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;color:var(--gold);line-height:1;}
-.stat-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-top:2px;}
+.page-header{background:var(--navy);padding:28px 24px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:20px;}
+.h-eye{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:5px;}
+.h-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(26px,4vw,44px);letter-spacing:2px;text-transform:uppercase;color:var(--gold);line-height:1;margin-bottom:3px;}
+.h-sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:0.5px;}
+.h-stats{display:flex;gap:14px;flex-shrink:0;flex-wrap:wrap;}
+.stat{background:rgba(240,165,0,0.1);border:1px solid rgba(240,165,0,0.25);border-radius:4px;padding:8px 14px;text-align:center;}
+.stat-n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;color:var(--gold);line-height:1;}
+.stat-l{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:2px;}
+
+/* ── GRADING SCALE BAR ── */
+.grade-bar{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);padding:6px 24px;}
+.grade-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.grade-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);flex-shrink:0;}
+.grade-chips{display:flex;gap:5px;flex-wrap:wrap;}
+.gchip{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:0.5px;padding:2px 8px;border-radius:2px;}
+.gc-4{background:rgba(34,197,94,0.14);color:#4ade80;border:.5px solid rgba(34,197,94,0.3);}
+.gc-3{background:rgba(34,197,94,0.08);color:#86efac;border:.5px solid rgba(34,197,94,0.2);}
+.gc-2{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.55);border:.5px solid rgba(255,255,255,0.12);}
+.gc-1{background:rgba(251,191,36,0.1);color:#fde68a;border:.5px solid rgba(251,191,36,0.25);}
+.gc-0{background:rgba(239,68,68,0.1);color:#fca5a5;border:.5px solid rgba(239,68,68,0.25);}
+.grade-sep{width:1px;height:12px;background:rgba(255,255,255,0.08);}
+.grade-note{font-size:9px;color:rgba(255,255,255,0.3);font-style:italic;}
 
 /* ── FILTER BAR ── */
-.filter-bar{background:var(--navy2);border-bottom:2px solid var(--gold);padding:12px 24px;}
-.filter-inner{max-width:1100px;margin:0 auto;display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;}
+.filter-bar{background:var(--navy3);border-bottom:2px solid var(--gold);padding:10px 24px;}
+.filter-inner{max-width:1100px;margin:0 auto;display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;}
 .filter-group{display:flex;flex-direction:column;gap:5px;}
-.filter-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);}
-.filter-pills{display:flex;gap:5px;flex-wrap:wrap;}
-.pill{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;padding:4px 11px;border-radius:2px;border:1.5px solid rgba(255,255,255,0.18);background:transparent;color:rgba(255,255,255,0.65);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.filter-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.42);}
+.filter-pills{display:flex;gap:4px;flex-wrap:wrap;}
+.pill{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:0.8px;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1.5px solid rgba(255,255,255,0.16);background:transparent;color:rgba(255,255,255,0.6);cursor:pointer;transition:all .15s;white-space:nowrap;}
 .pill:hover{border-color:var(--gold);color:var(--gold);}
 .pill.active{border-color:var(--gold);background:var(--gold);color:var(--navy);}
 .pill.ps1.active{background:var(--s1);border-color:var(--s1);color:#fff;}
 .pill.ps2.active{background:var(--s2);border-color:var(--s2);color:#fff;}
 .pill.ps3.active{background:var(--s3);border-color:var(--s3);color:var(--navy);}
 .pill.ps4.active{background:var(--s4);border-color:var(--s4);color:#fff;}
-.filter-count{margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.5);align-self:flex-end;white-space:nowrap;padding-bottom:2px;}
+.filter-count{margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4);align-self:flex-end;padding-bottom:2px;white-space:nowrap;}
 
-/* ── LEGEND STRIP ── */
-.legend-strip{background:var(--navy3);padding:6px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
-.legend-inner{max-width:1100px;margin:0 auto;display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
-.legend-item{display:flex;align-items:center;gap:5px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.55);}
-.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.l-s1{background:var(--s1);}.l-s2{background:var(--s2);}.l-s3{background:var(--s3);}.l-s4{background:var(--s4);}
+/* ── LEGEND ── */
+.legend{background:var(--navy4);border-bottom:1px solid rgba(255,255,255,0.05);padding:5px 24px;}
+.legend-inner{max-width:1100px;margin:0 auto;display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.li{display:flex;align-items:center;gap:4px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8.5px;letter-spacing:0.8px;text-transform:uppercase;color:rgba(255,255,255,0.45);}
+.ld{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.ld1{background:var(--s1);}.ld2{background:var(--s2);}.ld3{background:var(--s3);}.ld4{background:var(--s4);}
+.legend-note{margin-left:auto;font-size:8px;color:rgba(255,255,255,0.28);font-style:italic;}
 
 /* ── MAIN ── */
-.main{max-width:1100px;margin:0 auto;padding:22px 20px 60px;}
-
-/* ── SECTION HEADER ── */
-.section-header{display:flex;align-items:center;gap:10px;margin:28px 0 12px;}
-.section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--navy);}
-.section-line{flex:1;height:1px;background:var(--border);}
-.section-count{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;color:var(--muted);}
+.main{max-width:1100px;margin:0 auto;padding:20px 20px 60px;}
 
 /* ── DRILL GRID ── */
-.drill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.drill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(298px,1fr));gap:13px;}
 
 /* ── DRILL CARD ── */
 .drill-card{background:var(--white);border:1.5px solid var(--border);border-radius:5px;overflow:hidden;display:flex;flex-direction:column;transition:all .18s;}
-.drill-card:hover{border-color:var(--gold);box-shadow:0 3px 14px rgba(240,165,0,0.12);}
-.drill-card.hidden{display:none !important;}
+.drill-card:hover{border-color:var(--gold);box-shadow:0 3px 14px rgba(240,165,0,0.1);}
+.drill-card.hidden{display:none!important;}
 
 .drill-stripe{height:3px;}
-.stripe-s1{background:var(--s1);}
-.stripe-s2{background:var(--s2);}
-.stripe-s3{background:var(--s3);}
-.stripe-s4{background:var(--s4);}
+.stripe-s1{background:var(--s1);}.stripe-s2{background:var(--s2);}
+.stripe-s3{background:var(--s3);}.stripe-s4{background:var(--s4);}
 
-.drill-head{padding:13px 14px 8px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
-.drill-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:15.5px;letter-spacing:0.3px;color:var(--navy);line-height:1.15;text-transform:uppercase;}
+.drill-head{padding:12px 14px 8px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.drill-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:15px;letter-spacing:0.3px;color:var(--navy);line-height:1.2;text-transform:uppercase;}
 .drill-badges{display:flex;flex-direction:column;gap:3px;align-items:flex-end;flex-shrink:0;}
+.badge{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:7.5px;letter-spacing:0.8px;text-transform:uppercase;padding:2px 6px;border-radius:2px;white-space:nowrap;}
+.b-s1{background:rgba(34,197,94,.13);color:#15803d;border:.5px solid rgba(34,197,94,.3);}
+.b-s2{background:rgba(59,130,246,.13);color:#1d4ed8;border:.5px solid rgba(59,130,246,.3);}
+.b-s3{background:rgba(234,179,8,.13);color:#92400e;border:.5px solid rgba(234,179,8,.35);}
+.b-s4{background:rgba(239,68,68,.13);color:#991b1b;border:.5px solid rgba(239,68,68,.3);}
+.cat-decision{background:rgba(99,102,241,.11);color:#3730a3;border:.5px solid rgba(99,102,241,.28);}
+.cat-passing{background:rgba(14,165,233,.11);color:#075985;border:.5px solid rgba(14,165,233,.28);}
+.cat-run{background:rgba(234,179,8,.11);color:#78350f;border:.5px solid rgba(234,179,8,.3);}
+.cat-pressure{background:rgba(239,68,68,.11);color:#991b1b;border:.5px solid rgba(239,68,68,.28);}
+.cat-sit{background:rgba(34,197,94,.11);color:#14532d;border:.5px solid rgba(34,197,94,.28);}
+.cat-mesh{background:rgba(240,165,0,.13);color:#78350f;border:.5px solid rgba(240,165,0,.3);}
 
-/* Badge variants */
-.badge{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:0.8px;text-transform:uppercase;padding:2px 6px;border-radius:2px;white-space:nowrap;}
-.badge-s1{background:rgba(34,197,94,.14);color:#15803d;border:.5px solid rgba(34,197,94,.35);}
-.badge-s2{background:rgba(59,130,246,.14);color:#1d4ed8;border:.5px solid rgba(59,130,246,.35);}
-.badge-s3{background:rgba(234,179,8,.14);color:#92400e;border:.5px solid rgba(234,179,8,.4);}
-.badge-s4{background:rgba(239,68,68,.14);color:#991b1b;border:.5px solid rgba(239,68,68,.35);}
-.cat-decision{background:rgba(99,102,241,.12);color:#3730a3;border:.5px solid rgba(99,102,241,.3);}
-.cat-passing{background:rgba(14,165,233,.12);color:#075985;border:.5px solid rgba(14,165,233,.3);}
-.cat-run{background:rgba(234,179,8,.12);color:#78350f;border:.5px solid rgba(234,179,8,.35);}
-.cat-pressure{background:rgba(239,68,68,.12);color:#991b1b;border:.5px solid rgba(239,68,68,.3);}
-.cat-sit{background:rgba(34,197,94,.12);color:#14532d;border:.5px solid rgba(34,197,94,.3);}
-.cat-mesh{background:rgba(240,165,0,.14);color:#78350f;border:.5px solid rgba(240,165,0,.35);}
+.drill-body{padding:0 14px 12px;flex:1;display:flex;flex-direction:column;gap:8px;}
+.drill-meta{display:flex;gap:4px;flex-wrap:wrap;}
+.meta-pill{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:0.4px;padding:2px 6px;border-radius:2px;background:var(--bg);color:var(--muted);border:.5px solid var(--border);}
+.meta-pill.trigger{background:rgba(15,27,45,0.06);color:var(--navy);border-color:rgba(15,27,45,0.18);}
+.drill-desc{font-size:11px;color:#374151;line-height:1.55;font-style:italic;}
+.drill-section{display:flex;flex-direction:column;gap:2px;}
+.drill-section-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);}
+.drill-section-body{font-size:10.5px;color:#2d3748;line-height:1.5;}
+.coaching{color:#1a1a2e;font-weight:500;}
+.drill-footer{padding:7px 14px;border-top:1px solid var(--bg);background:var(--bg);}
+.drill-source{font-size:9px;color:var(--muted);font-style:italic;}
 
-.drill-body{padding:0 14px 12px;flex:1;display:flex;flex-direction:column;gap:9px;}
-
-.drill-meta{display:flex;gap:5px;flex-wrap:wrap;}
-.meta-pill{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:0.5px;padding:2px 7px;border-radius:2px;background:var(--bg);color:var(--muted);border:.5px solid var(--border);}
-.meta-pill.trigger{background:rgba(15,27,45,0.07);color:var(--navy);border-color:rgba(15,27,45,0.2);}
-
-.drill-desc{font-size:11.5px;color:#374151;line-height:1.55;font-style:italic;}
-
-.drill-section{display:flex;flex-direction:column;gap:3px;}
-.drill-section-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);}
-.drill-section-body{font-size:11px;color:#2d3748;line-height:1.5;}
-.coaching-text{color:#1a1a2e;font-weight:500;}
-
-.drill-footer{padding:8px 14px;border-top:1px solid var(--bg);background:var(--bg);}
-.drill-source{font-size:9.5px;color:var(--muted);font-style:italic;}
-
-/* ── NO RESULTS ── */
-.no-results{text-align:center;padding:60px 20px;display:none;}
-.no-results.show{display:block;}
-.no-results-icon{font-size:40px;margin-bottom:10px;}
-.no-results-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--navy);margin-bottom:5px;}
-.no-results-sub{font-size:12px;color:var(--muted);}
+/* ── EMPTY STATE ── */
+.empty-state{display:none;text-align:center;padding:56px 20px;}
+.empty-state.show{display:block;}
+.empty-icon{font-size:36px;margin-bottom:10px;}
+.empty-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;color:var(--navy);margin-bottom:4px;}
+.empty-sub{font-size:11.5px;color:var(--muted);line-height:1.6;max-width:360px;margin:0 auto;}
 
 /* ── FOOTER ── */
-.site-footer{background:var(--navy2);border-top:1px solid rgba(255,255,255,0.06);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
-.footer-note{font-size:10px;color:rgba(255,255,255,0.4);}
+.site-footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.f-brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.f-note{font-size:9px;color:rgba(255,255,255,0.3);}
 
-/* ── PRINT ── */
 @media print{
-  .nav,.filter-bar,.legend-strip{display:none;}
+  .nav,.filter-bar,.legend,.grade-bar{display:none;}
   body{background:#fff;}
-  .drill-card{break-inside:avoid;border:1px solid #ccc;margin-bottom:10px;}
+  .drill-card{break-inside:avoid;border:1px solid #ccc;margin-bottom:8px;}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 }
 @media(max-width:600px){
-  .nav{padding:8px 14px;}.filter-bar,.main{padding-left:12px;padding-right:12px;}
-  .header-stats{display:none;}
+  .nav{padding:0 12px;}.filter-bar,.main,.page-header{padding-left:12px;padding-right:12px;}
+  .h-stats{display:none;}
 }
 </style>
 </head>
@@ -145,30 +143,65 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
 
 <!-- NAV -->
 <div class="nav">
-  <div class="nav-brand">
+  <a class="nav-brand" href="../index.html">
     <div class="nav-icon">QB</div>
-    <div><div class="nav-title">QB Room</div><div class="nav-sub">Higley Football</div></div>
-  </div>
+    <div><div class="nav-title">QB Room</div><div class="nav-sub">Coaching Hub</div></div>
+  </a>
   <nav class="nav-links">
     <a href="../index.html">Home</a>
-    <a href="../socks-system/SOCKS_QB_System_Final.html">SOCKS System</a>
-    <a href="drills.html" class="active">Drill Library</a>
+    <a href="../socks-system/SOCKS_QB_System_Final.html">SOCKS</a>
+    <a href="../play-library/index.html">Play Library</a>
+    <a href="drills.html" class="active">Drills</a>
+    <a href="../qb-grading/index.html">QB Grading</a>
     <a href="#" onclick="window.print();return false;">Print</a>
   </nav>
 </div>
 
 <!-- HEADER -->
 <div class="page-header">
-  <div class="header-top">
-    <div class="header-left">
-      <div class="page-eyebrow">QB Room · Higley Football · azcoachtravis</div>
-      <div class="page-title">QB Drill Library</div>
-      <div class="page-sub">35 drills across 6 categories · Sourced from Elite 11, Glazier, X&amp;O Labs, AFCA &amp; Mohns System · Filter by SOCKS Stage or Grading Category</div>
+  <div class="header-inner">
+    <div>
+      <div class="h-eye">QB Room · Drill Library</div>
+      <div class="h-title">QB Drill Library</div>
+      <div class="h-sub">47 drills · 6 categories · 4 SOCKS stages · Sourced from Elite 11, Glazier, X&amp;O Labs, AFCA &amp; Mohns System</div>
     </div>
-    <div class="header-stats">
-      <div class="stat-box"><div class="stat-num">35</div><div class="stat-lbl">Total Drills</div></div>
-      <div class="stat-box"><div class="stat-num">6</div><div class="stat-lbl">Categories</div></div>
-      <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">SOCKS Stages</div></div>
+    <div class="h-stats">
+      <div class="stat"><div class="stat-n">47</div><div class="stat-l">Total Drills</div></div>
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Categories</div></div>
+      <div class="stat"><div class="stat-n">4</div><div class="stat-l">Stages</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GRADING SCALE REFERENCE -->
+<div class="grade-bar">
+  <div class="grade-inner">
+    <div class="grade-lbl">Grading Scale</div>
+    <div class="grade-chips">
+      <span class="gchip gc-4">QB_DEC 4 = Optimal (anticipated)</span>
+      <span class="gchip gc-3">3 = Correct</span>
+      <span class="gchip gc-2">2 = Late / Safe</span>
+      <span class="gchip gc-1">1 = Poor</span>
+      <span class="gchip gc-0">0 = Turnover-Worthy</span>
+    </div>
+    <div class="grade-sep"></div>
+    <div class="grade-chips">
+      <span class="gchip gc-4">QB_ACC 3 = Perfect placement</span>
+      <span class="gchip gc-3">2 = Catchable</span>
+      <span class="gchip gc-1">1 = Off-target</span>
+      <span class="gchip gc-0">0 = Uncatchable</span>
+    </div>
+    <div class="grade-sep"></div>
+    <div class="grade-chips">
+      <span class="gchip gc-4">QB_POCK 2 = Climbs/resets</span>
+      <span class="gchip gc-2">1 = Neutral</span>
+      <span class="gchip gc-0">0 = Drifts/panics</span>
+    </div>
+    <div class="grade-sep"></div>
+    <div class="grade-chips">
+      <span class="gchip gc-4">QB_SA 2 = Elite pre-snap ID</span>
+      <span class="gchip gc-2">1 = Neutral</span>
+      <span class="gchip gc-0">0 = Missed read</span>
     </div>
   </div>
 </div>
@@ -177,7 +210,7 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
 <div class="filter-bar">
   <div class="filter-inner">
     <div class="filter-group">
-      <div class="filter-label">SOCKS Stage</div>
+      <div class="filter-lbl">SOCKS Stage</div>
       <div class="filter-pills">
         <button class="pill active" onclick="setFilter('stage','all',this)">All Stages</button>
         <button class="pill ps1" onclick="setFilter('stage','1',this)">Stage 1 — Foundation</button>
@@ -187,30 +220,29 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
       </div>
     </div>
     <div class="filter-group">
-      <div class="filter-label">Category</div>
+      <div class="filter-lbl">Grading Category</div>
       <div class="filter-pills">
         <button class="pill active" onclick="setFilter('cat','all',this)">All</button>
-        <button class="pill" onclick="setFilter('cat','pass-decision',this)">Decision Making</button>
-        <button class="pill" onclick="setFilter('cat','pass-execution',this)">Passing Execution</button>
-        <button class="pill" onclick="setFilter('cat','run-game',this)">Run Game</button>
-        <button class="pill" onclick="setFilter('cat','pass-pressure',this)">Pressure Performance</button>
+        <button class="pill" onclick="setFilter('cat','decision',this)">Decision Making</button>
+        <button class="pill" onclick="setFilter('cat','passing',this)">Passing Execution</button>
+        <button class="pill" onclick="setFilter('cat','run',this)">Run Game</button>
+        <button class="pill" onclick="setFilter('cat','pressure',this)">Pressure Performance</button>
         <button class="pill" onclick="setFilter('cat','situational',this)">Situational Awareness</button>
-        <button class="pill" onclick="setFilter('cat','mesh',this)">Mesh Mechanics (Mohns)</button>
+        <button class="pill" onclick="setFilter('cat','mesh',this)">Mesh Mechanics</button>
       </div>
     </div>
-    <div class="filter-count" id="drill-count">35 drills</div>
+    <div class="filter-count" id="drill-count">47 drills</div>
   </div>
 </div>
 
 <!-- LEGEND -->
-<div class="legend-strip">
+<div class="legend">
   <div class="legend-inner">
-    <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);">Stage Color:</span>
-    <span class="legend-item"><span class="legend-dot l-s1"></span>Stage 1 — Foundation</span>
-    <span class="legend-item"><span class="legend-dot l-s2"></span>Stage 2 — Safeties + Pressure</span>
-    <span class="legend-item"><span class="legend-dot l-s3"></span>Stage 3 — Leverage + Situational</span>
-    <span class="legend-item"><span class="legend-dot l-s4"></span>Stage 4 — Full SOCKS</span>
-    <span style="margin-left:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);">📋 Trigger = grade threshold that makes this drill a priority</span>
+    <span class="li"><span class="ld ld1"></span>Stage 1 — Foundation</span>
+    <span class="li"><span class="ld ld2"></span>Stage 2 — Safeties + Shell</span>
+    <span class="li"><span class="ld ld3"></span>Stage 3 — Leverage + Space</span>
+    <span class="li"><span class="ld ld4"></span>Stage 4 — Full SOCKS</span>
+    <span class="legend-note">Grade trigger = score threshold that makes this drill a priority</span>
   </div>
 </div>
 
@@ -218,12 +250,12 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
 <div class="main">
   <div class="drill-grid" id="drill-grid">
 
-    <div class="drill-card" data-stage="1" data-cat="pass-decision">
+    <div class="drill-card" data-stage="1" data-cat="decision">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Read Progression Walk-Through</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-decision">DECISION MAKING</span>
         </div>
       </div>
@@ -234,25 +266,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Decision Avg (Weighted)</span>
         </div>
         <div class="drill-desc">QB works through 3-receiver progression on air vs. coach-signaled coverages. Verbal callout of each read required before moving to next.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">3 cones / receivers spread 10-15 yds; coach behind QB signals coverage with hand; no rush</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">QB must verbalize: &quot;1 is covered… 2 is covered… throwing 3.&quot; Fixes locking onto primary. Eyes over shoulders, not feet.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: X&amp;O Labs — Read Families / QB Progressions</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">3 cones / receivers spread 10-15 yds; coach behind QB signals coverage with hand; no rush</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">QB must verbalize: &quot;1 is covered… 2 is covered… throwing 3.&quot; Fixes locking onto primary. Eyes over shoulders, not feet.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: X&amp;O Labs — Read Families / QB Progressions</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="pass-decision">
+    <div class="drill-card" data-stage="1" data-cat="decision">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Two-Target Rapid Fire</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-decision">DECISION MAKING</span>
         </div>
       </div>
@@ -263,25 +288,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Decision Avg (Weighted)</span>
         </div>
         <div class="drill-desc">Coach points to one of two receivers at random intervals. QB must identify and throw within 1.5 seconds of signal. Builds snap decision speed.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">2 receivers 8-12 yds out; coach behind QB; stopwatch optional; net or rebounder OK</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Punish hesitation — if QB holds past count, rep is void. Reward quickness over perfection early.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Football Advantage — QB Drills</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">2 receivers 8-12 yds out; coach behind QB; stopwatch optional; net or rebounder OK</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Punish hesitation — if QB holds past count, rep is void. Reward quickness over perfection early.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Advantage — QB Drills</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="pass-decision">
+    <div class="drill-card" data-stage="1" data-cat="decision">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">7v7 Scripted Coverage ID</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-decision">DECISION MAKING</span>
         </div>
       </div>
@@ -292,25 +310,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Elite Decision %</span>
         </div>
         <div class="drill-desc">Full 7-on-7 with defensive coordinator scripting specific coverages each play. QB must call out coverage at line before snap.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">Full 7v7; DC scripts Cover 1/2/3/4 per play; LBs walk pre-snap; QB calls out loud</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Force the verbal ID. A QB who can name it can beat it. Track % of correct IDs.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Glazier — Pre-Snap Reads System (Ronquillo)</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Full 7v7; DC scripts Cover 1/2/3/4 per play; LBs walk pre-snap; QB calls out loud</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Force the verbal ID. A QB who can name it can beat it. Track % of correct IDs.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Glazier — Pre-Snap Reads System (Ronquillo)</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="pass-decision">
+    <div class="drill-card" data-stage="1" data-cat="decision">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">3rd Down Situation Drill</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-decision">DECISION MAKING</span>
         </div>
       </div>
@@ -321,25 +332,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 3rd Down Dec Avg</span>
         </div>
         <div class="drill-desc">All reps are 3rd-and-medium (5-8 yds). QB must convert or check down correctly. Defense plays assignment. Track % of correct decisions.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">7v7 or skeleton; all reps are 3rd and 5-8; chain crew or coach marks 1st down line</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The bump weight is built into the formula — reinforce in practice. QB must know the sticks. Reward the check-down on covered primary.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: FootballCoach.com — Spot Throw / Situation Drill</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">7v7 or skeleton; all reps are 3rd and 5-8; chain crew or coach marks 1st down line</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The bump weight is built into the formula — reinforce in practice. QB must know the sticks. Reward the check-down on covered primary.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: FootballCoach.com — Spot Throw / Situation Drill</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="pass-decision">
+    <div class="drill-card" data-stage="1" data-cat="decision">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Red Zone Decision Period</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-decision">DECISION MAKING</span>
         </div>
       </div>
@@ -350,25 +354,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Red Zone Dec Avg</span>
         </div>
         <div class="drill-desc">All reps inside the 20 with compressed field. Emphasize high-percentage decisions — quick game, back shoulder, check-down. No hero balls.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">11v11 or 7v7 inside -20; defense plays any coverage; coach grades each decision post-play</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">In the red zone the field shrinks and windows close faster. QB must be decisive. Reward the TD throw and the throwaway equally if the read was right.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Football Toolbox — Red Zone Decision</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">11v11 or 7v7 inside -20; defense plays any coverage; coach grades each decision post-play</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">In the red zone the field shrinks and windows close faster. QB must be decisive. Reward the TD throw and the throwaway equally if the read was right.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Toolbox — Red Zone Decision</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="pass-decision">
+    <div class="drill-card" data-stage="1" data-cat="decision">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Blitz Recognition Walk-Through</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-decision">DECISION MAKING</span>
         </div>
       </div>
@@ -379,25 +376,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Pressure Decision Avg</span>
         </div>
         <div class="drill-desc">Coach shows 4 blitz packages pre-snap. QB IDs hot route or blitz beater, makes correct call at line, executes quick throw.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">OL/LB walk-through; coach shows blitz alignment; QB makes protection call + hot route ID</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Hot route timing = pre-snap. If QB waits until post-snap it's too late. Reward the correct blitz ID even if throw is off.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Axemen Football — Pre-Snap Reads / Blitz ID</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">OL/LB walk-through; coach shows blitz alignment; QB makes protection call + hot route ID</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Hot route timing = pre-snap. If QB waits until post-snap it's too late. Reward the correct blitz ID even if throw is off.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Axemen Football — Pre-Snap Reads / Blitz ID</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="pass-decision">
+    <div class="drill-card" data-stage="1" data-cat="decision">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Decision Consequences Drill</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-decision">DECISION MAKING</span>
         </div>
       </div>
@@ -408,25 +398,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Turnover-Worthy %</span>
         </div>
         <div class="drill-desc">Each turnover-worthy decision (DEC=0) in 7v7 results in full team running a gasser. Creates real consequence culture around decision quality.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">7v7 full speed; coach has final say on TWP call; consequence applied immediately</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Must be used sparingly or it creates tentative QBs. Pair with &quot;great decision&quot; positive callouts. 1 negative : 3 positive minimum.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Football Pipelines — QB Decision Making Drills</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">7v7 full speed; coach has final say on TWP call; consequence applied immediately</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Must be used sparingly or it creates tentative QBs. Pair with &quot;great decision&quot; positive callouts. 1 negative : 3 positive minimum.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Pipelines — QB Decision Making Drills</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-execution">
+    <div class="drill-card" data-stage="2" data-cat="passing">
       <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Dots / Target Net Drill</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-passing">PASSING EXECUTION</span>
         </div>
       </div>
@@ -437,25 +420,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Accuracy Avg (QB_ACC)</span>
         </div>
         <div class="drill-desc">QB throws to numbered targets (1-5) on a net or marked spots on a fence. Coach calls number after snap count. Builds placement accuracy on command.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">Throwing net with 5 marked zones OR 5 hoops on fence at varying heights; QB 10-15 yds out</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Focus on ball placement to receiver's frame — outside shoulder away from defender. Rep each zone equally.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: FootballCoach.com — Find Open Receiver / Target Drills</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Throwing net with 5 marked zones OR 5 hoops on fence at varying heights; QB 10-15 yds out</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Focus on ball placement to receiver's frame — outside shoulder away from defender. Rep each zone equally.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: FootballCoach.com — Find Open Receiver / Target Drills</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-execution">
+    <div class="drill-card" data-stage="2" data-cat="passing">
       <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Two Knee Drill → One Knee → Standing Progression</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-passing">PASSING EXECUTION</span>
         </div>
       </div>
@@ -466,25 +442,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Accuracy Avg (QB_ACC)</span>
         </div>
         <div class="drill-desc">Start on two knees to isolate upper body mechanics. Progress to one knee, then standing. Fixes release point and rotation issues.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">2 QBs or coach 10 yds apart; no lower body movement allowed initially</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The knees tell you if the accuracy problem is upper body (yes) or lower body (no). Most HS accuracy issues live in the elbow and release point.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: FootballCoach.com — Two Knee / One Knee Drill</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">2 QBs or coach 10 yds apart; no lower body movement allowed initially</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The knees tell you if the accuracy problem is upper body (yes) or lower body (no). Most HS accuracy issues live in the elbow and release point.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: FootballCoach.com — Two Knee / One Knee Drill</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-execution">
+    <div class="drill-card" data-stage="2" data-cat="passing">
       <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Pat and Go — Timing Routes</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-passing">PASSING EXECUTION</span>
         </div>
       </div>
@@ -495,25 +464,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Completion %</span>
         </div>
         <div class="drill-desc">QB pats ball once to signal receiver release. Must deliver to front shoulder at break. Builds rhythm and timing with actual receivers.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">3-5 receivers running curls/outs/hitches; QB in shotgun; coach grades each throw location</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Ball should arrive as receiver turns — not after. If QB waits to see separation the window closes. Reward timing over accuracy initially.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Football Pipelines — Pat and Go / Timing Routes</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">3-5 receivers running curls/outs/hitches; QB in shotgun; coach grades each throw location</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Ball should arrive as receiver turns — not after. If QB waits to see separation the window closes. Reward timing over accuracy initially.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Pipelines — Pat and Go / Timing Routes</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-execution">
+    <div class="drill-card" data-stage="2" data-cat="passing">
       <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Pocket Reset Drill (Hula Hoop)</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-passing">PASSING EXECUTION</span>
         </div>
       </div>
@@ -524,25 +486,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Pocket Control Avg</span>
         </div>
         <div class="drill-desc">QB drops back into a 3-hoop pocket. Coach or rusher enters from backside. QB must slide up, reset, and deliver — staying in the pocket.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">3 hula hoops form pocket; 1 live pass rusher from backside; receiver downfield</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Most young QBs bail laterally. Force the step-up. Sliding forward in the pocket is always the first move. Lateral escape is last resort.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Athletes Acceleration — Pocket Presence Drills</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">3 hula hoops form pocket; 1 live pass rusher from backside; receiver downfield</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Most young QBs bail laterally. Force the step-up. Sliding forward in the pocket is always the first move. Lateral escape is last resort.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Athletes Acceleration — Pocket Presence Drills</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-execution">
+    <div class="drill-card" data-stage="2" data-cat="passing">
       <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Flush Drill (Gary Goff)</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-passing">PASSING EXECUTION</span>
         </div>
       </div>
@@ -553,25 +508,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Pocket Control Avg</span>
         </div>
         <div class="drill-desc">Coach pushes QB in a direction. QB reacts, resets feet, and throws to numbered target called out simultaneously. Builds feel under chaos.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">QB, coach (pusher), net with 3 numbered zones; coach calls number while pushing QB</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Call the number just as you push — forces the QB to process two things at once. Real pocket chaos is never clean.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Glazier — Pocket Presence &amp; Reaction Drills (Gary Goff)</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">QB, coach (pusher), net with 3 numbered zones; coach calls number while pushing QB</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Call the number just as you push — forces the QB to process two things at once. Real pocket chaos is never clean.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Glazier — Pocket Presence &amp; Reaction Drills (Gary Goff)</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-execution">
+    <div class="drill-card" data-stage="2" data-cat="passing">
       <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Ball Placement Emphasis Period</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-passing">PASSING EXECUTION</span>
         </div>
       </div>
@@ -582,25 +530,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 YAC Potential Avg</span>
         </div>
         <div class="drill-desc">All 7v7 reps have a placement rule: every throw must be on the outside shoulder (away from defender). Coach grades location, not just completion.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">7v7; coach grades each throw: inside shoulder = incomplete regardless; outside = credit</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">YAC starts with placement. A receiver who catches on his inside shoulder cannot turn upfield. Outside shoulder = 2-3 extra yards every play.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Football Drills — Drop and Throw / Ball Placement</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">7v7; coach grades each throw: inside shoulder = incomplete regardless; outside = credit</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">YAC starts with placement. A receiver who catches on his inside shoulder cannot turn upfield. Outside shoulder = 2-3 extra yards every play.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Drills — Drop and Throw / Ball Placement</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-execution">
+    <div class="drill-card" data-stage="2" data-cat="passing">
       <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Shot Play Period</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-passing">PASSING EXECUTION</span>
         </div>
       </div>
@@ -611,25 +552,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Explosive Comp %</span>
         </div>
         <div class="drill-desc">Dedicated 5-minute period where all routes are 15+ yards — post, corner, dig, go. QB works deep ball mechanics: hips, hip-to-shoulder rotation, high release.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">3-5 receivers running deep routes only; no rush; coach grades mechanics on each throw</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Most HS QBs throw deep balls off their back foot. Drive the front hip through. High release point = better arc. The ball should hang slightly.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Football Drills — Shot Play / Deep Ball Mechanics</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">3-5 receivers running deep routes only; no rush; coach grades mechanics on each throw</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Most HS QBs throw deep balls off their back foot. Drive the front hip through. High release point = better arc. The ball should hang slightly.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Drills — Shot Play / Deep Ball Mechanics</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="run-game">
+    <div class="drill-card" data-stage="1" data-cat="run">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Run Decision Walk-Through</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-run">RUN GAME</span>
         </div>
       </div>
@@ -640,25 +574,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Run Decision Avg</span>
         </div>
         <div class="drill-desc">Coach holds one hand up or down before snap signaling run fit. QB must identify correct run lane (yes/no decision) before executing. Builds read-run habits.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">Coach at LOS; hand signal = open lane (up) or closed (down); QB executes decision each rep</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Run decision is made at the mesh point — not after. QB should be deciding as he rides the RB. Late decisions = bad run timing.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: AFCA Insider — Mesh Drill for RPO / Run Decision</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Coach at LOS; hand signal = open lane (up) or closed (down); QB executes decision each rep</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Run decision is made at the mesh point — not after. QB should be deciding as he rides the RB. Late decisions = bad run timing.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: AFCA Insider — Mesh Drill for RPO / Run Decision</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="run-game">
+    <div class="drill-card" data-stage="1" data-cat="run">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Sell the Fake Drill</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-run">RUN GAME</span>
         </div>
       </div>
@@ -669,25 +596,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Fake Execution Avg</span>
         </div>
         <div class="drill-desc">All run plays include an active fake. Film review of each rep. QB graded on whether a defender bit on the fake (yes/no). Use Hudl to review.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">Full backfield + TE/WR; every play is fake first; coach or coordinator grades film post-practice</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The fake earns the QB his keep on run plays. Eyes must go with the ball to the RB. Body sells the mesh. Reward when a LB bites.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: NFL Flag — Fake Handoff / Sell the Fake</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Full backfield + TE/WR; every play is fake first; coach or coordinator grades film post-practice</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The fake earns the QB his keep on run plays. Eyes must go with the ball to the RB. Body sells the mesh. Reward when a LB bites.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: NFL Flag — Fake Handoff / Sell the Fake</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="run-game">
+    <div class="drill-card" data-stage="1" data-cat="run">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Carry-Out Fake Period</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-run">RUN GAME</span>
         </div>
       </div>
@@ -698,25 +618,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Fake Execution Avg</span>
         </div>
         <div class="drill-desc">Specific period where QB runs every play-action fake full speed for 5 yards after the fake — no exceptions. Builds muscle memory of full carry-out.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">11v11 or skeleton; coach blows whistle if QB stops fake early; defense plays full speed</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">A fake that stops at the line of scrimmage fools nobody. The carry-out must extend past the LBs. Five yards minimum on every fake.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Glazier — Ball Security / Fake Carry-Out Drills</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">11v11 or skeleton; coach blows whistle if QB stops fake early; defense plays full speed</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">A fake that stops at the line of scrimmage fools nobody. The carry-out must extend past the LBs. Five yards minimum on every fake.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Glazier — Ball Security / Fake Carry-Out Drills</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="run-game">
+    <div class="drill-card" data-stage="1" data-cat="run">
       <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Run Fit Decision Drill</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-run">RUN GAME</span>
         </div>
       </div>
@@ -727,25 +640,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Run Accuracy Avg</span>
         </div>
         <div class="drill-desc">QB reads assigned key (usually EMOL or ILB). Coach positions key pre-snap. QB must take correct run path or hand off based on key position — scored right/wrong.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">Cones mark EMOL; coach positions key; QB reads and executes; no live defenders needed</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The read must happen BEFORE the mesh. If QB is still reading at the handoff point the play is already late. Discipline the pre-snap read.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: AFCA Insider — Run Fit Read Drill (Mesh Concept)</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Cones mark EMOL; coach positions key; QB reads and executes; no live defenders needed</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The read must happen BEFORE the mesh. If QB is still reading at the handoff point the play is already late. Discipline the pre-snap read.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: AFCA Insider — Run Fit Read Drill (Mesh Concept)</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-pressure">
-      <div class="drill-stripe stripe-s2"></div>
+    <div class="drill-card" data-stage="1" data-cat="pressure">
+      <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Blitz Pickup and Throw</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-pressure">PRESSURE PERFORMANCE</span>
         </div>
       </div>
@@ -756,25 +662,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Acc Avg — When Blitzed</span>
         </div>
         <div class="drill-desc">OL + RB identify blitz. QB gets simulated clean pocket (or not) and throws hot route. Rep ends at throw. Grades accuracy on hot throw only.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">OL, RB, 1 blitzing LB, 1 hot receiver; offense calls protection; QB throws hot immediately</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The hot route throw should be the QB's fastest throw — he should know it's coming pre-snap. Quick release beats the blitz. Don't let him wind up.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Football Advantage — Blitz Pickup and Throw</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">OL, RB, 1 blitzing LB, 1 hot receiver; offense calls protection; QB throws hot immediately</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The hot route throw should be the QB's fastest throw — he should know it's coming pre-snap. Quick release beats the blitz. Don't let him wind up.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Advantage — Blitz Pickup and Throw</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-pressure">
-      <div class="drill-stripe stripe-s2"></div>
+    <div class="drill-card" data-stage="3" data-cat="pressure">
+      <div class="drill-stripe stripe-s3"></div>
       <div class="drill-head">
         <div class="drill-name">Front Door / Back Door Escape</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s3">Stage 3</span>
           <span class="badge cat-pressure">PRESSURE PERFORMANCE</span>
         </div>
       </div>
@@ -785,25 +684,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Acc Avg — When Blitzed</span>
         </div>
         <div class="drill-desc">With collapsed pocket QB makes lateral escape to designated side, resets, and delivers downfield. Emphasizes throwing accuracy while moving.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">5-step drop; 2 live rushers; 2 receivers; QB escapes on signal side and throws on run</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Arm slot must stay high even while moving. Shoulder points to target. Common error: arm drops below shoulder on escape throws causing inaccuracy.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Athletes Acceleration — Front Door / Back Door Escape</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">5-step drop; 2 live rushers; 2 receivers; QB escapes on signal side and throws on run</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Arm slot must stay high even while moving. Shoulder points to target. Common error: arm drops below shoulder on escape throws causing inaccuracy.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Athletes Acceleration — Front Door / Back Door Escape</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-pressure">
-      <div class="drill-stripe stripe-s2"></div>
+    <div class="drill-card" data-stage="3" data-cat="pressure">
+      <div class="drill-stripe stripe-s3"></div>
       <div class="drill-head">
         <div class="drill-name">Clean Pocket Efficiency Period</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s3">Stage 3</span>
           <span class="badge cat-pressure">PRESSURE PERFORMANCE</span>
         </div>
       </div>
@@ -814,25 +706,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Acc Avg — Clean Pocket</span>
         </div>
         <div class="drill-desc">Specific 7v7 period with no blitz — defense plays base coverage only. QB must maximize accuracy with clean time. Establishes clean-pocket baseline.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">7v7; DC commits to no blitz for entire period; QB knows it; grades show honest baseline</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">If a QB's clean pocket numbers are low, the problem is mechanics or reads — not pressure. Isolating the clean pocket period proves or disproves that.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Coaches Insider — Pocket Presence with Josh Lindke</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">7v7; DC commits to no blitz for entire period; QB knows it; grades show honest baseline</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">If a QB's clean pocket numbers are low, the problem is mechanics or reads — not pressure. Isolating the clean pocket period proves or disproves that.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Coaches Insider — Pocket Presence with Josh Lindke</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="2" data-cat="pass-pressure">
-      <div class="drill-stripe stripe-s2"></div>
+    <div class="drill-card" data-stage="4" data-cat="pressure">
+      <div class="drill-stripe stripe-s4"></div>
       <div class="drill-head">
         <div class="drill-name">Gauntlet Pocket Drill</div>
         <div class="drill-badges">
-          <span class="badge badge-s2">Stage 2</span>
+          <span class="badge b-s4">Stage 4</span>
           <span class="badge cat-pressure">PRESSURE PERFORMANCE</span>
         </div>
       </div>
@@ -843,25 +728,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Pocket Control Avg</span>
         </div>
         <div class="drill-desc">QB drops back through 3 live rushers (bag holders). Must navigate, reset, and deliver. Builds physical pocket awareness under realistic chaos.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">3 bag holders around QB at 3-5 yds; QB takes 5-step drop and navigates; receiver downfield</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The goal is not to avoid the rush but to buy time within the pocket. Step up. Re-set. Deliver. Lateral escape only after the step-up fails.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: AllBallPro — Pocket Movement / Gauntlet Drill</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">3 bag holders around QB at 3-5 yds; QB takes 5-step drop and navigates; receiver downfield</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The goal is not to avoid the rush but to buy time within the pocket. Step up. Re-set. Deliver. Lateral escape only after the step-up fails.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: AllBallPro — Pocket Movement / Gauntlet Drill</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="3" data-cat="situational">
-      <div class="drill-stripe stripe-s3"></div>
+    <div class="drill-card" data-stage="2" data-cat="situational">
+      <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Pre-Snap Cadence Walk-Through</div>
         <div class="drill-badges">
-          <span class="badge badge-s3">Stage 3</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-sit">SITUATIONAL AWARENESS</span>
         </div>
       </div>
@@ -872,25 +750,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 QB_SA Avg</span>
         </div>
         <div class="drill-desc">No snap — QB aligns, scans defense for 3 seconds, verbalizes coverage call, makes any protection adjustment, then resets. 10 reps vs. varied looks.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">Defense walks through 5 coverage shells; QB must call coverage AND box strength each rep</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The 3-second pre-snap scan is the habit. Safety depth first (single vs. two-high), then corners, then box. Build the checklist into muscle memory.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Axemen Football — Pre-Snap Cadence / Coverage ID</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Defense walks through 5 coverage shells; QB must call coverage AND box strength each rep</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The 3-second pre-snap scan is the habit. Safety depth first (single vs. two-high), then corners, then box. Build the checklist into muscle memory.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Axemen Football — Pre-Snap Cadence / Coverage ID</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="3" data-cat="situational">
-      <div class="drill-stripe stripe-s3"></div>
+    <div class="drill-card" data-stage="2" data-cat="situational">
+      <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Coverage ID Film Session</div>
         <div class="drill-badges">
-          <span class="badge badge-s3">Stage 3</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-sit">SITUATIONAL AWARENESS</span>
         </div>
       </div>
@@ -901,25 +772,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 QB_SA Avg</span>
         </div>
         <div class="drill-desc">Review 15-20 opponent snaps in Hudl. QB must call out coverage pre-snap on film before each play snaps. Coach grades right/wrong.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">Projector or tablet; opponent film; 15-20 pre-snap stills or slow-mo starts; coach grades aloud</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The best pre-snap rep is on film — no physical cost, maximum reps. Do this before every practice week. 15 correct IDs = game-ready.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Glazier — Pre-Snap Reads System / Film Session</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Projector or tablet; opponent film; 15-20 pre-snap stills or slow-mo starts; coach grades aloud</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The best pre-snap rep is on film — no physical cost, maximum reps. Do this before every practice week. 15 correct IDs = game-ready.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Glazier — Pre-Snap Reads System / Film Session</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="3" data-cat="situational">
-      <div class="drill-stripe stripe-s3"></div>
+    <div class="drill-card" data-stage="2" data-cat="situational">
+      <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Communication Drill — &quot;Give Me Something&quot;</div>
         <div class="drill-badges">
-          <span class="badge badge-s3">Stage 3</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-sit">SITUATIONAL AWARENESS</span>
         </div>
       </div>
@@ -930,25 +794,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Elite SA %</span>
         </div>
         <div class="drill-desc">QB must call out SOMETHING pre-snap every play in 7v7 — even if it's &quot;I see cover 2, check.&quot; Forces the habit of pre-snap verbal processing.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">7v7; rule: QB must say something pre-snap or rep is replayed; coach listens and grades</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Elite SA is the habit of always processing, not just reacting. The verbal callout forces the thought. Silence pre-snap = disengaged QB.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Football Pipelines — Communication / Verbal ID Drill</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">7v7; rule: QB must say something pre-snap or rep is replayed; coach listens and grades</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Elite SA is the habit of always processing, not just reacting. The verbal callout forces the thought. Silence pre-snap = disengaged QB.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Pipelines — Communication / Verbal ID Drill</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="3" data-cat="situational">
-      <div class="drill-stripe stripe-s3"></div>
+    <div class="drill-card" data-stage="1" data-cat="situational">
+      <div class="drill-stripe stripe-s1"></div>
       <div class="drill-head">
         <div class="drill-name">Walk-Through vs. 5 Coverage Shells</div>
         <div class="drill-badges">
-          <span class="badge badge-s3">Stage 3</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-sit">SITUATIONAL AWARENESS</span>
         </div>
       </div>
@@ -959,17 +816,10 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Poor SA %</span>
         </div>
         <div class="drill-desc">Coach shows Cover 0, 1, 2, 3, 4 in sequence. QB must ID and explain why he knows (safety depth, corner alignment, LB position) before next shell shown.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">Whiteboard or walk-through only; coach draws or shows 5 base coverages; QB explains each</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Poor SA often means the QB was never taught the keys. Start here before going to film. Safety = first key. Always.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Steve Clarkson — Coverage Shell Walk-Through</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Whiteboard or walk-through only; coach draws or shows 5 base coverages; QB explains each</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Poor SA often means the QB was never taught the keys. Start here before going to film. Safety = first key. Always.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Steve Clarkson — Coverage Shell Walk-Through</span></div>
+    </div>
     </div>
 
     <div class="drill-card" data-stage="3" data-cat="situational">
@@ -977,7 +827,7 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
       <div class="drill-head">
         <div class="drill-name">3rd Down Conversion Period</div>
         <div class="drill-badges">
-          <span class="badge badge-s3">Stage 3</span>
+          <span class="badge b-s3">Stage 3</span>
           <span class="badge cat-sit">SITUATIONAL AWARENESS</span>
         </div>
       </div>
@@ -988,17 +838,10 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 3rd Down Dec Avg</span>
         </div>
         <div class="drill-desc">All reps are 3rd down, distance varies by call. Defense plays assignment. QB's job is to get the first down OR throw it away. No sacks, no picks.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">7v7 or 11v11; all reps 3rd down; chain crew marks line; coach grades decision only (not throw)</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Two acceptable outcomes: conversion or throwaway. A sack or pick on 3rd down is a coaching failure — emphasize this. The right decision wins games.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: FootballCoach.com — 3rd Down Spot Throw / Conversion</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">7v7 or 11v11; all reps 3rd down; chain crew marks line; coach grades decision only (not throw)</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Two acceptable outcomes: conversion or throwaway. A sack or pick on 3rd down is a coaching failure — emphasize this. The right decision wins games.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: FootballCoach.com — 3rd Down Spot Throw / Conversion</span></div>
+    </div>
     </div>
 
     <div class="drill-card" data-stage="3" data-cat="situational">
@@ -1006,7 +849,7 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
       <div class="drill-head">
         <div class="drill-name">Red Zone Scripted Period — High-Low Read</div>
         <div class="drill-badges">
-          <span class="badge badge-s3">Stage 3</span>
+          <span class="badge b-s3">Stage 3</span>
           <span class="badge cat-sit">SITUATIONAL AWARENESS</span>
         </div>
       </div>
@@ -1017,17 +860,10 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Red Zone Dec Avg</span>
         </div>
         <div class="drill-desc">All red zone plays scripted as high-low combinations. QB must find the open level. No guessing — the read tells him where to go.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">7v7 inside -20; all plays are high-low concept (fade/flat, slant/out, post/cross); QB reads level</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">High-low reads compress naturally in the red zone. If high is covered, low is open. If QB throws high into coverage he didn't process the low. Film every rep.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Football Drills — Red Zone High-Low Read Progression</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">7v7 inside -20; all plays are high-low concept (fade/flat, slant/out, post/cross); QB reads level</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">High-low reads compress naturally in the red zone. If high is covered, low is open. If QB throws high into coverage he didn't process the low. Film every rep.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Drills — Red Zone High-Low Read Progression</span></div>
+    </div>
     </div>
 
     <div class="drill-card" data-stage="1" data-cat="mesh">
@@ -1035,7 +871,7 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
       <div class="drill-head">
         <div class="drill-name">Daily Mesh Drill (Mohns System)</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-mesh">MESH MECHANICS (Mohns)</span>
         </div>
       </div>
@@ -1046,25 +882,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Mesh Mechanics — Daily 10-Min Routine</span>
         </div>
         <div class="drill-desc">QB + RB work pre-snap stance, footwork, and mesh exchange every single practice — 10 minutes, no exceptions. QB toes set at 5 yards (not heels). RB tracks off QB toe landmark. Rotate: QB → C → QB → DE → out. RB → LB → out.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">OL strip for alignment landmarks; QB, RB, 1 coach as DE; cone marks 5-yd QB depth; run both sides</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Spacing is everything — use the OL strip. QB's toes at 5 yds give RB a consistent track. The mesh must become muscle memory before reads are added. High reps, no live defense.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Glazier — Mohns Mesh Mechanics Muscle Memory</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">OL strip for alignment landmarks; QB, RB, 1 coach as DE; cone marks 5-yd QB depth; run both sides</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Spacing is everything — use the OL strip. QB's toes at 5 yds give RB a consistent track. The mesh must become muscle memory before reads are added. High reps, no live defense.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Glazier — Mohns Mesh Mechanics Muscle Memory</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="mesh">
-      <div class="drill-stripe stripe-s1"></div>
+    <div class="drill-card" data-stage="2" data-cat="mesh">
+      <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Inside Zone Mesh Drill (1st Level Read)</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-mesh">MESH MECHANICS (Mohns)</span>
         </div>
       </div>
@@ -1075,25 +904,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Inside Zone Mesh Read</span>
         </div>
         <div class="drill-desc">QB opens with read-side foot straight ahead, pivots 45° on 2nd step facing read-side DE. Coach/player imitates DE. Give = QB extends and rides RB through B-gap. Keep = QB pulls and attacks inside shoulder of pitch key. RB aims at inside leg of playside guard.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">Coach or scout player acts as DE; RB runs inside zone path; OL strip for spacing; repeat both sides</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">QB must decide at the mesh point — not after. Slow it down until the read is automatic, then speed up. The RB's aim point never changes regardless of the read.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: CoachTube — Mohns QB Footwork &amp; Mesh Mechanics (RPO)</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Coach or scout player acts as DE; RB runs inside zone path; OL strip for spacing; repeat both sides</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">QB must decide at the mesh point — not after. Slow it down until the read is automatic, then speed up. The RB's aim point never changes regardless of the read.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: CoachTube — Mohns QB Footwork &amp; Mesh Mechanics (RPO)</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="mesh">
-      <div class="drill-stripe stripe-s1"></div>
+    <div class="drill-card" data-stage="2" data-cat="mesh">
+      <div class="drill-stripe stripe-s2"></div>
       <div class="drill-head">
         <div class="drill-name">Outside Zone Mesh Drill (1st Level Read)</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s2">Stage 2</span>
           <span class="badge cat-mesh">MESH MECHANICS (Mohns)</span>
         </div>
       </div>
@@ -1104,17 +926,10 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Outside Zone Mesh Read</span>
         </div>
         <div class="drill-desc">QB executes OZ footwork keeping eyes on read key. If LB attacks run play → QB sets feet and throws RPO throw to TE/slot. If LB stays → QB hands off. Coach playing LB mimics current week's opponent tendency.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">LB position player or coach at 2nd level; TE or slot at RPO catch point; OL strip; run both sides</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The LB is the key — not the DE. QB must keep eyes at 2nd level on OZ to make the RPO decision. If he watches the mesh he loses the RPO window.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: AFCA Insider — Outside Zone Mesh Drill / RPO</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">LB position player or coach at 2nd level; TE or slot at RPO catch point; OL strip; run both sides</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The LB is the key — not the DE. QB must keep eyes at 2nd level on OZ to make the RPO decision. If he watches the mesh he loses the RPO window.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: AFCA Insider — Outside Zone Mesh Drill / RPO</span></div>
+    </div>
     </div>
 
     <div class="drill-card" data-stage="1" data-cat="mesh">
@@ -1122,7 +937,7 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
       <div class="drill-head">
         <div class="drill-name">Power Read Mesh Drill</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-mesh">MESH MECHANICS (Mohns)</span>
         </div>
       </div>
@@ -1133,25 +948,18 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Power Read / QB GT Counter Mesh</span>
         </div>
         <div class="drill-desc">QB reads EMOL (end man on line of scrimmage). If EMOL squeezes → pull and follow guard lead. If EMOL widens or sets → give to RB. Add QB GT Counter rep: QB fakes handoff, takes counter path behind pulling guard.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">Scout DE player; pulling guard executes pull; QB and RB run footwork; add full backfield as progresses</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Power read is a give-read, not a keep-read. The default is give. QB pulls only when the read forces it. Sell the fake on the counter — the guard pull is the key to the defense.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: CoachTube — Mohns Complete Offensive System (Power Read)</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Scout DE player; pulling guard executes pull; QB and RB run footwork; add full backfield as progresses</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Power read is a give-read, not a keep-read. The default is give. QB pulls only when the read forces it. Sell the fake on the counter — the guard pull is the key to the defense.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: CoachTube — Mohns Complete Offensive System (Power Read)</span></div>
+    </div>
     </div>
 
-    <div class="drill-card" data-stage="1" data-cat="mesh">
-      <div class="drill-stripe stripe-s1"></div>
+    <div class="drill-card" data-stage="3" data-cat="mesh">
+      <div class="drill-stripe stripe-s3"></div>
       <div class="drill-head">
         <div class="drill-name">RPO Quick Game Off Mesh (Mohns Quick Passing System)</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s3">Stage 3</span>
           <span class="badge cat-mesh">MESH MECHANICS (Mohns)</span>
         </div>
       </div>
@@ -1162,17 +970,10 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 2nd Level RPO — Stick / Snag / Spacing</span>
         </div>
         <div class="drill-desc">Off any run action mesh, QB reads 2nd level linebacker. If LB stays in run fit → throw RPO route (stick/snag/spacing). If LB drops → hand off or pull. Work Stick, Stick/Bait, Stick/Decide, Snag, and Spacing variations as season progresses.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">3-5 receivers in RPO positions; LB reads the conflict; QB executes mesh then RPO throw; 7v7 preferred</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The RPO decision is made with the LB in the QB's periphery — eyes must stay downfield. If QB looks at the RPO first, he telegraphs. The mesh sells the run. The LB key triggers the throw.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: CoachTube — Mohns Quick Passing Game (Stick/Snag/Spacing)</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">3-5 receivers in RPO positions; LB reads the conflict; QB executes mesh then RPO throw; 7v7 preferred</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The RPO decision is made with the LB in the QB's periphery — eyes must stay downfield. If QB looks at the RPO first, he telegraphs. The mesh sells the run. The LB key triggers the throw.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: CoachTube — Mohns Quick Passing Game (Stick/Snag/Spacing)</span></div>
+    </div>
     </div>
 
     <div class="drill-card" data-stage="1" data-cat="mesh">
@@ -1180,7 +981,7 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
       <div class="drill-head">
         <div class="drill-name">Pre-Snap Stance Walk-Through (Mohns Checklist)</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-mesh">MESH MECHANICS (Mohns)</span>
         </div>
       </div>
@@ -1191,17 +992,10 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Pre-Snap Stance Checklist (Mohns)</span>
         </div>
         <div class="drill-desc">Coach walks through Mohns' pre-snap checklist every practice before team period: 1) Toes at 5 yds. 2) Feet shoulder-width, slight crouch. 3) Eyes on defense (safety depth first). 4) Hands ready for snap. 5) Ball in &quot;cradle&quot; — both hands under chin, vertical angle. 6) Call made before snap.</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">No equipment needed; QB-only period; coach goes position by position through checklist verbally</div>
-        </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">The checklist is the habit. Do it every day until it's automatic. Mohns runs this before every team period — consistency creates the pre-snap processing that separates good QBs from great ones.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: Glazier — Mohns Mesh Mechanics / Pre-Snap Stance</span>
-      </div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">No equipment needed; QB-only period; coach goes position by position through checklist verbally</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">The checklist is the habit. Do it every day until it's automatic. Mohns runs this before every team period — consistency creates the pre-snap processing that separates good QBs from great ones.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Glazier — Mohns Mesh Mechanics / Pre-Snap Stance</span></div>
+    </div>
     </div>
 
     <div class="drill-card" data-stage="1" data-cat="mesh">
@@ -1209,7 +1003,7 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
       <div class="drill-head">
         <div class="drill-name">Stick / Snag / Spacing — Release Timing Drill</div>
         <div class="drill-badges">
-          <span class="badge badge-s1">Stage 1</span>
+          <span class="badge b-s1">Stage 1</span>
           <span class="badge cat-mesh">MESH MECHANICS (Mohns)</span>
         </div>
       </div>
@@ -1220,29 +1014,287 @@ body{background:var(--bg);font-family:'Barlow',sans-serif;min-height:100vh;}
           <span class="meta-pill">📊 Quick Game Delivery — Stick Routes</span>
         </div>
         <div class="drill-desc">QB takes shotgun snap, 1-step set, delivers to stick route (7-yd hitch breaking back to 5 yds) before receiver fully breaks. Ball thrown to front shoulder as receiver squares up. Progress to Snag (flat + corner + stick triangle) and Spacing (3-level flood).</div>
-        <div class="drill-section">
-          <div class="drill-section-label">Setup / Equipment</div>
-          <div class="drill-section-body">3 receivers in Stick positions (5-12 yds); QB in shotgun; coach calls coverage to force correct read</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">3 receivers in Stick positions (5-12 yds); QB in shotgun; coach calls coverage to force correct read</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Completion % improves when the ball arrives as the receiver turns — not after. Mohns rebuilt his entire quick game when completion % dropped from RPO-heavy periods. The timing throw is the foundation.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: CoachTube — Mohns Quick Passing Game (Full Course)</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="4" data-cat="decision">
+      <div class="drill-stripe stripe-s4"></div>
+      <div class="drill-head">
+        <div class="drill-name">Full-Field Coverage Anticipation</div>
+        <div class="drill-badges">
+          <span class="badge b-s4">Stage 4</span>
+          <span class="badge cat-decision">DECISION MAKING</span>
         </div>
-        <div class="drill-section">
-          <div class="drill-section-label">Coaching Points</div>
-          <div class="drill-section-body coaching-text">Completion % improves when the ball arrives as the receiver turns — not after. Mohns rebuilt his entire quick game when completion % dropped from RPO-heavy periods. The timing throw is the foundation.</div>
-        </div>
-      <div class="drill-footer">
-        <span class="drill-source">Source: CoachTube — Mohns Quick Passing Game (Full Course)</span>
       </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 12 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 Decision Avg (Weighted)</span>
+        </div>
+        <div class="drill-desc">QB reads a live 11v11 pre-snap, delivers full SOCKS call, and executes the correct decision in under 2.8 seconds. Coach grades QB_DEC (0–4) on every rep. No coaching prompts during the rep.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">11v11 live; DC mixes Cover 1/2/3/4 and blitz packages each play; QB verbalizes full pre-snap call; coach grades immediately post-snap</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">DEC=4 (Optimal): QB anticipated the window before the receiver broke — ball was already in flight. DEC=3 (Correct): right read, right window. DEC=2: correct but late. DEC=1: poor. DEC=0: turnover-worthy. Track the distribution — what % hit 3 or 4?</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: X&amp;O Labs — Elite Decision Training / Full Field Reads</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="4" data-cat="decision">
+      <div class="drill-stripe stripe-s4"></div>
+      <div class="drill-head">
+        <div class="drill-name">Zero Tolerance — Ball Security Under Pressure</div>
+        <div class="drill-badges">
+          <span class="badge b-s4">Stage 4</span>
+          <span class="badge cat-decision">DECISION MAKING</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 12 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 Turnover-Worthy %</span>
+        </div>
+        <div class="drill-desc">Full-speed 7v7 with immediate film review on any DEC=0 rep. Coach pauses the session, pulls Hudl, and QB identifies the SOCKS stage breakdown that caused the turnover-worthy decision.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">7v7 full speed; coach flags DEC=0 immediately; rep is paused; QB goes to whiteboard and traces the breakdown to its stage root (Stage 1 count error? Stage 2 pressure ID miss? Stage 3 leverage misread?)</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Every DEC=0 traces to a SOCKS stage. Knowing which stage tells you exactly which drill to run next. Grade all metrics on TW plays: DEC, ACC, POCK, SA — the full picture reveals patterns.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Pipelines — Ball Security / Turnover-Worthy Elimination</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="2" data-cat="decision">
+      <div class="drill-stripe stripe-s2"></div>
+      <div class="drill-head">
+        <div class="drill-name">Pre-Snap Blitz ID — Hot Route Assignment</div>
+        <div class="drill-badges">
+          <span class="badge b-s2">Stage 2</span>
+          <span class="badge cat-decision">DECISION MAKING</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 10 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 Pressure Decision Avg</span>
+        </div>
+        <div class="drill-desc">QB reads pre-snap blitz indicators (safety depth, LB alignment, CB press) and calls the hot route before the snap. Graded QB_DEC (0–4) on the hot throw: DEC=4 requires the ball pre-loaded and released at 1.8 seconds.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">OL walk-through; coach shows blitz alignment; QB IDs tell and assigns hot route pre-snap; snap; throw at 1.8s max; grade DEC immediately</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">DEC=4: named it pre-snap, ball was already coming out. DEC=3: correct ID, good execution. DEC=2: ID was late (post-snap). DEC=1: wrong hot route. DEC=0: held ball into pressure. The pre-snap ID is what separates a 3 from a 4.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Axemen Football — Blitz ID / Hot Route Decision Grading</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="4" data-cat="passing">
+      <div class="drill-stripe stripe-s4"></div>
+      <div class="drill-head">
+        <div class="drill-name">Elite Placement — Outside Shoulder Mandate</div>
+        <div class="drill-badges">
+          <span class="badge b-s4">Stage 4</span>
+          <span class="badge cat-passing">PASSING EXECUTION</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 10 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 Accuracy Avg (QB_ACC)</span>
+        </div>
+        <div class="drill-desc">Every throw must hit the outside shoulder away from the defender. Coach grades QB_ACC (0–3) and QB_YAC (0–3) on every completion. Inside shoulder throws are graded ACC=1 maximum regardless of completion or result.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">7v7 with DB coverage on every route; coach grades placement, not completion; outside shoulder = ACC 2 or 3; inside shoulder = ACC 1 max</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">ACC=3 (Perfect): receiver catches in stride, going away from the defender. ACC=2: catchable, routine. ACC=1: receiver must adjust or catch on wrong shoulder. YAC starts at the catch point — placement is the multiplier. An ACC=3 on a dumpoff beats an ACC=1 on a deep ball.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Glazier — Ball Placement / YAC Creation Clinic</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="3" data-cat="passing">
+      <div class="drill-stripe stripe-s3"></div>
+      <div class="drill-head">
+        <div class="drill-name">Leverage-to-Throw — CB Read to Timing Delivery</div>
+        <div class="drill-badges">
+          <span class="badge b-s3">Stage 3</span>
+          <span class="badge cat-passing">PASSING EXECUTION</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 10 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 Pocket Control Avg</span>
+        </div>
+        <div class="drill-desc">QB reads CB leverage pre-snap to identify the window, then delivers on time into that window. Graded QB_ACC (0–3): a 3 requires the ball to arrive as the receiver turns, not after. Connects Stage 3 SOCKS read directly to execution grade.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">CB in off or press; QB identifies leverage pre-snap; receiver attacks the identified space; coach grades timing and placement separately</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">ACC=3: ball arrives as the receiver turns — before the defender can close. ACC=2: catchable but late. If QB waits to see the break, he is reading the receiver, not the defender. That is Stage 1 thinking at Stage 3. Grade the timing, not just the completion.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Glazier — Pre-Snap Leverage / Timing Throw Integration</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="3" data-cat="passing">
+      <div class="drill-stripe stripe-s3"></div>
+      <div class="drill-head">
+        <div class="drill-name">Space-to-Ball — Grass Read Into YAC Delivery</div>
+        <div class="drill-badges">
+          <span class="badge b-s3">Stage 3</span>
+          <span class="badge cat-passing">PASSING EXECUTION</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 10 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 YAC Potential Avg</span>
+        </div>
+        <div class="drill-desc">QB identifies open grass pre-snap and delivers to the spot where the receiver catches and turns upfield. Graded QB_YAC (0–3). Creates YAC by design through placement — not by asking the receiver to do it.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Still image pre-snap to identify grass → transition to live rep attacking that space; receiver routes into the identified grass; coach grades catch-point placement</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">YAC=3: ball to the upfield shoulder, receiver catches going forward. YAC=2: neutral. YAC=1: inside shoulder, receiver turns back. YAC=0 on a completion means the space was identified but the delivery eliminated it. That is a QB_YAC failure, not a receiver failure.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Football Drills — Space Creation / YAC Throw Placement</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="4" data-cat="pressure">
+      <div class="drill-stripe stripe-s4"></div>
+      <div class="drill-head">
+        <div class="drill-name">Controlled Chaos — Pocket Navigation Under Live Rush</div>
+        <div class="drill-badges">
+          <span class="badge b-s4">Stage 4</span>
+          <span class="badge cat-pressure">PRESSURE PERFORMANCE</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 12 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 Pocket Control Avg</span>
+        </div>
+        <div class="drill-desc">Three live pass rushers at full speed. QB must step up, reset, and deliver on time. Graded QB_POCK (0–2) and QB_ACC (0–3) simultaneously. POCK=2 requires a step-up AND an accurate delivery — not just one or the other.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">3 live rushers from different alignments; 1-2 receivers downfield; QB in shotgun or under center; stopwatch on snap-to-throw; grade both metrics every rep</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">POCK=2: climbs up, resets feet, delivers on time. POCK=1: held pocket, got ball out. POCK=0: QB caused the breakdown — drifted, bailed early, or created his own pressure. Separate QB-caused (POCK=0) from OL-caused on every rep. One is a QB grade. The other is not.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Athletes Acceleration — Elite Pocket Control Training</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="4" data-cat="run">
+      <div class="drill-stripe stripe-s4"></div>
+      <div class="drill-head">
+        <div class="drill-name">Live RPO — 2nd Level Read + Keep Decision</div>
+        <div class="drill-badges">
+          <span class="badge b-s4">Stage 4</span>
+          <span class="badge cat-run">RUN GAME</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 10 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 Run Decision Avg</span>
+        </div>
+        <div class="drill-desc">Full-speed RPO at Stage 4. QB reads 2nd level LB for give/keep AND reads CB leverage for the RPO throw simultaneously. Graded QB_RUN_DEC (0–3) on keeps and QB_DEC (0–4) on throws — both graded in the same rep.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Full OL + RB; 1 LB at 2nd level unblocked; CB on RPO receiver; coach grades both decisions independently per rep; run both sides</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">Run Dec=3: correct give/keep before the mesh point. Dec=4 (throw): ball in the right window before the break. If the QB is deciding both simultaneously, his pre-snap scan did not resolve one of them. At Stage 4 the LB read and the CB leverage are both answered before the snap.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: AFCA Insider — Live RPO / 2nd Level Decision Training</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="3" data-cat="run">
+      <div class="drill-stripe stripe-s3"></div>
+      <div class="drill-head">
+        <div class="drill-name">Film-Graded Fake Carry-Out — Did a Defender Bite?</div>
+        <div class="drill-badges">
+          <span class="badge b-s3">Stage 3</span>
+          <span class="badge cat-run">RUN GAME</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 10 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 Fake Execution Avg</span>
+        </div>
+        <div class="drill-desc">Every run play includes a full fake. Film is reviewed after practice and QB_FAKE (0–2) graded: FAKE=2 means a named defender's eyes or feet moved toward the fake. Film reveals what the naked eye misses.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Full team or skeleton; every play filmed; QB carries fake 5 yards minimum; coach grades Hudl film post-practice using slow-motion; share FAKE grades with QB same day</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">FAKE=2: show the clip, name the defender who bit, celebrate it. FAKE=1: nobody moved. FAKE=0: QB handed off and stopped. The defense should not know who has the ball. If they know, the fake was FAKE=0. Film is the only honest grade.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Glazier — Film-Graded Fake / Carry-Out Accountability</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="4" data-cat="situational">
+      <div class="drill-stripe stripe-s4"></div>
+      <div class="drill-head">
+        <div class="drill-name">Game Scenario Simulation — Situation Shapes Every Pre-Snap Call</div>
+        <div class="drill-badges">
+          <span class="badge b-s4">Stage 4</span>
+          <span class="badge cat-sit">SITUATIONAL AWARENESS</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 12 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 Elite SA %</span>
+        </div>
+        <div class="drill-desc">Coach scripts a full game scenario before each rep. QB must verbalize how the situation filters his pre-snap plan. Graded QB_SA=2 (Elite) only if the situation correctly changes his read hierarchy, clock, or target before the snap.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Coach reads scenario aloud (score, clock, field, hash, down-distance); QB states what the situation tells him before calling the play; run 7v7; grade QB_SA on each rep</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">QB_SA=2: named the situation AND adjusted correctly. QB_SA=1: adequate, nothing explicit. QB_SA=0: situation not factored in at all. The scenario card is the trigger. If the QB ignores it, grade drops to 0 regardless of the throw. At Stage 4, every snap has a situational filter.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Steve Clarkson — Situational Football / Elite QB Development</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="3" data-cat="situational">
+      <div class="drill-stripe stripe-s3"></div>
+      <div class="drill-head">
+        <div class="drill-name">Hash + Leverage Combined Read</div>
+        <div class="drill-badges">
+          <span class="badge b-s3">Stage 3</span>
+          <span class="badge cat-sit">SITUATIONAL AWARENESS</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 10 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 QB_SA Avg</span>
+        </div>
+        <div class="drill-desc">QB identifies the hash, reads boundary CB leverage, and connects it to situational context (down and distance) before the snap. QB_SA=2 requires all three: hash named, leverage correct, situation applied.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Run same play from left hash, middle, and right hash; QB calls hash AND leverage AND situation before each snap; compare decisions across all three positions</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">QB_SA=2: &quot;Left hash, boundary CB inside, 3rd and 3 — slant is the gift.&quot; All three correct. QB_SA=1: read the leverage, missed the situational filter. QB_SA=0: no verbalization or wrong shell ID. Hash awareness is the last thing QBs learn and the first thing that wins late-game drives.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: Glazier — Situational Hash Awareness / Pre-Snap Integration</span></div>
+    </div>
+    </div>
+
+    <div class="drill-card" data-stage="4" data-cat="mesh">
+      <div class="drill-stripe stripe-s4"></div>
+      <div class="drill-head">
+        <div class="drill-name">Full-Speed Mohns RPO — Live Defense</div>
+        <div class="drill-badges">
+          <span class="badge b-s4">Stage 4</span>
+          <span class="badge cat-mesh">MESH MECHANICS (Mohns)</span>
+        </div>
+      </div>
+      <div class="drill-body">
+        <div class="drill-meta">
+          <span class="meta-pill">⏱ 12 min</span>
+          <span class="meta-pill trigger">📋 D or F</span>
+          <span class="meta-pill">📊 2nd Level RPO — Stick / Snag / Spacing</span>
+        </div>
+        <div class="drill-desc">Complete Mohns system at full speed vs. live defense. All Stick, Snag, and Spacing variations vs. any coverage. QB runs full pre-snap checklist, executes mesh, reads 2nd level LB, throws or keeps. Graded QB_DEC, QB_FAKE, and QB_ACC every rep.</div>
+        <div class="drill-section"><div class="drill-section-label">Setup / Equipment</div><div class="drill-section-body">Full 7v7 or 11v11; defense plays any coverage; QB runs full Mohns pre-snap checklist before every snap; coach grades all three metrics simultaneously per rep</div></div>
+        <div class="drill-section"><div class="drill-section-label">Coaching Points</div><div class="drill-section-body coaching">At Stage 4 the Mohns system is a reflex, not a process. If the QB is thinking about footwork, the reads are not automatic. Full speed reveals what is missing. Slow down only to fix — return to full speed immediately. Track DEC, FAKE, and ACC distributions over the period.</div></div>
+      <div class="drill-footer"><span class="drill-source">Source: CoachTube — Mohns Complete System (Full Speed / Live Defense)</span></div>
+    </div>
     </div>  </div>
-  <div class="no-results" id="no-results">
-    <div class="no-results-icon">📋</div>
-    <div class="no-results-title">No drills match those filters.</div>
-    <div class="no-results-sub">Try resetting to "All Stages" or "All Categories".</div>
+
+  <div class="empty-state" id="empty-state">
+    <div class="empty-icon">📋</div>
+    <div class="empty-title">No drills at this stage for this category.</div>
+    <div class="empty-sub">This combination isn't introduced until a later stage — that's by design. Try selecting "All Stages" to see all drills in this category, or choose a different stage.</div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <div class="site-footer">
-  <div class="footer-brand">QB Room — Higley Football</div>
-  <div class="footer-note">Sources: Glazier Clinics · X&O Labs · USA Football · Elite 11 · AFCA · Jason Mohns (Saguaro HS / ASU)</div>
+  <div class="f-brand">QB Room — Drill Library</div>
+  <div class="f-note">Sources: Glazier · X&amp;O Labs · Elite 11 · AFCA · USA Football · Jason Mohns (Saguaro HS / ASU)</div>
 </div>
 
 <script>
@@ -1250,32 +1302,24 @@ const state = { stage: 'all', cat: 'all' };
 
 function setFilter(type, val, btn) {
   state[type] = val;
-  // Clear active from same-group pills
-  const allPills = document.querySelectorAll('.pill');
-  allPills.forEach(p => {
-    if (p.onclick && p.onclick.toString().includes(`'${type}'`)) {
-      p.classList.remove('active');
-    }
+  document.querySelectorAll('.pill').forEach(p => {
+    if (p.onclick && p.onclick.toString().includes(`'${type}'`)) p.classList.remove('active');
   });
   btn.classList.add('active');
-  applyFilters();
+  apply();
 }
 
-function applyFilters() {
+function apply() {
   const cards = document.querySelectorAll('.drill-card');
   let visible = 0;
   cards.forEach(card => {
-    const stageOk = state.stage === 'all' || card.dataset.stage === state.stage;
-    const catOk   = state.cat   === 'all' || card.dataset.cat   === state.cat;
-    if (stageOk && catOk) {
-      card.classList.remove('hidden');
-      visible++;
-    } else {
-      card.classList.add('hidden');
-    }
+    const ok = (state.stage === 'all' || card.dataset.stage === state.stage) &&
+               (state.cat   === 'all' || card.dataset.cat   === state.cat);
+    card.classList.toggle('hidden', !ok);
+    if (ok) visible++;
   });
   document.getElementById('drill-count').textContent = visible + ' drill' + (visible !== 1 ? 's' : '');
-  document.getElementById('no-results').classList.toggle('show', visible === 0);
+  document.getElementById('empty-state').classList.toggle('show', visible === 0);
 }
 </script>
 </body>
