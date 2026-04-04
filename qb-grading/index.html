@@ -2,10 +2,84 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QB Grading — QB Room</title>
-<meta http-equiv="refresh" content="0;url=../index.html">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#0f1b2d;--navy2:#162438;--gold:#f0a500;--white:#fff;--muted:rgba(255,255,255,0.55);}
+body{background:var(--navy);font-family:'Barlow',sans-serif;min-height:100vh;color:var(--white);}
+.nav{background:rgba(15,27,45,0.97);border-bottom:2px solid var(--gold);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:34px;height:34px;background:var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--navy);}
+.nav-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+.nav-links{display:flex;gap:6px;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;padding:4px 9px;border-radius:2px;border:1px solid rgba(255,255,255,0.18);transition:all .15s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);border-color:var(--gold);}
+.nav-links a.active{background:var(--gold);color:var(--navy);}
+.wrap{max-width:960px;margin:0 auto;padding:48px 24px 60px;}
+.page-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(28px,5vw,48px);letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.page-sub{font-size:13px;color:var(--muted);margin-bottom:36px;line-height:1.6;}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:36px;}
+.card{background:var(--navy2);border:1.5px solid rgba(255,255,255,0.08);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:10px;text-decoration:none;transition:all .2s;}
+.card.link:hover{border-color:var(--gold);transform:translateY(-2px);}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;text-transform:uppercase;color:var(--white);}
+.card-desc{font-size:11px;color:var(--muted);line-height:1.6;flex:1;}
+.card-link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);}
+.scale{background:var(--navy2);border:1px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;margin-bottom:14px;}
+.scale-hdr{background:#1e3352;padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.scale-row{display:grid;grid-template-columns:80px 1fr;gap:0;border-top:1px solid rgba(255,255,255,0.06);}
+.sc-num{padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;display:flex;align-items:center;}
+.sc-txt{padding:10px 16px;border-left:1px solid rgba(255,255,255,0.06);}
+.sc-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;margin-bottom:2px;}
+.sc-desc{font-size:10.5px;color:var(--muted);line-height:1.4;}
+</style>
 </head>
 <body>
-<p>Redirecting... <a href="../index.html">Return to QB Room</a></p>
+<div class="nav">
+  <a class="nav-brand" href="../index.html"><div class="nav-icon">QB</div><div class="nav-title">QB Room</div></a>
+  <nav class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../socks-system/SOCKS_QB_System_Final.html">SOCKS</a>
+    <a href="../play-library/index.html">Play Library</a>
+    <a href="../drills/drills.html">Drills</a>
+    <a href="index.html" class="active">QB Grading</a>
+  </nav>
+</div>
+<div class="wrap">
+  <div class="page-title">QB Grading</div>
+  <div class="page-sub">Play-by-play film grading system — grades 7 skill categories on a –2 to +2 scale. Import directly from Hudl, build dashboards by jersey number, and compare QBs side-by-side. Built in Google Sheets with a custom Apps Script backend.</div>
+  <div class="cards">
+    <a class="card link" href="https://docs.google.com/spreadsheets/d/1jzkxHkyLdDzbkJbspcXlUZRX7ZDgui_J4Lo6oAaAl00/edit" target="_blank">
+      <div style="font-size:24px;">📊</div>
+      <div class="card-title">Open Live Grading Sheet</div>
+      <div class="card-desc">The live Higley Football QB Grading Sheet v3.1. Import a Hudl game, grade plays in the Need Graded tab, move to Graded Plays, then build a Dashboard by jersey number.</div>
+      <div class="card-link">Open Google Sheet ↗</div>
+    </a>
+    <div class="card">
+      <div style="font-size:24px;">📥</div>
+      <div class="card-title">Workflow</div>
+      <div class="card-desc"><strong style="color:#fff;">1.</strong> Import Hudl Game → enter Game ID, comp level, Hudl URL<br><strong style="color:#fff;">2.</strong> Grade plays in Need Graded (cols Y–AF)<br><strong style="color:#fff;">3.</strong> Move Graded Plays → converts labels to scores<br><strong style="color:#fff;">4.</strong> Build Dashboard → enter jersey # or ALL</div>
+    </div>
+    <div class="card">
+      <div style="font-size:24px;">🎯</div>
+      <div class="card-title">7 Graded Categories</div>
+      <div class="card-desc">Pass Decision · Pass Pressure · Pass Pocket · Pass Release · Pass Throw · Run Decision · Run Fake · QB Impact<br><br>Each graded –2 (Poor) to +2 (Elite). Zero = expected baseline winning football.</div>
+    </div>
+    <div class="card">
+      <div style="font-size:24px;">🔗</div>
+      <div class="card-title">SOCKS Integration</div>
+      <div class="card-desc">Coming next: grade data will tie directly to SOCKS stage milestones — so a QB's film grades automatically show which stage drills to prioritize and whether he's ready to advance.</div>
+    </div>
+  </div>
+  <div class="scale">
+    <div class="scale-hdr">Grading Scale — –2 to +2</div>
+    <div class="scale-row"><div class="sc-num" style="color:#22c55e;">+2</div><div class="sc-txt"><div class="sc-label" style="color:#22c55e;">Elite</div><div class="sc-desc">Significantly above expectation. Game-changing. Rare — use sparingly. Anticipation throw, perfect pocket movement, or held a linebacker with a fake.</div></div></div>
+    <div class="scale-row"><div class="sc-num" style="color:#86efac;">+1</div><div class="sc-txt"><div class="sc-label" style="color:#86efac;">Above Expected</div><div class="sc-desc">Clearly above baseline. QB did more than required. Correct read above the expected difficulty.</div></div></div>
+    <div class="scale-row"><div class="sc-num" style="color:rgba(255,255,255,0.7);">0</div><div class="sc-txt"><div class="sc-label" style="color:rgba(255,255,255,0.7);">Expected</div><div class="sc-desc">Baseline winning football. Most plays should be 0. Not average — correct. Grade process, not result.</div></div></div>
+    <div class="scale-row"><div class="sc-num" style="color:#fbbf24;">–1</div><div class="sc-txt"><div class="sc-label" style="color:#fbbf24;">Below Expected</div><div class="sc-desc">Below baseline. Drive-limiting decision or execution. Missed a better option or failed to execute correctly.</div></div></div>
+    <div class="scale-row"><div class="sc-num" style="color:#f87171;">–2</div><div class="sc-txt"><div class="sc-label" style="color:#f87171;">Poor</div><div class="sc-desc">Significantly below expectation. Rare — use sparingly. Turnover-worthy decision or execution breakdown.</div></div></div>
+  </div>
+</div>
 </body>
 </html>

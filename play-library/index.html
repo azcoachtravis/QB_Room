@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play Library — QB Room</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#0f1b2d;--navy2:#162438;--navy3:#1a2d44;--gold:#f0a500;--gold2:#ffc840;--white:#fff;--border:#d0cdc5;--bg:#f5f3ee;--muted:#555;}
+body{background:var(--navy);font-family:'Barlow',sans-serif;min-height:100vh;color:var(--white);}
+
+.nav{background:rgba(15,27,45,0.97);border-bottom:2px solid var(--gold);padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;height:52px;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:34px;height:34px;background:var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--navy);}
+.nav-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+.nav-links{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;padding:4px 9px;border-radius:2px;border:1px solid rgba(255,255,255,0.18);transition:all .15s;}
+.nav-links a:hover{color:var(--gold);border-color:var(--gold);}
+.nav-links a.active{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+
+.page-header{background:var(--navy2);padding:36px 28px 28px;border-bottom:2px solid var(--gold);}
+.header-inner{max-width:1060px;margin:0 auto;}
+.h-eye{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px;}
+.h-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(28px,5vw,48px);letter-spacing:2px;text-transform:uppercase;color:var(--gold);line-height:1;margin-bottom:4px;}
+.h-sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;color:rgba(255,255,255,0.55);letter-spacing:0.5px;}
+
+.main{max-width:1060px;margin:0 auto;padding:36px 28px 60px;}
+
+/* Category sections */
+.cat-section{margin-bottom:48px;}
+.cat-hdr{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.cat-icon{width:36px;height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.cat-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;letter-spacing:1px;text-transform:uppercase;}
+.cat-line{flex:1;height:1px;}
+.cat-count{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);}
+
+/* Play cards */
+.play-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.play-card{border-radius:6px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;transition:all .2s;border:1.5px solid;}
+.play-card.live:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.4);}
+.play-card.coming{opacity:0.45;cursor:default;}
+
+/* Run cards — dark theme (matches scheme files) */
+.run-card{background:#1b2333;border-color:#263045;}
+.run-card.live:hover{border-color:var(--gold);}
+
+.pc-stripe{height:4px;}
+.stripe-orange{background:#fb923c;}
+.stripe-green{background:#22c55e;}
+.stripe-purple{background:#a855f7;}
+.stripe-blue{background:#60a5fa;}
+.stripe-gold{background:var(--gold);}
+.stripe-muted{background:rgba(255,255,255,0.15);}
+
+.pc-head{padding:16px 16px 10px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.pc-icon{font-size:22px;line-height:1;}
+.pc-badges{display:flex;flex-direction:column;gap:3px;align-items:flex-end;}
+.pc-badge{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:2px;}
+.b-live{background:rgba(34,197,94,.14);color:#4ade80;border:.5px solid rgba(34,197,94,.3);}
+.b-soon{background:rgba(255,255,255,.05);color:rgba(255,255,255,.3);border:.5px solid rgba(255,255,255,.1);}
+.b-orange{background:rgba(251,146,60,.15);color:#fb923c;border:.5px solid rgba(251,146,60,.3);}
+.b-green{background:rgba(34,197,94,.12);color:#4ade80;border:.5px solid rgba(34,197,94,.25);}
+.b-purple{background:rgba(168,85,247,.14);color:#c084fc;border:.5px solid rgba(168,85,247,.3);}
+.b-blue{background:rgba(96,165,250,.14);color:#60a5fa;border:.5px solid rgba(96,165,250,.3);}
+.b-gold{background:rgba(240,165,0,.14);color:var(--gold);border:.5px solid rgba(240,165,0,.3);}
+.b-muted{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);border:.5px solid rgba(255,255,255,.1);}
+
+.pc-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;letter-spacing:1px;text-transform:uppercase;line-height:1.1;}
+.pc-body{padding:0 16px 14px;flex:1;display:flex;flex-direction:column;gap:8px;}
+.pc-desc{font-size:11px;line-height:1.6;}
+.pc-plays{display:flex;flex-wrap:wrap;gap:4px;}
+.pc-play{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:0.8px;text-transform:uppercase;padding:2px 7px;border-radius:2px;}
+.pc-tags{display:flex;flex-wrap:wrap;gap:4px;}
+.pc-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:0.8px;text-transform:uppercase;padding:2px 6px;border-radius:2px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);}
+.pc-foot{padding:10px 16px;border-top:1px solid;display:flex;align-items:center;justify-content:space-between;}
+.pc-foot-link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);}
+.pc-foot-soon{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.2);}
+
+/* Coming soon callout */
+.coming-note{background:rgba(240,165,0,0.06);border:1px solid rgba(240,165,0,0.2);border-radius:5px;padding:14px 18px;margin-top:14px;}
+.cn-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.cn-txt{font-size:11px;color:rgba(255,255,255,0.55);line-height:1.5;}
+
+.footer{background:var(--navy2);border-top:1px solid rgba(255,255,255,0.06);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.f-brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.f-note{font-size:9.5px;color:rgba(255,255,255,0.25);}
+
+@media(max-width:600px){.main,.page-header{padding-left:14px;padding-right:14px;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <a class="nav-brand" href="../index.html">
+    <div class="nav-icon">QB</div>
+    <div class="nav-title">QB Room</div>
+  </a>
+  <nav class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../socks-system/SOCKS_QB_System_Final.html">SOCKS System</a>
+    <a href="index.html" class="active">Play Library</a>
+    <a href="../drills/drills.html">Drills</a>
+    <a href="../qb-grading/index.html">QB Grading</a>
+  </nav>
+</div>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="header-inner">
+    <div class="h-eye">QB Room · Higley Football</div>
+    <div class="h-title">Play Library</div>
+    <div class="h-sub">QB cheat sheets by play family — run scheme, pass concepts, RPO · Gap Scheme & Zone Scheme live · Pass concepts coming next</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- RUN GAME -->
+  <div class="cat-section">
+    <div class="cat-hdr">
+      <div class="cat-icon" style="background:rgba(251,146,60,0.12);border:1px solid rgba(251,146,60,0.25);">🏃</div>
+      <div class="cat-title" style="color:#fb923c;">Run Game</div>
+      <div class="cat-line" style="background:rgba(251,146,60,0.18);"></div>
+      <div class="cat-count">2 of 4 Live</div>
+    </div>
+    <div class="play-grid">
+
+      <!-- GAP SCHEME -->
+      <a class="play-card run-card live" href="qb_gap_scheme_v1.html">
+        <div class="pc-stripe stripe-orange"></div>
+        <div class="pc-head">
+          <div>
+            <div class="pc-icon">🟠</div>
+            <div class="pc-name" style="color:#fb923c;">Gap Scheme</div>
+          </div>
+          <div class="pc-badges">
+            <span class="pc-badge b-live">Live</span>
+            <span class="pc-badge b-orange">Run Game</span>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-desc" style="color:#94a3b8;">Power, G-Lead, Counter, Dart, and Toss sweep — complete QB cheat sheet. Decision trees, footwork by play family, mesh mechanics, and coaching cues for every gap concept.</div>
+          <div class="pc-plays">
+            <span class="pc-play" style="background:rgba(251,146,60,0.15);color:#fb923c;">Pauly · Peter</span>
+            <span class="pc-play" style="background:rgba(251,146,60,0.1);color:#fb923c;">George</span>
+            <span class="pc-play" style="background:rgba(168,85,247,0.15);color:#c084fc;">Connor · Cody</span>
+            <span class="pc-play" style="background:rgba(168,85,247,0.1);color:#c084fc;">Tiger (Dart)</span>
+            <span class="pc-play" style="background:rgba(96,165,250,0.12);color:#60a5fa;">Todd (Toss)</span>
+          </div>
+          <div class="pc-tags"><span class="pc-tag">Power</span><span class="pc-tag">Counter</span><span class="pc-tag">Dart</span><span class="pc-tag">Toss</span><span class="pc-tag">Footwork Table</span></div>
+        </div>
+        <div class="pc-foot" style="border-color:#263045;">
+          <span class="pc-foot-link">Open Gap Scheme →</span>
+          <span style="color:#fb923c;font-size:13px;">→</span>
+        </div>
+      </a>
+
+      <!-- ZONE SCHEME -->
+      <a class="play-card run-card live" href="qb_zone_scheme_v3.html">
+        <div class="pc-stripe stripe-green"></div>
+        <div class="pc-head">
+          <div>
+            <div class="pc-icon">🟢</div>
+            <div class="pc-name" style="color:#22c55e;">Zone Scheme</div>
+          </div>
+          <div class="pc-badges">
+            <span class="pc-badge b-live">Live</span>
+            <span class="pc-badge b-green">Run Game</span>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-desc" style="color:#94a3b8;">Inside zone, outside zone, and zone-read RPO — QB read and decision trees for 1st and 2nd level reads. Includes pre-snap checklist: Numbers, Grass, Leverage. Mohns system integrated.</div>
+          <div class="pc-plays">
+            <span class="pc-play" style="background:rgba(34,197,94,0.14);color:#4ade80;">Zebra · Oscar</span>
+            <span class="pc-play" style="background:rgba(34,197,94,0.1);color:#4ade80;">Marine · Moe</span>
+            <span class="pc-play" style="background:rgba(248,113,113,0.12);color:#f87171;">Zeus · Zelda</span>
+            <span class="pc-play" style="background:rgba(248,113,113,0.08);color:#f87171;">Odin · Odell</span>
+          </div>
+          <div class="pc-tags"><span class="pc-tag">Inside Zone</span><span class="pc-tag">Outside Zone</span><span class="pc-tag">Zone Read</span><span class="pc-tag">RPO</span><span class="pc-tag">Pre-Snap Checklist</span></div>
+        </div>
+        <div class="pc-foot" style="border-color:#263045;">
+          <span class="pc-foot-link">Open Zone Scheme →</span>
+          <span style="color:#22c55e;font-size:13px;">→</span>
+        </div>
+      </a>
+
+      <!-- PLAY ACTION — COMING -->
+      <div class="play-card run-card coming">
+        <div class="pc-stripe stripe-muted"></div>
+        <div class="pc-head">
+          <div>
+            <div class="pc-icon">🎭</div>
+            <div class="pc-name" style="color:rgba(255,255,255,0.35);">Play Action</div>
+          </div>
+          <div class="pc-badges">
+            <span class="pc-badge b-soon">Coming</span>
+            <span class="pc-badge b-muted">Run Game</span>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-desc" style="color:rgba(255,255,255,0.3);">Play action off gap and zone run looks. Boot, naked bootleg, and drop-back play action — fake execution, launch points, and progressive reads.</div>
+          <div class="pc-tags"><span class="pc-tag">Boot</span><span class="pc-tag">Naked</span><span class="pc-tag">Drop-Back PA</span></div>
+        </div>
+        <div class="pc-foot" style="border-color:rgba(255,255,255,0.05);">
+          <span class="pc-foot-soon">In Development</span>
+        </div>
+      </div>
+
+      <!-- QB RUN GAME — COMING -->
+      <div class="play-card run-card coming">
+        <div class="pc-stripe stripe-muted"></div>
+        <div class="pc-head">
+          <div>
+            <div class="pc-icon">⚡</div>
+            <div class="pc-name" style="color:rgba(255,255,255,0.35);">QB Run Game</div>
+          </div>
+          <div class="pc-badges">
+            <span class="pc-badge b-soon">Coming</span>
+            <span class="pc-badge b-muted">Run Game</span>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-desc" style="color:rgba(255,255,255,0.3);">Designed QB runs — QB draw, QB iso, QB lead. When to pull and go vs. hand off. Path discipline, blocking reads, and ball security cues.</div>
+          <div class="pc-tags"><span class="pc-tag">QB Draw</span><span class="pc-tag">QB Lead</span><span class="pc-tag">Keep Reads</span></div>
+        </div>
+        <div class="pc-foot" style="border-color:rgba(255,255,255,0.05);">
+          <span class="pc-foot-soon">In Development</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PASS GAME -->
+  <div class="cat-section">
+    <div class="cat-hdr">
+      <div class="cat-icon" style="background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.25);">🎯</div>
+      <div class="cat-title" style="color:#60a5fa;">Pass Game</div>
+      <div class="cat-line" style="background:rgba(96,165,250,0.18);"></div>
+      <div class="cat-count">0 of 5 Live · Building Next</div>
+    </div>
+    <div class="play-grid">
+
+      <div class="play-card run-card coming">
+        <div class="pc-stripe stripe-muted"></div>
+        <div class="pc-head"><div><div class="pc-icon">⚡</div><div class="pc-name" style="color:rgba(255,255,255,0.35);">Quick Game</div></div><div class="pc-badges"><span class="pc-badge b-soon">Coming</span><span class="pc-badge b-muted">Pass Game</span></div></div>
+        <div class="pc-body"><div class="pc-desc" style="color:rgba(255,255,255,0.3);">1–3 step quick throws — Stick, Snag, Spacing, Slant, Hitch, Out. Launch points, timing, and leverage reads. The 1.8s throw clock in full detail.</div><div class="pc-tags"><span class="pc-tag">Stick</span><span class="pc-tag">Snag</span><span class="pc-tag">Spacing</span><span class="pc-tag">1.8s Clock</span></div></div>
+        <div class="pc-foot" style="border-color:rgba(255,255,255,0.05);"><span class="pc-foot-soon">In Development</span></div>
+      </div>
+
+      <div class="play-card run-card coming">
+        <div class="pc-stripe stripe-muted"></div>
+        <div class="pc-head"><div><div class="pc-icon">🔗</div><div class="pc-name" style="color:rgba(255,255,255,0.35);">RPO Library</div></div><div class="pc-badges"><span class="pc-badge b-soon">Coming</span><span class="pc-badge b-muted">Pass Game</span></div></div>
+        <div class="pc-body"><div class="pc-desc" style="color:rgba(255,255,255,0.3);">Every RPO concept in the system. Read triggers, throw windows, and SOCKS integration for each play. 2nd-level reads, leverage tells, and decision timing.</div><div class="pc-tags"><span class="pc-tag">Stick RPO</span><span class="pc-tag">Snag RPO</span><span class="pc-tag">2nd Level</span></div></div>
+        <div class="pc-foot" style="border-color:rgba(255,255,255,0.05);"><span class="pc-foot-soon">In Development</span></div>
+      </div>
+
+      <div class="play-card run-card coming">
+        <div class="pc-stripe stripe-muted"></div>
+        <div class="pc-head"><div><div class="pc-icon">📐</div><div class="pc-name" style="color:rgba(255,255,255,0.35);">Drop-Back Game</div></div><div class="pc-badges"><span class="pc-badge b-soon">Coming</span><span class="pc-badge b-muted">Pass Game</span></div></div>
+        <div class="pc-body"><div class="pc-desc" style="color:rgba(255,255,255,0.3);">5 and 7-step drop-back concepts. Progressive reads, coverage beaters by shell, SOCKS leverage integration, and the 2.2–2.6s throw clock in context.</div><div class="pc-tags"><span class="pc-tag">5-Step</span><span class="pc-tag">7-Step</span><span class="pc-tag">Progressions</span></div></div>
+        <div class="pc-foot" style="border-color:rgba(255,255,255,0.05);"><span class="pc-foot-soon">In Development</span></div>
+      </div>
+
+      <div class="play-card run-card coming">
+        <div class="pc-stripe stripe-muted"></div>
+        <div class="pc-head"><div><div class="pc-icon">🚀</div><div class="pc-name" style="color:rgba(255,255,255,0.35);">Shot Plays</div></div><div class="pc-badges"><span class="pc-badge b-soon">Coming</span><span class="pc-badge b-muted">Pass Game</span></div></div>
+        <div class="pc-body"><div class="pc-desc" style="color:rgba(255,255,255,0.3);">Deep ball concepts — Post, Corner, Go, Dig. Launch angles, hip-to-shoulder mechanics, and the pre-snap shell reads that make the shot available.</div><div class="pc-tags"><span class="pc-tag">Post</span><span class="pc-tag">Corner</span><span class="pc-tag">Deep Ball</span></div></div>
+        <div class="pc-foot" style="border-color:rgba(255,255,255,0.05);"><span class="pc-foot-soon">In Development</span></div>
+      </div>
+
+      <div class="play-card run-card coming">
+        <div class="pc-stripe stripe-muted"></div>
+        <div class="pc-head"><div><div class="pc-icon">🔴</div><div class="pc-name" style="color:rgba(255,255,255,0.35);">Red Zone</div></div><div class="pc-badges"><span class="pc-badge b-soon">Coming</span><span class="pc-badge b-muted">Pass Game</span></div></div>
+        <div class="pc-body"><div class="pc-desc" style="color:rgba(255,255,255,0.3);">Compressed field concepts — back shoulder, high-low reads, fade-flat combinations. How SOCKS leverage reads change inside the 20-yard line.</div><div class="pc-tags"><span class="pc-tag">High-Low</span><span class="pc-tag">Back Shoulder</span><span class="pc-tag">Fade-Flat</span></div></div>
+        <div class="pc-foot" style="border-color:rgba(255,255,255,0.05);"><span class="pc-foot-soon">In Development</span></div>
+      </div>
+
+    </div>
+    <div class="coming-note">
+      <div class="cn-lbl">Pass Game — Coming Next</div>
+      <div class="cn-txt">Pass concept cheat sheets are being built to match the Gap and Zone Scheme format — same dark theme, same QB-specific decision trees, same SOCKS leverage integration. Quick Game and RPO Library are first in line.</div>
+    </div>
+  </div>
+
+  <!-- PROTECTION -->
+  <div class="cat-section">
+    <div class="cat-hdr">
+      <div class="cat-icon" style="background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.25);">🛡</div>
+      <div class="cat-title" style="color:#c4b5fd;">Protection</div>
+      <div class="cat-line" style="background:rgba(167,139,250,0.18);"></div>
+      <div class="cat-count">Coming</div>
+    </div>
+    <div class="play-grid">
+      <div class="play-card run-card coming">
+        <div class="pc-stripe stripe-muted"></div>
+        <div class="pc-head"><div><div class="pc-icon">🏗</div><div class="pc-name" style="color:rgba(255,255,255,0.35);">Protection Calls</div></div><div class="pc-badges"><span class="pc-badge b-soon">Coming</span><span class="pc-badge b-muted">Protection</span></div></div>
+        <div class="pc-body"><div class="pc-desc" style="color:rgba(255,255,255,0.3);">QB protection identification and communication. How to read the front, make protection calls, identify the Mike, and communicate hot routes pre-snap.</div><div class="pc-tags"><span class="pc-tag">Mike ID</span><span class="pc-tag">Hot Routes</span><span class="pc-tag">Blitz Beaters</span></div></div>
+        <div class="pc-foot" style="border-color:rgba(255,255,255,0.05);"><span class="pc-foot-soon">In Development</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="f-brand">Play Library — QB Room · Higley Football</div>
+  <div class="f-note">Gap Scheme & Zone Scheme live · Pass concepts coming</div>
+</div>
+
+</body>
+</html>

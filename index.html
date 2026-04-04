@@ -3,460 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QB Room — Coaching Hub</title>
+<title>QB Room — Coaching Hub · Higley Football</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --navy:#0f1b2d;
-  --navy2:#162438;
-  --navy3:#1a2d44;
-  --gold:#f0a500;
-  --gold2:#ffc840;
-  --white:#ffffff;
-  --off:#f5f3ee;
-  --border:#d0cdc5;
-  --muted:#6b7280;
-  --green:#15803d;
-  --red:#991b1b;
+  --navy:#0f1b2d;--navy2:#162438;--navy3:#1a2d44;--navy4:#1e3352;
+  --gold:#f0a500;--gold2:#ffc840;
+  --white:#ffffff;--off:#f5f3ee;--border:#d0cdc5;--muted:#6b7280;
+  --s1:#22c55e;--s2:#3b82f6;--s3:#eab308;--s4:#ef4444;
 }
-
 html{scroll-behavior:smooth;}
-body{
-  background:var(--navy);
-  font-family:'Barlow',sans-serif;
-  min-height:100vh;
-  color:var(--white);
-}
+body{background:var(--navy);font-family:'Barlow',sans-serif;min-height:100vh;color:var(--white);}
 
 /* ── TOP BAR ── */
-.topbar{
-  background:rgba(15,27,45,0.95);
-  border-bottom:2px solid var(--gold);
-  padding:12px 40px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:sticky;
-  top:0;
-  z-index:100;
-  backdrop-filter:blur(8px);
-}
-.topbar-brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-.topbar-icon{
-  width:42px;
-  height:42px;
-  background:var(--gold);
-  border-radius:4px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:18px;
-  color:var(--navy);
-  letter-spacing:1px;
-  flex-shrink:0;
-}
-.topbar-title{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:22px;
-  color:var(--gold);
-  letter-spacing:2px;
-  text-transform:uppercase;
-  line-height:1;
-}
-.topbar-sub{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:600;
-  font-size:10px;
-  letter-spacing:2.5px;
-  color:rgba(255,255,255,0.55);
-  text-transform:uppercase;
-  margin-top:2px;
-}
-.topbar-nav{
-  display:flex;
-  gap:6px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-.topbar-nav a{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;
-  font-size:11px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:rgba(255,255,255,0.72);
-  text-decoration:none;
-  padding:5px 10px;
-  border-radius:3px;
-  border:1px solid rgba(255,255,255,0.2);
-  transition:all .15s;
-}
-.topbar-nav a:hover{color:var(--gold);border-color:var(--gold);}
+.topbar{background:rgba(15,27,45,0.97);border-bottom:2px solid var(--gold);padding:0 28px;display:flex;align-items:stretch;position:sticky;top:0;z-index:200;backdrop-filter:blur(8px);}
+.tb-brand{display:flex;align-items:center;gap:12px;padding:10px 0;margin-right:20px;flex-shrink:0;}
+.tb-icon{width:38px;height:38px;background:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:15px;color:var(--navy);}
+.tb-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:19px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;line-height:1;}
+.tb-school{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8.5px;letter-spacing:2.5px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:2px;}
+
+/* Nav */
+.tb-nav{display:flex;align-items:stretch;flex:1;}
+.nav-group{display:flex;align-items:stretch;border-left:1px solid rgba(255,255,255,0.06);}
+.nav-group:last-of-type{border-right:1px solid rgba(255,255,255,0.06);}
+.nav-item{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 13px;text-decoration:none;color:rgba(255,255,255,0.58);transition:all .15s;min-width:76px;}
+.nav-item:hover{background:rgba(240,165,0,0.06);color:var(--gold);}
+.nav-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10.5px;letter-spacing:0.8px;text-transform:uppercase;white-space:nowrap;}
+.nav-dot{font-size:7px;margin-top:3px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.nd-live{color:var(--s1);}
+.nd-beta{color:var(--gold);}
+.nd-soon{color:rgba(255,255,255,0.22);}
+.tb-cta{display:flex;align-items:center;gap:8px;padding-left:14px;margin-left:auto;}
+.tb-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:3px;text-decoration:none;transition:all .15s;white-space:nowrap;border:1.5px solid rgba(240,165,0,0.5);color:var(--gold);background:transparent;}
+.tb-btn:hover,.tb-btn.primary{background:var(--gold);color:var(--navy);border-color:var(--gold);}
 
 /* ── HERO ── */
-.hero{
-  padding:80px 40px 60px;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:radial-gradient(ellipse at 50% 0%, rgba(240,165,0,0.08) 0%, transparent 70%);
-  pointer-events:none;
-}
-.hero-eyebrow{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;
-  font-size:11px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  color:var(--gold);
-  margin-bottom:16px;
-  opacity:0.85;
-}
-.hero-title{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:clamp(48px,8vw,80px);
-  letter-spacing:3px;
-  text-transform:uppercase;
-  line-height:0.95;
-  color:var(--white);
-  margin-bottom:8px;
-}
-.hero-title span{color:var(--gold);}
-.hero-sub{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:600;
-  font-size:18px;
-  color:rgba(255,255,255,0.65);
-  letter-spacing:1px;
-  margin-bottom:32px;
-}
-.hero-tagline{
-  display:inline-block;
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;
-  font-size:13px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  color:var(--navy);
-  background:var(--gold);
-  padding:6px 20px;
-  border-radius:3px;
-}
+.hero{padding:68px 28px 52px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -10%, rgba(240,165,0,0.07) 0%, transparent 65%);pointer-events:none;}
+.h-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(240,165,0,0.65);margin-bottom:12px;}
+.h-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(52px,10vw,92px);letter-spacing:2px;text-transform:uppercase;line-height:0.92;color:var(--white);margin-bottom:6px;}
+.h-title span{color:var(--gold);}
+.h-sub{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;color:rgba(255,255,255,0.48);letter-spacing:1px;margin-bottom:24px;}
+.h-pills{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
+.hp{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10.5px;letter-spacing:0.8px;text-transform:uppercase;padding:4px 12px;border-radius:2px;}
+.hp-gold{background:var(--gold);color:var(--navy);}
+.hp-out{background:transparent;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.18);}
+.h-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.cta{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;padding:10px 22px;border-radius:3px;text-decoration:none;transition:all .2s;}
+.cta-p{background:var(--gold);color:var(--navy);}
+.cta-p:hover{background:var(--gold2);}
+.cta-s{border:1.5px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.72);}
+.cta-s:hover{border-color:var(--gold);color:var(--gold);}
 
-/* ── SECTION ── */
-.section{
-  padding:56px 40px;
-  max-width:1100px;
-  margin:0 auto;
-}
-.section-header{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:28px;
-}
-.section-title{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:15px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:var(--gold);
-}
-.section-line{
-  flex:1;
-  height:1px;
-  background:rgba(240,165,0,0.2);
-}
+/* ── PHIL STRIP ── */
+.phil{background:var(--gold);padding:13px 28px;text-align:center;}
+.phil-q{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(13px,2.5vw,19px);letter-spacing:0.5px;text-transform:uppercase;color:var(--navy);line-height:1.3;}
+.phil-s{font-size:10.5px;color:rgba(15,27,45,0.6);margin-top:3px;}
+.twtdgy{background:var(--navy2);padding:7px 28px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.tw-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10.5px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;}
+.tw-sep{width:1px;height:14px;background:rgba(255,255,255,0.1);}
+.tw-txt{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;color:rgba(255,255,255,0.6);}
+.tw-txt em{color:var(--gold);font-style:normal;}
 
-/* ── MODULE CARDS ── */
-.modules{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-  gap:20px;
-}
-.module-card{
-  background:var(--navy2);
-  border:1.5px solid rgba(255,255,255,0.08);
-  border-radius:6px;
-  overflow:hidden;
-  transition:all .2s;
-  text-decoration:none;
-  display:flex;
-  flex-direction:column;
-  cursor:pointer;
-}
-.module-card:hover{
-  border-color:var(--gold);
-  transform:translateY(-3px);
-}
-.module-card.coming-soon{
-  opacity:0.55;
-  cursor:default;
-  pointer-events:none;
-}
-.module-card.coming-soon:hover{
-  border-color:rgba(255,255,255,0.08);
-  transform:none;
-}
-.module-top{
-  padding:22px 22px 16px;
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-}
-.module-icon{
-  width:48px;
-  height:48px;
-  border-radius:5px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:16px;
-  letter-spacing:1px;
-  flex-shrink:0;
-}
-.icon-gold{background:rgba(240,165,0,0.15);color:var(--gold);border:1px solid rgba(240,165,0,0.3);}
-.icon-blue{background:rgba(59,130,246,0.15);color:#93c5fd;border:1px solid rgba(59,130,246,0.3);}
-.icon-green{background:rgba(34,197,94,0.15);color:#86efac;border:1px solid rgba(34,197,94,0.3);}
-.icon-purple{background:rgba(167,139,250,0.15);color:#c4b5fd;border:1px solid rgba(167,139,250,0.3);}
-.icon-red{background:rgba(239,68,68,0.15);color:#fca5a5;border:1px solid rgba(239,68,68,0.3);}
-.module-status{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;
-  font-size:9px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  padding:3px 8px;
-  border-radius:2px;
-  flex-shrink:0;
-}
-.status-live{background:rgba(34,197,94,0.15);color:#86efac;border:1px solid rgba(34,197,94,0.3);}
-.status-beta{background:rgba(251,191,36,0.15);color:#fde68a;border:1px solid rgba(251,191,36,0.3);}
-.status-soon{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.1);}
-.module-body{
-  padding:0 22px 20px;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-}
-.module-name{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:20px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:var(--white);
-  margin-bottom:6px;
-  line-height:1.1;
-}
-.module-desc{
-  font-size:12px;
-  color:rgba(255,255,255,0.65);
-  line-height:1.6;
-  flex:1;
-  margin-bottom:14px;
-}
-.module-tags{
-  display:flex;
-  gap:5px;
-  flex-wrap:wrap;
-}
-.mtag{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;
-  font-size:9px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  padding:2px 7px;
-  border-radius:2px;
-  background:rgba(255,255,255,0.07);
-  color:rgba(255,255,255,0.5);
-}
-.module-footer{
-  padding:12px 22px;
-  border-top:1px solid rgba(255,255,255,0.07);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.module-link-text{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;
-  font-size:11px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:var(--gold);
-}
-.module-arrow{color:var(--gold);font-size:14px;}
-.coming-text{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;
-  font-size:11px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:rgba(255,255,255,0.3);
-}
+/* ── SECTIONS ── */
+.wrap{max-width:1160px;margin:0 auto;padding:48px 28px;}
+.wrap-tight{padding-bottom:0;}
+.sec-hdr{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.sec-eye{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);}
+.sec-line{flex:1;height:1px;background:rgba(240,165,0,0.18);}
 
-/* ── PHILOSOPHY STRIP ── */
-.phil-strip{
-  background:var(--gold);
-  padding:20px 40px;
-  text-align:center;
-}
-.phil-strip-text{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:clamp(16px,3vw,22px);
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:var(--navy);
-  line-height:1.3;
-}
-.phil-strip-sub{
-  font-size:12px;
-  color:rgba(15,27,45,0.65);
-  margin-top:5px;
-}
+/* ── SOCKS REF ── */
+.socks-card{background:var(--navy3);border:1px solid rgba(255,255,255,0.07);border-radius:6px;overflow:hidden;}
+.socks-top{background:var(--navy4);display:flex;align-items:stretch;border-bottom:2px solid var(--gold);}
+.sk-sys{padding:8px 14px;border-right:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;justify-content:center;align-items:center;min-width:62px;}
+.sk-sys-s{font-family:'Barlow Condensed',sans-serif;font-size:7.5px;letter-spacing:2px;color:rgba(255,255,255,0.35);text-transform:uppercase;font-weight:700;}
+.sk-sys-w{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;color:var(--gold);letter-spacing:3px;}
+.sk-letters{display:flex;flex:1;}
+.sk-l{display:flex;align-items:center;gap:8px;padding:7px 11px;border-right:1px solid rgba(255,255,255,0.07);flex:1;}
+.sk-l:last-child{border-right:none;background:rgba(240,165,0,0.07);}
+.sk-letter{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:19px;color:var(--gold);line-height:1;flex-shrink:0;}
+.sk-word{font-size:10px;color:rgba(255,255,255,0.85);line-height:1.3;}
+.sk-word span{display:block;font-size:8px;color:rgba(255,255,255,0.38);margin-top:1px;}
+.socks-mid{display:flex;border-bottom:1px solid rgba(255,255,255,0.06);}
+.sm-block{flex:1;padding:8px 13px;border-right:1px solid rgba(255,255,255,0.06);}
+.sm-block:last-child{border-right:none;}
+.sm-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.32);margin-bottom:3px;}
+.sm-txt{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11.5px;color:rgba(255,255,255,0.88);line-height:1.3;}
+.c-who{color:#93c5fd;}.c-where{color:#fbbf24;}.c-pres{color:#f87171;}
+.socks-stages{display:flex;}
+.sk-stage{flex:1;padding:7px 10px;border-right:1px solid rgba(255,255,255,0.06);text-align:center;}
+.sk-stage:last-child{border-right:none;}
+.sk-dot{width:7px;height:7px;border-radius:50%;margin:0 auto 3px;}
+.sk-sname{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9.5px;color:rgba(255,255,255,0.78);text-transform:uppercase;letter-spacing:0.5px;}
+.sk-sfocus{font-size:8.5px;color:rgba(255,255,255,0.38);margin-top:1px;}
+.sk-scue{font-size:8px;color:rgba(255,255,255,0.5);font-style:italic;margin-top:3px;}
 
-/* ── PRINCIPLES STRIP ── */
-.principles{
-  padding:48px 40px;
-  max-width:1100px;
-  margin:0 auto;
-}
-.principles-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:12px;
-}
-.principle-card{
-  background:var(--navy2);
-  border:1px solid rgba(255,255,255,0.07);
-  border-radius:5px;
-  padding:18px;
-  border-left:3px solid var(--gold);
-}
-.principle-num{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:28px;
-  color:var(--gold);
-  line-height:1;
-  margin-bottom:6px;
-}
-.principle-title{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;
-  font-size:12px;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  color:var(--white);
-  margin-bottom:5px;
-}
-.principle-desc{
-  font-size:11px;
-  color:rgba(255,255,255,0.60);
-  line-height:1.5;
-}
+/* ── MODULE GRID ── */
+.mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(278px,1fr));gap:14px;}
+.mod{background:var(--navy2);border:1.5px solid rgba(255,255,255,0.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;transition:all .2s;}
+.mod.live:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,0.35);}
+.mod.faded{opacity:0.52;}
+.mod.faded:hover{opacity:0.65;transform:none;border-color:rgba(255,255,255,0.1);}
+.mod-top{padding:16px 16px 10px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.mod-icon{width:42px;height:42px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:0.5px;flex-shrink:0;}
+.i-gold{background:rgba(240,165,0,0.13);color:var(--gold);border:1px solid rgba(240,165,0,0.28);}
+.i-green{background:rgba(34,197,94,0.11);color:#4ade80;border:1px solid rgba(34,197,94,0.28);}
+.i-blue{background:rgba(59,130,246,0.11);color:#93c5fd;border:1px solid rgba(59,130,246,0.28);}
+.i-purple{background:rgba(167,139,250,0.11);color:#c4b5fd;border:1px solid rgba(167,139,250,0.28);}
+.i-orange{background:rgba(251,146,60,0.11);color:#fdba74;border:1px solid rgba(251,146,60,0.28);}
+.i-red{background:rgba(239,68,68,0.11);color:#fca5a5;border:1px solid rgba(239,68,68,0.28);}
+.i-teal{background:rgba(20,184,166,0.11);color:#5eead4;border:1px solid rgba(20,184,166,0.28);}
+.i-slate{background:rgba(100,116,139,0.11);color:#94a3b8;border:1px solid rgba(100,116,139,0.28);}
+.mod-badge{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px;flex-shrink:0;}
+.b-live{background:rgba(34,197,94,0.13);color:#4ade80;border:.5px solid rgba(34,197,94,0.28);}
+.b-beta{background:rgba(251,191,36,0.13);color:#fde68a;border:.5px solid rgba(251,191,36,0.28);}
+.b-soon{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.28);border:.5px solid rgba(255,255,255,0.08);}
+.b-ext{background:rgba(59,130,246,0.13);color:#93c5fd;border:.5px solid rgba(59,130,246,0.28);}
+.mod-body{padding:0 16px 14px;flex:1;display:flex;flex-direction:column;gap:9px;}
+.mod-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;letter-spacing:0.5px;text-transform:uppercase;color:var(--white);line-height:1.1;}
+.mod-desc{font-size:11px;color:rgba(255,255,255,0.58);line-height:1.6;flex:1;}
+.mod-tags{display:flex;gap:4px;flex-wrap:wrap;}
+.mtag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:0.8px;text-transform:uppercase;padding:2px 6px;border-radius:2px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);}
+.mod-sub{display:flex;gap:5px;flex-wrap:wrap;margin-top:2px;}
+.msub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:0.8px;text-transform:uppercase;padding:3px 9px;border-radius:2px;text-decoration:none;transition:all .15s;}
+.msub-gold{border:1px solid rgba(240,165,0,0.28);color:rgba(240,165,0,0.82);}
+.msub-gold:hover{background:var(--gold);color:var(--navy);}
+.msub-blue{border:1px solid rgba(147,197,253,0.28);color:rgba(147,197,253,0.82);}
+.msub-blue:hover{background:#93c5fd;color:var(--navy);}
+.msub-green{border:1px solid rgba(74,222,128,0.28);color:rgba(74,222,128,0.82);}
+.msub-green:hover{background:#4ade80;color:var(--navy);}
+.mod-foot{padding:9px 16px;border-top:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;}
+.mf-link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);}
+.mf-soon{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.22);}
 
-/* ── SOCKS QUICK REF ── */
-.socks-ref{
-  max-width:1100px;
-  margin:0 auto;
-  padding:0 40px 56px;
-}
-.socks-letters{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.socks-letter-card{
-  flex:1;
-  min-width:100px;
-  background:var(--navy3);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:5px;
-  padding:14px 12px;
-  text-align:center;
-}
-.socks-letter-card.space-card{
-  background:#1a2f3a;
-  border-color:rgba(240,165,0,0.2);
-}
-.sl-letter{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:36px;
-  color:var(--gold);
-  line-height:1;
-}
-.sl-word{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;
-  font-size:10px;
-  color:rgba(255,255,255,0.9);
-  margin:3px 0 2px;
-  letter-spacing:0.5px;
-}
-.sl-sub{font-size:9px;color:rgba(255,255,255,0.5);line-height:1.4;}
+/* ── PRINCIPLES ── */
+.prins{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:10px;}
+.prin{background:var(--navy2);border:1px solid rgba(255,255,255,0.07);border-radius:5px;padding:14px;border-left:3px solid var(--gold);}
+.prin-n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;color:var(--gold);line-height:1;margin-bottom:4px;}
+.prin-t{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10.5px;letter-spacing:0.5px;text-transform:uppercase;color:var(--white);margin-bottom:3px;}
+.prin-d{font-size:10px;color:rgba(255,255,255,0.52);line-height:1.5;}
+
+/* ── ROADMAP ── */
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(255,255,255,0.07);border-radius:6px;overflow:hidden;}
+.rm-col{padding:18px;border-right:1px solid rgba(255,255,255,0.07);}
+.rm-col:last-child{border-right:none;}
+.rm-head{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.rm-live .rm-head{color:var(--s1);}
+.rm-next .rm-head{color:var(--gold);}
+.rm-future .rm-head{color:rgba(255,255,255,0.3);}
+.rm-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;font-size:10.5px;color:rgba(255,255,255,0.62);line-height:1.45;}
+.ri-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.d-live{background:var(--s1);}.d-next{background:var(--gold);}.d-fut{background:rgba(255,255,255,0.18);}
 
 /* ── FOOTER ── */
-.footer{
-  background:var(--navy2);
-  border-top:1px solid rgba(255,255,255,0.06);
-  padding:28px 40px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px;
-}
-.footer-brand{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:14px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--gold);
-}
-.footer-note{
-  font-size:11px;
-  color:rgba(255,255,255,0.4);
-}
-.footer-twtdgy{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:700;
-  font-size:11px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  color:rgba(255,255,255,0.55);
-}
+.footer{background:var(--navy2);border-top:1px solid rgba(255,255,255,0.05);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.f-brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.f-links{display:flex;gap:12px;flex-wrap:wrap;}
+.f-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.38);text-decoration:none;}
+.f-links a:hover{color:var(--gold);}
+.f-note{font-size:9.5px;color:rgba(255,255,255,0.25);}
 
 /* ── RESPONSIVE ── */
-@media(max-width:680px){
-  .topbar{padding:10px 18px;}
-  .topbar-nav{display:none;}
-  .hero{padding:50px 20px 40px;}
-  .section,.principles,.socks-ref{padding-left:18px;padding-right:18px;}
-  .footer{padding:20px 18px;}
+@media(max-width:860px){
+  .topbar{padding:0 14px;}
+  .tb-nav{display:none;}
+  .tb-cta{margin-left:0;}
+  .wrap{padding:36px 14px;}
+  .roadmap{grid-template-columns:1fr;}
+  .rm-col{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);}
+  .rm-col:last-child{border-bottom:none;}
 }
 </style>
 </head>
@@ -464,280 +181,338 @@ body{
 
 <!-- TOP BAR -->
 <div class="topbar">
-  <div class="topbar-brand">
-    <div class="topbar-icon">QB</div>
+  <div class="tb-brand">
+    <div class="tb-icon">QB</div>
     <div>
-      <div class="topbar-title">QB Room</div>
-      <div class="topbar-sub">Coaching Hub</div>
+      <div class="tb-name">QB Room</div>
+      <div class="tb-school">Higley Football · azcoachtravis</div>
     </div>
   </div>
-  <nav class="topbar-nav">
-    <a href="#modules">Modules</a>
-    <a href="#system">SOCKS System</a>
-    <a href="#principles">Principles</a>
-    <a href="socks-system/SOCKS_QB_System_Final.html">Open Coaching Guide</a>
-    <a href="run-game/qb_zone_scheme_v3.html">Zone Run Guide</a>
-    <a href="run-game/qb_gap_scheme_v1.html">Gap Run Guide</a>
+
+  <nav class="tb-nav">
+    <!-- Group 1: Core -->
+    <div style="display:flex;align-items:stretch;border-left:1px solid rgba(255,255,255,0.06);">
+      <a class="nav-item" href="socks-system/SOCKS_QB_System_Final.html">
+        <div class="nav-label">SOCKS System</div>
+        <div class="nav-dot nd-live">● Live</div>
+      </a>
+    </div>
+    <!-- Group 2: Content -->
+    <div style="display:flex;align-items:stretch;border-left:1px solid rgba(255,255,255,0.06);">
+      <a class="nav-item" href="play-library/index.html">
+        <div class="nav-label">Play Library</div>
+        <div class="nav-dot nd-live">● Live</div>
+      </a>
+      <a class="nav-item" href="drills/drills.html">
+        <div class="nav-label">Drills</div>
+        <div class="nav-dot nd-live">● Live</div>
+      </a>
+    </div>
+    <!-- Group 3: Evaluation -->
+    <div style="display:flex;align-items:stretch;border-left:1px solid rgba(255,255,255,0.06);">
+      <a class="nav-item" href="qb-grading/index.html">
+        <div class="nav-label">QB Grading</div>
+        <div class="nav-dot nd-beta">◐ Beta</div>
+      </a>
+      <a class="nav-item" href="stage-tracker/index.html">
+        <div class="nav-label">Stage Tracker</div>
+        <div class="nav-dot nd-soon">○ Coming</div>
+      </a>
+    </div>
+    <!-- Group 4: Prep -->
+    <div style="display:flex;align-items:stretch;border-left:1px solid rgba(255,255,255,0.06);border-right:1px solid rgba(255,255,255,0.06);">
+      <a class="nav-item" href="game-week/index.html">
+        <div class="nav-label">Game Week</div>
+        <div class="nav-dot nd-soon">○ Coming</div>
+      </a>
+      <a class="nav-item" href="homework/index.html">
+        <div class="nav-label">Homework</div>
+        <div class="nav-dot nd-soon">○ Coming</div>
+      </a>
+    </div>
   </nav>
+
+  <div class="tb-cta">
+    <a class="tb-btn primary" href="socks-system/SOCKS_QB_System_Final.html">SOCKS Guide →</a>
+  </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">azcoachtravis · QB Room</div>
-  <div class="hero-title">The <span>QB</span> Room</div>
-  <div class="hero-sub">A complete quarterback development system</div>
-  <div class="hero-tagline">TWTDGY — Take What The Defense Gives You</div>
+  <div class="h-eyebrow">Higley Football · azcoachtravis · QB Room</div>
+  <div class="h-title">The <span>QB</span> Room</div>
+  <div class="h-sub">A complete quarterback development system</div>
+  <div class="h-pills">
+    <span class="hp hp-gold">SOCKS QB Framework</span>
+    <span class="hp hp-out">Play Library</span>
+    <span class="hp hp-out">35 Drills</span>
+    <span class="hp hp-out">Film Grading</span>
+    <span class="hp hp-out">Stage Tracker</span>
+    <span class="hp hp-out">Game Week Prep</span>
+  </div>
+  <div class="h-cta">
+    <a class="cta cta-p" href="socks-system/SOCKS_QB_System_Final.html">Open SOCKS Coaching Guide →</a>
+    <a class="cta cta-s" href="play-library/index.html">Play Library →</a>
+    <a class="cta cta-s" href="drills/drills.html">Drill Library →</a>
+  </div>
 </div>
 
-<!-- PHILOSOPHY STRIP -->
-<div class="phil-strip">
-  <div class="phil-strip-text">"We don't throw to open receivers — we throw receivers open."</div>
-  <div class="phil-strip-sub">Numbers tell you who to read. &nbsp;Leverage tells you where to throw. &nbsp;Pressure overrides both.</div>
+<!-- PHILOSOPHY -->
+<div class="phil">
+  <div class="phil-q">"We don't throw to open receivers — we throw receivers open."</div>
+  <div class="phil-s">Numbers tell you who to read. &nbsp;Leverage tells you where to throw. &nbsp;Pressure overrides both.</div>
 </div>
-
-<!-- MODULES -->
-<div class="section" id="modules">
-  <div class="section-header">
-    <div class="section-title">Coaching Modules</div>
-    <div class="section-line"></div>
-  </div>
-  <div class="modules">
-
-    <!-- SOCKS SYSTEM -->
-    <a class="module-card" href="socks-system/SOCKS_QB_System_Final.html">
-      <div class="module-top">
-        <div class="module-icon icon-gold">SOCKS</div>
-        <span class="module-status status-live">Live</span>
-      </div>
-      <div class="module-body">
-        <div class="module-name">SOCKS QB System</div>
-        <div class="module-desc">The complete universal QB operating framework. Pre-snap reads, pressure override, progressive 4-stage development, play-specific decision tables, and a full evaluation system. 7-page interactive coaching guide.</div>
-        <div class="module-tags">
-          <span class="mtag">Pre-Snap</span>
-          <span class="mtag">RPO</span>
-          <span class="mtag">4 Stages</span>
-          <span class="mtag">Evaluation</span>
-          <span class="mtag">All Levels</span>
-        </div>
-      </div>
-      <div class="module-footer">
-        <span class="module-link-text">Open Coaching Guide</span>
-        <span class="module-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- SOCKS PDF -->
-    <a class="module-card" href="socks-system/SOCKS_QB_System_Final.pdf">
-      <div class="module-top">
-        <div class="module-icon icon-gold">PDF</div>
-        <span class="module-status status-live">Live</span>
-      </div>
-      <div class="module-body">
-        <div class="module-name">SOCKS System — Printable PDF</div>
-        <div class="module-desc">The same 7-page coaching guide in interactive PDF format. Includes clickable bookmarks, 55 fillable milestone checkboxes that save state, and print-ready formatting for your binder or film room wall.</div>
-        <div class="module-tags">
-          <span class="mtag">Print-Ready</span>
-          <span class="mtag">Interactive PDF</span>
-          <span class="mtag">Checkboxes</span>
-          <span class="mtag">Bookmarks</span>
-        </div>
-      </div>
-      <div class="module-footer">
-        <span class="module-link-text">Download PDF</span>
-        <span class="module-arrow">↓</span>
-      </div>
-    </a>
-
-    <!-- QB GRADING -->
-    <div class="module-card coming-soon">
-      <div class="module-top">
-        <div class="module-icon icon-blue">QBG</div>
-        <span class="module-status status-soon">Coming Soon</span>
-      </div>
-      <div class="module-body">
-        <div class="module-name">QB Grading II</div>
-        <div class="module-desc">Play-by-play QB evaluation system tied directly to SOCKS stage milestones. Grade film reps, track decision-making accuracy, and get a clear picture of where each QB is in his development.</div>
-        <div class="module-tags">
-          <span class="mtag">Film Grading</span>
-          <span class="mtag">SOCKS Linked</span>
-          <span class="mtag">Stage Tracker</span>
-          <span class="mtag">Analytics</span>
-        </div>
-      </div>
-      <div class="module-footer">
-        <span class="coming-text">In Development</span>
-      </div>
-    </div>
-
-    <!-- QB STAGE TRACKER -->
-    <div class="module-card coming-soon">
-      <div class="module-top">
-        <div class="module-icon icon-green">TRK</div>
-        <span class="module-status status-soon">Coming Soon</span>
-      </div>
-      <div class="module-body">
-        <div class="module-name">QB Stage Tracker</div>
-        <div class="module-desc">Track every QB's progression through SOCKS Stages 1–4. Log milestone scores, evaluation session results, advancement dates, and what to work on next. One dashboard per QB, one view for the whole room.</div>
-        <div class="module-tags">
-          <span class="mtag">Progress Tracking</span>
-          <span class="mtag">Per QB</span>
-          <span class="mtag">Milestones</span>
-          <span class="mtag">Dashboard</span>
-        </div>
-      </div>
-      <div class="module-footer">
-        <span class="coming-text">In Development</span>
-      </div>
-    </div>
-
-    <!-- PLAY LIBRARY -->
-    <div class="module-card coming-soon">
-      <div class="module-top">
-        <div class="module-icon icon-purple">PLY</div>
-        <span class="module-status status-soon">Coming Soon</span>
-      </div>
-      <div class="module-body">
-        <div class="module-name">Play Library</div>
-        <div class="module-desc">SOCKS decision tables for every play in the system. Coverage beaters by concept, RPO decision trees, and hot route maps — all organized by stage so QBs only see what they're being coached on.</div>
-        <div class="module-tags">
-          <span class="mtag">Play Concepts</span>
-          <span class="mtag">RPO</span>
-          <span class="mtag">Coverage Beaters</span>
-          <span class="mtag">Stage-Filtered</span>
-        </div>
-      </div>
-      <div class="module-footer">
-        <span class="coming-text">In Development</span>
-      </div>
-    </div>
-
-    <!-- GAME WEEK PREP -->
-    <div class="module-card coming-soon">
-      <div class="module-top">
-        <div class="module-icon icon-red">WEEK</div>
-        <span class="module-status status-soon">Coming Soon</span>
-      </div>
-      <div class="module-body">
-        <div class="module-name">Game Week Prep</div>
-        <div class="module-desc">Opponent tendency sheets, coverage tendency reports, and blitz package breakdowns — formatted for the SOCKS system so QBs can pre-load their scan before they walk to the line.</div>
-        <div class="module-tags">
-          <span class="mtag">Opponent Tendencies</span>
-          <span class="mtag">Film Notes</span>
-          <span class="mtag">Blitz Packages</span>
-          <span class="mtag">Week Prep</span>
-        </div>
-      </div>
-      <div class="module-footer">
-        <span class="coming-text">In Development</span>
-      </div>
-    </div>
-
-  </div>
+<div class="twtdgy">
+  <div class="tw-lbl">TWTDGY</div>
+  <div class="tw-sep"></div>
+  <div class="tw-txt"><em>SOCKS</em> tells you the gift. &nbsp;<em>Motion</em> confirms it. &nbsp;<em>Situation</em> defines it. &nbsp;<em>Timing</em> executes it.</div>
 </div>
 
 <!-- SOCKS QUICK REF -->
-<div class="socks-ref" id="system">
-  <div class="section-header">
-    <div class="section-title">The SOCKS Scan — Quick Reference</div>
-    <div class="section-line"></div>
+<div class="wrap wrap-tight">
+  <div class="sec-hdr">
+    <div class="sec-eye">Framework</div>
+    <div class="sec-title">The SOCKS Scan</div>
+    <div class="sec-line"></div>
   </div>
-  <div class="socks-letters">
-    <div class="socks-letter-card">
-      <div class="sl-letter">S</div>
-      <div class="sl-word">Safeties</div>
-      <div class="sl-sub">MOFO / MOFC<br>1 high or 2 high</div>
+  <div class="socks-card">
+    <div class="socks-top">
+      <div class="sk-sys">
+        <div class="sk-sys-s">System</div>
+        <div class="sk-sys-w">SOCKS</div>
+      </div>
+      <div class="sk-letters">
+        <div class="sk-l"><div class="sk-letter">S</div><div class="sk-word">Safeties<span>MOFO / MOFC</span></div></div>
+        <div class="sk-l"><div class="sk-letter">O</div><div class="sk-word">Outside Corners<span>Leverage / Alignment</span></div></div>
+        <div class="sk-l"><div class="sk-letter">C</div><div class="sk-word">Count<span>Box numbers → Who</span></div></div>
+        <div class="sk-l"><div class="sk-letter">K</div><div class="sk-word">Key<span>Who to read</span></div></div>
+        <div class="sk-l"><div class="sk-letter">S</div><div class="sk-word">Space<span>Leverage → Where</span></div></div>
+      </div>
     </div>
-    <div class="socks-letter-card">
-      <div class="sl-letter">O</div>
-      <div class="sl-word">Outside Corners</div>
-      <div class="sl-sub">Leverage & alignment<br>Foot / hip position</div>
+    <div class="socks-mid">
+      <div class="sm-block">
+        <div class="sm-lbl">Core Principle</div>
+        <div class="sm-txt">Numbers tell you <span class="c-who">who</span> to read. &nbsp;Leverage tells you <span class="c-where">where</span> to throw.</div>
+      </div>
+      <div class="sm-block">
+        <div class="sm-lbl">Pressure Override</div>
+        <div class="sm-txt"><span class="c-pres">Pressure overrides key hierarchy.</span> &nbsp;Hot at 1.8s. No hesitation.</div>
+      </div>
+      <div class="sm-block">
+        <div class="sm-lbl">Motion Rule</div>
+        <div class="sm-txt">Man follows. Zone rotates. Motion is the pre-snap lie detector.</div>
+      </div>
     </div>
-    <div class="socks-letter-card">
-      <div class="sl-letter">C</div>
-      <div class="sl-word">Count</div>
-      <div class="sl-sub">Box numbers<br>5/4 · 5/5 · 5/6</div>
-    </div>
-    <div class="socks-letter-card">
-      <div class="sl-letter">K</div>
-      <div class="sl-word">Key</div>
-      <div class="sl-sub">Who to read<br>Determined by Count</div>
-    </div>
-    <div class="socks-letter-card space-card">
-      <div class="sl-letter">S</div>
-      <div class="sl-word">Space</div>
-      <div class="sl-sub">Grass reads<br>Where to attack</div>
-    </div>
-  </div>
-
-  <!-- Count → Key -->
-  <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
-    <div style="flex:1;min-width:180px;background:#f5f3ee;border-radius:5px;padding:12px 16px;display:flex;align-items:center;gap:10px;border-left:3px solid #991b1b;">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#991b1b;flex-shrink:0;">OVERRIDE</div>
-      <div style="font-size:11px;color:#991b1b;font-weight:600;">Pressure detected → Hot route fires. Key hierarchy suspended. Ball out at 1.8s.</div>
-    </div>
-    <div style="background:#f5f3ee;border-radius:5px;padding:12px 16px;display:flex;align-items:center;gap:16px;flex-shrink:0;flex-wrap:wrap;">
-      <div style="display:flex;align-items:center;gap:8px;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:#15803d;">5/4</span><span style="color:#999;font-size:11px;">→</span><span style="font-size:11px;font-weight:600;color:#0f1b2d;">Run advantage</span></div>
-      <div style="display:flex;align-items:center;gap:8px;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:#b45309;">5/5</span><span style="color:#999;font-size:11px;">→</span><span style="font-size:11px;font-weight:600;color:#0f1b2d;">DE (1st level)</span></div>
-      <div style="display:flex;align-items:center;gap:8px;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:#991b1b;">5/6</span><span style="color:#999;font-size:11px;">→</span><span style="font-size:11px;font-weight:600;color:#0f1b2d;">Apex / Backer (2nd level)</span></div>
+    <div class="socks-stages">
+      <div class="sk-stage"><div class="sk-dot" style="background:var(--s1);"></div><div class="sk-sname">Stage 1</div><div class="sk-sfocus">Count + Key</div><div class="sk-scue">"Trust the count."</div></div>
+      <div class="sk-stage"><div class="sk-dot" style="background:var(--s2);"></div><div class="sk-sname">Stage 2</div><div class="sk-sfocus">Safeties + Shell</div><div class="sk-scue">"Safeties don't lie."</div></div>
+      <div class="sk-stage"><div class="sk-dot" style="background:var(--s3);"></div><div class="sk-sname">Stage 3</div><div class="sk-sfocus">Corners + Space</div><div class="sk-scue">"Find the space."</div></div>
+      <div class="sk-stage"><div class="sk-dot" style="background:var(--s4);"></div><div class="sk-sname">Stage 4</div><div class="sk-sfocus">Full SOCKS</div><div class="sk-scue">"Know what's coming."</div></div>
     </div>
   </div>
 </div>
 
-<!-- CORE PRINCIPLES -->
-<div class="principles" id="principles">
-  <div class="section-header">
-    <div class="section-title">Core Principles</div>
-    <div class="section-line"></div>
+<!-- ALL MODULES -->
+<div class="wrap">
+  <div class="sec-hdr">
+    <div class="sec-eye">Modules</div>
+    <div class="sec-title">Complete QB Room</div>
+    <div class="sec-line"></div>
   </div>
-  <div class="principles-grid">
-    <div class="principle-card">
-      <div class="principle-num">01</div>
-      <div class="principle-title">Numbers Tell You Who</div>
-      <div class="principle-desc">The box count determines who the key defender is. Count tells you who to watch before the ball is snapped. Always.</div>
+
+  <div class="mods">
+
+    <!-- SOCKS SYSTEM -->
+    <a class="mod live" href="socks-system/SOCKS_QB_System_Final.html">
+      <div class="mod-top">
+        <div class="mod-icon i-gold">SOCKS</div>
+        <span class="mod-badge b-live">Live</span>
+      </div>
+      <div class="mod-body">
+        <div class="mod-name">SOCKS QB System</div>
+        <div class="mod-desc">The complete pre-snap operating framework. Universal QB decision system — 7-page interactive coaching guide covering all 4 stages, pressure override, play decisions, and evaluation.</div>
+        <div class="mod-tags"><span class="mtag">Pre-Snap</span><span class="mtag">4 Stages</span><span class="mtag">Evaluation</span><span class="mtag">Interactive</span></div>
+        <div class="mod-sub">
+          <a class="msub msub-gold" href="socks-system/SOCKS_QB_System_Final.html">HTML Guide</a>
+          <a class="msub msub-gold" href="socks-system/SOCKS_QB_System_Final.pdf">Printable PDF</a>
+        </div>
+      </div>
+      <div class="mod-foot"><span class="mf-link">Open Coaching Guide</span><span style="color:var(--gold);">→</span></div>
+    </a>
+
+    <!-- PLAY LIBRARY -->
+    <a class="mod live" href="play-library/index.html">
+      <div class="mod-top">
+        <div class="mod-icon i-orange">PLAY</div>
+        <span class="mod-badge b-live">Live</span>
+      </div>
+      <div class="mod-body">
+        <div class="mod-name">Play Library</div>
+        <div class="mod-desc">Scheme cheat sheets for every run concept. QB-specific decision trees, footwork cues, mesh mechanics, and RPO reads — organized by play family. Pass concepts coming next.</div>
+        <div class="mod-tags"><span class="mtag">Gap Scheme</span><span class="mtag">Zone Scheme</span><span class="mtag">RPO</span><span class="mtag">Footwork</span></div>
+        <div class="mod-sub">
+          <a class="msub msub-gold" href="play-library/qb_gap_scheme_v1.html">Gap Scheme</a>
+          <a class="msub msub-gold" href="play-library/qb_zone_scheme_v3.html">Zone Scheme</a>
+          <a class="msub msub-gold" href="play-library/index.html">All Plays →</a>
+        </div>
+      </div>
+      <div class="mod-foot"><span class="mf-link">Open Play Library</span><span style="color:var(--gold);">→</span></div>
+    </a>
+
+    <!-- DRILLS -->
+    <a class="mod live" href="drills/drills.html">
+      <div class="mod-top">
+        <div class="mod-icon i-green">DRL</div>
+        <span class="mod-badge b-live">Live</span>
+      </div>
+      <div class="mod-body">
+        <div class="mod-name">Drill Library</div>
+        <div class="mod-desc">35 drills sourced from Elite 11, Glazier, X&amp;O Labs, AFCA, and the Jason Mohns system. Every drill tied to a SOCKS stage and QB Grading category. Filter to find the right drill right now.</div>
+        <div class="mod-tags"><span class="mtag">35 Drills</span><span class="mtag">6 Categories</span><span class="mtag">Filterable</span><span class="mtag">Mohns System</span></div>
+      </div>
+      <div class="mod-foot"><span class="mf-link">Open Drill Library</span><span style="color:var(--gold);">→</span></div>
+    </a>
+
+    <!-- QB GRADING -->
+    <a class="mod live" href="qb-grading/index.html">
+      <div class="mod-top">
+        <div class="mod-icon i-blue">QBG</div>
+        <span class="mod-badge b-beta">Beta</span>
+      </div>
+      <div class="mod-body">
+        <div class="mod-name">QB Grading</div>
+        <div class="mod-desc">Play-by-play film grading on a –2 to +2 scale across Pass Decision, Pocket, Release, Throw, Run Decision, Fake, and QB Impact. Imports from Hudl, builds dashboards by jersey number.</div>
+        <div class="mod-tags"><span class="mtag">Film Grading</span><span class="mtag">–2 to +2</span><span class="mtag">Hudl Import</span><span class="mtag">Google Sheets</span></div>
+        <div class="mod-sub">
+          <a class="msub msub-blue" href="https://docs.google.com/spreadsheets/d/1jzkxHkyLdDzbkJbspcXlUZRX7ZDgui_J4Lo6oAaAl00/edit" target="_blank">Open Live Sheet ↗</a>
+        </div>
+      </div>
+      <div class="mod-foot"><span class="mf-link">QB Grading Hub</span><span style="color:var(--gold);">→</span></div>
+    </a>
+
+    <!-- STAGE TRACKER -->
+    <a class="mod faded" href="stage-tracker/index.html">
+      <div class="mod-top">
+        <div class="mod-icon i-teal">TRK</div>
+        <span class="mod-badge b-soon">Coming</span>
+      </div>
+      <div class="mod-body">
+        <div class="mod-name">Stage Tracker</div>
+        <div class="mod-desc">Per-QB SOCKS progression dashboard. Track milestone scores, evaluation results, advancement dates, and what to work on next. One view for every QB in the room.</div>
+        <div class="mod-tags"><span class="mtag">Per QB</span><span class="mtag">Milestones</span><span class="mtag">Advancement</span><span class="mtag">Dashboard</span></div>
+      </div>
+      <div class="mod-foot"><span class="mf-soon">In Development</span></div>
+    </a>
+
+    <!-- GAME WEEK -->
+    <a class="mod faded" href="game-week/index.html">
+      <div class="mod-top">
+        <div class="mod-icon i-red">WEEK</div>
+        <span class="mod-badge b-soon">Coming</span>
+      </div>
+      <div class="mod-body">
+        <div class="mod-name">Game Week Prep</div>
+        <div class="mod-desc">Opponent coverage tendencies, blitz packages, and pre-snap tendency reports — formatted for the SOCKS system so your QB pre-loads his scan before walking to the line.</div>
+        <div class="mod-tags"><span class="mtag">Tendencies</span><span class="mtag">Coverage Reports</span><span class="mtag">Blitz Packages</span><span class="mtag">SOCKS Filtered</span></div>
+      </div>
+      <div class="mod-foot"><span class="mf-soon">In Development</span></div>
+    </a>
+
+    <!-- HOMEWORK -->
+    <a class="mod faded" href="homework/index.html">
+      <div class="mod-top">
+        <div class="mod-icon i-purple">HW</div>
+        <span class="mod-badge b-soon">Coming</span>
+      </div>
+      <div class="mod-body">
+        <div class="mod-name">QB Homework</div>
+        <div class="mod-desc">Weekly film review tasks, coverage recognition quizzes, pre-snap ID assignments, and self-evaluation checklists — a structured off-field development program tied to each SOCKS stage.</div>
+        <div class="mod-tags"><span class="mtag">Film Review</span><span class="mtag">Coverage ID</span><span class="mtag">Self-Eval</span><span class="mtag">Weekly Tasks</span></div>
+      </div>
+      <div class="mod-foot"><span class="mf-soon">In Development</span></div>
+    </a>
+
+    <!-- QB COMPARISON -->
+    <a class="mod faded" href="qb-grading/index.html">
+      <div class="mod-top">
+        <div class="mod-icon i-slate">COMP</div>
+        <span class="mod-badge b-soon">Coming</span>
+      </div>
+      <div class="mod-body">
+        <div class="mod-name">QB Comparison</div>
+        <div class="mod-desc">Side-by-side analytics across all QBs. Grade averages, pressure splits, red zone decision data, and 3rd down accuracy — built from the grading system, one row per QB.</div>
+        <div class="mod-tags"><span class="mtag">Analytics</span><span class="mtag">All QBs</span><span class="mtag">Pressure Splits</span><span class="mtag">Season Trends</span></div>
+      </div>
+      <div class="mod-foot"><span class="mf-soon">In Development</span></div>
+    </a>
+
+  </div>
+</div>
+
+<!-- PRINCIPLES -->
+<div class="wrap" style="padding-top:0;">
+  <div class="sec-hdr">
+    <div class="sec-eye">Foundation</div>
+    <div class="sec-title">Core Principles</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="prins">
+    <div class="prin"><div class="prin-n">01</div><div class="prin-t">Numbers Tell You Who</div><div class="prin-d">The box count determines the key defender before the snap. Always start here.</div></div>
+    <div class="prin"><div class="prin-n">02</div><div class="prin-t">Leverage Tells You Where</div><div class="prin-d">The corner's foot and hip shows where space is opening. Read the defender, not the receiver.</div></div>
+    <div class="prin"><div class="prin-n">03</div><div class="prin-t">Pressure Overrides Both</div><div class="prin-d">Pressure detected = hot route at 1.8s. Key hierarchy suspended. No hesitation, ever.</div></div>
+    <div class="prin"><div class="prin-n">04</div><div class="prin-t">Motion Tells the Truth</div><div class="prin-d">Man follows. Zone rotates. Motion confirms what SOCKS predicted.</div></div>
+    <div class="prin"><div class="prin-n">05</div><div class="prin-t">Situation Defines the Gift</div><div class="prin-d">Down, clock, field position, hash. Situational awareness tells you what the defense is giving before they give it.</div></div>
+    <div class="prin"><div class="prin-n">06</div><div class="prin-t">Mastery, Not Time</div><div class="prin-d">Stages are earned by performance. A freshman who masters Stage 1 advances immediately.</div></div>
+    <div class="prin"><div class="prin-n">07</div><div class="prin-t">Never Skip a Stage</div><div class="prin-d">You cannot read leverage if you can't trust the count. The foundation never stops mattering.</div></div>
+    <div class="prin" style="border-left-color:var(--gold2);"><div class="prin-n" style="color:var(--gold2);">★</div><div class="prin-t">TWTDGY</div><div class="prin-d">Take What The Defense Gives You. SOCKS tells you the gift. Motion confirms. Situation defines. Timing executes.</div></div>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<div class="wrap" style="padding-top:0;">
+  <div class="sec-hdr">
+    <div class="sec-eye">Progress</div>
+    <div class="sec-title">Build Roadmap</div>
+    <div class="sec-line"></div>
+  </div>
+  <div class="roadmap">
+    <div class="rm-col rm-live" style="background:rgba(34,197,94,0.03);">
+      <div class="rm-head">● Live Now</div>
+      <div class="rm-item"><div class="ri-dot d-live"></div>SOCKS QB System — 7-page interactive guide + printable PDF</div>
+      <div class="rm-item"><div class="ri-dot d-live"></div>Play Library — Gap Scheme &amp; Zone Scheme cheat sheets</div>
+      <div class="rm-item"><div class="ri-dot d-live"></div>Drill Library — 35 drills, filterable by stage &amp; category</div>
+      <div class="rm-item"><div class="ri-dot d-live"></div>QB Grading — live Google Sheets film grading system</div>
     </div>
-    <div class="principle-card">
-      <div class="principle-num">02</div>
-      <div class="principle-title">Leverage Tells You Where</div>
-      <div class="principle-desc">The corner's foot and hip position tells you where the space is about to open. Read the defender, not the receiver.</div>
+    <div class="rm-col rm-next" style="background:rgba(240,165,0,0.03);">
+      <div class="rm-head">◐ Building Next</div>
+      <div class="rm-item"><div class="ri-dot d-next"></div>Play Library — pass concepts (RPO quick game, shot plays)</div>
+      <div class="rm-item"><div class="ri-dot d-next"></div>QB Grading hub — tie grades to SOCKS stages &amp; milestones</div>
+      <div class="rm-item"><div class="ri-dot d-next"></div>Stage Tracker — per-QB milestone &amp; progression dashboard</div>
+      <div class="rm-item"><div class="ri-dot d-next"></div>QB Homework — weekly film review &amp; coverage ID tasks</div>
     </div>
-    <div class="principle-card">
-      <div class="principle-num">03</div>
-      <div class="principle-title">Pressure Overrides Both</div>
-      <div class="principle-desc">When pressure is detected pre-snap, the key hierarchy is suspended. Hot route fires at 1.8s. No hesitation. Priority one.</div>
-    </div>
-    <div class="principle-card">
-      <div class="principle-num">04</div>
-      <div class="principle-title">Motion Tells the Truth</div>
-      <div class="principle-desc">Man follows. Zone rotates. Motion is the pre-snap lie detector — it confirms what SOCKS predicted.</div>
-    </div>
-    <div class="principle-card">
-      <div class="principle-num">05</div>
-      <div class="principle-title">Situation Defines the Gift</div>
-      <div class="principle-desc">Down &amp; distance, score, field position, hash. Situational awareness tells you what the defense is giving you before they give it.</div>
-    </div>
-    <div class="principle-card">
-      <div class="principle-num">06</div>
-      <div class="principle-title">Mastery, Not Time</div>
-      <div class="principle-desc">Stages are earned by mastery, not by grade or year. A freshman who completes Stage 1 advances immediately. No exceptions.</div>
-    </div>
-    <div class="principle-card">
-      <div class="principle-num">07</div>
-      <div class="principle-title">Never Skip a Stage</div>
-      <div class="principle-desc">You cannot read leverage if you can't trust the count. Each stage builds on the last. The foundation never stops mattering.</div>
-    </div>
-    <div class="principle-card" style="border-left-color:var(--gold2);">
-      <div class="principle-num" style="color:var(--gold2);">TWTDGY</div>
-      <div class="principle-title">Take What The Defense Gives You</div>
-      <div class="principle-desc">SOCKS tells you the gift. Motion confirms it. Situation defines it. Timing executes it. This is the operating philosophy.</div>
+    <div class="rm-col rm-future" style="background:rgba(255,255,255,0.01);">
+      <div class="rm-head">○ Planned</div>
+      <div class="rm-item"><div class="ri-dot d-fut"></div>Game Week Prep — opponent tendency sheets (SOCKS-formatted)</div>
+      <div class="rm-item"><div class="ri-dot d-fut"></div>QB Comparison — analytics dashboard across all QBs</div>
+      <div class="rm-item"><div class="ri-dot d-fut"></div>Elite Plays viewer — film clips linked to grade categories</div>
+      <div class="rm-item"><div class="ri-dot d-fut"></div>QB Metrics — season-long grade trends &amp; progress tracking</div>
     </div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-  <div class="footer-brand">QB Room — azcoachtravis</div>
-  <div class="footer-twtdgy">TWTDGY</div>
-  <div class="footer-note">github.com/azcoachtravis/QB_Room</div>
+  <div class="f-brand">QB Room — Higley Football</div>
+  <div class="f-links">
+    <a href="socks-system/SOCKS_QB_System_Final.html">SOCKS Guide</a>
+    <a href="play-library/index.html">Play Library</a>
+    <a href="drills/drills.html">Drills</div>
+    <a href="qb-grading/index.html">QB Grading</a>
+    <a href="stage-tracker/index.html">Stage Tracker</a>
+    <a href="game-week/index.html">Game Week</a>
+    <a href="homework/index.html">Homework</a>
+  </div>
+  <div class="f-note">github.com/azcoachtravis/QB_Room</div>
 </div>
 
 </body>

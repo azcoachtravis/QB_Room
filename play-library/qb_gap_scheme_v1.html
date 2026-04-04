@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QB Gap Scheme Cheat Sheet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0c0f14;
+    --surface: #131823;
+    --card: #1b2333;
+    --border: #263045;
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.08);
+    --green-border: rgba(34,197,94,0.35);
+    --red: #f87171;
+    --red-bg: rgba(248,113,113,0.08);
+    --red-border: rgba(248,113,113,0.35);
+    --yellow: #fbbf24;
+    --yellow-bg: rgba(251,191,36,0.08);
+    --orange: #fb923c;
+    --orange-bg: rgba(251,146,60,0.08);
+    --orange-border: rgba(251,146,60,0.35);
+    --blue: #60a5fa;
+    --blue-bg: rgba(96,165,250,0.08);
+    --muted: #64748b;
+    --light: #94a3b8;
+    --white: #f1f5f9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 11.5px;
+    padding: 8px;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--orange);
+    border-radius: 8px;
+    padding: 10px 16px;
+    gap: 16px;
+  }
+
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .header p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .call-structure {
+    text-align: right;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .call-structure span {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 3px;
+    margin-left: 4px;
+    font-size: 0.68rem;
+  }
+
+  .cs-f { background: rgba(96,165,250,0.15); color: var(--blue); }
+  .cs-p { background: rgba(251,191,36,0.12); color: var(--yellow); }
+  .cs-pl { background: rgba(251,146,60,0.15); color: var(--orange); }
+  .cs-r { background: rgba(248,113,113,0.15); color: var(--red); }
+
+  .core-rule {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .rule-block {
+    border-radius: 8px;
+    padding: 9px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .rule-block.gap  { background: var(--orange-bg); border: 1px solid var(--orange-border); }
+  .rule-block.pull { background: var(--blue-bg);   border: 1px solid rgba(96,165,250,0.35); }
+
+  .rule-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .rule-block.gap  .rule-title { color: var(--orange); }
+  .rule-block.pull .rule-title { color: var(--blue); }
+
+  .rule-trigger {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 2px;
+    align-self: flex-start;
+  }
+
+  .rule-block.gap  .rule-trigger { background: rgba(251,146,60,0.2);  color: var(--orange); }
+  .rule-block.pull .rule-trigger { background: rgba(96,165,250,0.2);  color: var(--blue); }
+
+  .rule-desc { font-size: 0.74rem; color: var(--light); line-height: 1.4; }
+  .rule-desc strong { color: var(--white); }
+
+  .sec-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-left: 10px;
+    border-left: 2px solid var(--orange);
+    margin-bottom: -2px;
+  }
+
+  .plays-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+  }
+
+  .plays-grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 5px;
+  }
+
+  .pcard { background: var(--card); border-radius: 8px; overflow: hidden; }
+  .pcard.gap    { border: 1px solid var(--orange-border); }
+  .pcard.sweep  { border: 1px solid rgba(96,165,250,0.35); }
+  .pcard.counter { border: 1px solid rgba(168,85,247,0.35); }
+
+  .pcard-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+  }
+
+  .pcard.gap    .pcard-head { background: var(--orange-bg);              border-bottom: 2px solid var(--orange-border); }
+  .pcard.sweep  .pcard-head { background: var(--blue-bg);                border-bottom: 2px solid rgba(96,165,250,0.35); }
+  .pcard.counter .pcard-head { background: rgba(168,85,247,0.08);        border-bottom: 2px solid rgba(168,85,247,0.35); }
+
+  .pname { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 1px; line-height: 1; }
+  .pcard.gap    .pname { color: var(--orange); }
+  .pcard.sweep  .pname { color: var(--blue); }
+  .pcard.counter .pname { color: #c084fc; }
+
+  .pbadge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+
+  .pcard.gap    .pbadge { background: rgba(251,146,60,0.18);  color: var(--orange); }
+  .pcard.sweep  .pbadge { background: rgba(96,165,250,0.18);  color: var(--blue); }
+  .pcard.counter .pbadge { background: rgba(168,85,247,0.18); color: #c084fc; }
+
+  .pcard-body { padding: 5px 9px; display: flex; flex-direction: column; gap: 3px; }
+
+  .prow { display: grid; grid-template-columns: 56px 1fr; gap: 5px; font-size: 0.74rem; line-height: 1.3; }
+
+  .plabel {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.67rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 1px;
+  }
+
+  .pval { color: var(--light); }
+
+  .pdecision { margin-top: 2px; padding: 4px 6px; border-radius: 4px; font-size: 0.72rem; line-height: 1.4; }
+  .pcard.gap    .pdecision { background: rgba(251,146,60,0.06);  border-left: 2px solid var(--orange); }
+  .pcard.sweep  .pdecision { background: rgba(96,165,250,0.06);  border-left: 2px solid var(--blue); }
+  .pcard.counter .pdecision { background: rgba(168,85,247,0.06); border-left: 2px solid #c084fc; }
+
+  .drow { display: flex; gap: 5px; }
+  .darr { color: var(--yellow); font-weight: 700; min-width: 10px; }
+  .dtext { color: var(--light); }
+  .dtext strong { color: var(--white); }
+
+  .footwork { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .footwork table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+  .footwork thead { background: var(--yellow-bg); border-bottom: 2px solid rgba(251,191,36,0.4); }
+
+  .footwork th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.63rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    padding: 5px 8px;
+    text-align: left;
+  }
+
+  .footwork td {
+    padding: 5px 8px;
+    border-bottom: 1px solid var(--border);
+    color: var(--light);
+    line-height: 1.3;
+    vertical-align: top;
+  }
+
+  .footwork tr:last-child td { border-bottom: none; }
+  .footwork .fam { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.8rem; color: var(--yellow); }
+  .footwork .plays-list { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.75rem; color: var(--orange); }
+  .footwork .plays-list.counter { color: #c084fc; }
+  .footwork .plays-list.sweep   { color: var(--blue); }
+
+  .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+
+  .key { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 9px; text-align: center; }
+  .key-icon { font-size: 1rem; margin-bottom: 2px; }
+
+  .key-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    color: var(--orange);
+  }
+
+  .key-desc { font-size: 0.68rem; color: var(--muted); line-height: 1.35; }
+
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .sum-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .pills { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+
+  .pill {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .pill.gap     { background: rgba(251,146,60,0.15);  color: var(--orange); border: 1px solid var(--orange-border); }
+  .pill.counter { background: rgba(168,85,247,0.15);  color: #c084fc;       border: 1px solid rgba(168,85,247,0.35); }
+  .pill.sweep   { background: rgba(96,165,250,0.15);  color: var(--blue);   border: 1px solid rgba(96,165,250,0.35); }
+  .pill-sep { color: var(--border); font-weight: 700; font-size: 1rem; }
+
+  @media print {
+    body { background: white; color: black; padding: 4px; font-size: 9.5px; }
+    .pcard, .footwork, .key, .summary, .rule-block { border: 1px solid #ccc !important; }
+    .page { gap: 5px; }
+    @page { margin: 0.4in; size: letter; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- FULL SCREEN BUTTON -->
+  <div style="text-align:right;margin-bottom:-2px;">
+    <a href="https://drive.google.com/file/d/14t13BNvMO4TUZ5LYCe6jW8BbRVNGTghx/view?usp=sharing" target="_blank"
+      style="display:inline-flex;align-items:center;gap:6px;background:#fb923c;color:#0c0f14;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:5px;text-decoration:none;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0c0f14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 3h6v6M10 14L21 3M19 13v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h7"/>
+      </svg>
+      Open Full Screen
+    </a>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>QB Gap Scheme Cheat Sheet</h1>
+      <p>Shotgun · Gap & Counter · Pull Discipline · Sell Every Fake</p>
+    </div>
+    <div class="call-structure">
+      Call Structure<br>
+      <span class="cs-f">Formation</span>
+      <span class="cs-p">Protection</span>
+      <span class="cs-pl">Play</span>
+      <span class="cs-r">RPO Tag</span>
+    </div>
+  </div>
+
+  <!-- FAKE ACCOUNTABILITY BANNER -->
+  <div style="background:linear-gradient(135deg,rgba(251,146,60,0.12),rgba(251,146,60,0.04));border:1px solid rgba(251,146,60,0.5);border-left:4px solid var(--orange);border-radius:8px;padding:7px 14px;display:flex;align-items:center;gap:12px;">
+    <div style="font-size:1.3rem;line-height:1;">🎭</div>
+    <div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:2px;color:var(--orange);">THE QB IS ALWAYS ON THE FIELD</div>
+      <div style="font-size:0.75rem;color:var(--light);line-height:1.4;margin-top:1px;">
+        Gap scheme is downhill — but the QB is not a spectator. <strong style="color:var(--white);">Every handoff has a fake. Every fake is a block.</strong>
+        Carry out your action with conviction. Spectators sit in the stands. <strong style="color:var(--white);">Never hand off and stop. Never hand off and watch. Run your fake every single time.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORE RULE -->
+  <div class="core-rule">
+    <div class="rule-block gap">
+      <div class="rule-trigger">Gap Scheme — No Read</div>
+      <div class="rule-title">Hand It Off — Trust the Pull</div>
+      <div class="rule-desc">
+        <strong>Gap scheme is hat for hat by design.</strong> The pulling lineman is your extra blocker — he creates the advantage. Your job is to get the ball to the RB quickly and on track, then carry out your fake with purpose.
+        <div style="font-size:0.68rem;color:var(--orange);margin-top:3px;">★ No reads. No hesitation. The scheme creates the edge — trust it.</div>
+      </div>
+    </div>
+    <div class="rule-block pull">
+      <div class="rule-trigger">Pulling Lineman = The Key</div>
+      <div class="rule-title">He Creates — You Deliver</div>
+      <div class="rule-desc">
+        <strong>The pull is the play.</strong> The pulling lineman kicks out the EMLOS or leads through the hole — everything happens off his path. Mesh the ball quickly, stay on track, and let the puller do his job.
+        <div style="font-size:0.68rem;color:var(--blue);margin-top:3px;">★ Get the ball handed off clean — the pull takes care of the math.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY REMINDERS -->
+  <div class="keys">
+    <div class="key">
+      <div class="key-icon">⚡</div>
+      <div class="key-title">Quick Mesh</div>
+      <div class="key-desc">Gap scheme lives and dies on the exchange. Get the ball to the RB fast — no lingering in the mesh.</div>
+    </div>
+    <div class="key">
+      <div class="key-icon">📍</div>
+      <div class="key-title">Ride the Track</div>
+      <div class="key-desc">Stay on your path through the handoff. Don't drift. The RB's aiming point is fixed — your track sets his.</div>
+    </div>
+    <div class="key">
+      <div class="key-icon">🎭</div>
+      <div class="key-title">Sell the Fake</div>
+      <div class="key-desc">Your fake after the handoff holds a backside defender. One hesitation by one defender is a block — make it count.</div>
+    </div>
+    <div class="key">
+      <div class="key-icon">⚓</div>
+      <div class="key-title">Stay Downhill</div>
+      <div class="key-desc">Don't drift back into the pocket after the give. Stay flat and aggressive through the mesh. Depth kills the scheme.</div>
+    </div>
+  </div>
+
+  <!-- POWER PLAYS -->
+  <div class="sec-label">🟠 Power — 5-Man Front · 6-Man Front · Down Block + Kick Out + Lead Guard</div>
+  <div class="plays-grid">
+
+    <!-- PAULY -->
+    <div class="pcard gap">
+      <div class="pcard-head">
+        <div class="pname">Pauly</div>
+        <div class="pbadge">Power · 5-Man</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">Power — 5-man front, down block playside, G kicks EMLOS, F leads through hole</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Kick-out block — bounce off the kick-out, press the hole downhill</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Open playside → quick mesh → hand off on track → carry out naked / boot fake away</div></div>
+        <div class="prow"><div class="plabel">Key Block</div><div class="pval">Pulling G kicks EMLOS — RB reads the kick-out and presses off it</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Mesh fast — no ride, no hesitation</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">After handoff → <strong>boot away</strong>, sell the naked threat</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">F leads through hole — trust his path, don't alter the mesh</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PETER -->
+    <div class="pcard gap">
+      <div class="pcard-head">
+        <div class="pname">Peter</div>
+        <div class="pbadge">Power · 6-Man</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">Power — 6-man front (TE added), same scheme as Pauly with extra gap control</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Same as Pauly — read the kick-out, press the hole downhill</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Identical to Pauly — open playside → quick mesh → boot fake away</div></div>
+        <div class="prow"><div class="plabel">Key Block</div><div class="pval">TE accounts for extra gap — G still kicks EMLOS, F still leads</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Same execution as Pauly — nothing changes for the QB</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">After handoff → <strong>boot away</strong>, sell the naked threat</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">6-man front gives OL better numbers — run it downhill with confidence</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GEORGE -->
+    <div class="pcard gap">
+      <div class="pcard-head">
+        <div class="pname">George</div>
+        <div class="pbadge">G-Lead</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">G-Lead — pulling guard leads through the hole as the primary blocker</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Follow the pulling G — press off his block into the open lane</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Open playside → quick mesh → hand off on track → boot fake away</div></div>
+        <div class="prow"><div class="plabel">Key Block</div><div class="pval">Pulling G is the lead blocker — RB reads him and follows his path</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Quick clean exchange — get out of the way of the pull</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">After handoff → <strong>boot away</strong>, sell the naked threat</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">G is the lead — mesh must be clean before he clears</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PAGE BREAK -->
+  <div style="page-break-before:always;"></div>
+
+  <!-- COUNTER PLAYS -->
+  <div class="sec-label">🟣 Counter — Misdirection + Double Pull · GT Counter · GY Counter</div>
+  <div class="plays-grid">
+
+    <!-- CONNOR -->
+    <div class="pcard counter">
+      <div class="pcard-head">
+        <div class="pname">Connor</div>
+        <div class="pbadge">GT Counter</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">GT Counter — Guard and Tackle pull backside, attack opposite gap from initial flow</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Take a false step playside, plant and cut back off the pulling G — press the counter hole</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Open playside with the flow → mesh as RB counter-steps → hand off → sell boot playside</div></div>
+        <div class="prow"><div class="plabel">Key Block</div><div class="pval">G kicks EMLOS backside, T leads through hole — RB reads the G's kick-out</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Sell the playside flow — your movement is misdirection</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">After handoff → <strong>continue playside fake</strong>, pull defenders away from the cut-back</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">Counter lives on misdirection — sell the fake hard before and after the mesh</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CODY -->
+    <div class="pcard counter">
+      <div class="pcard-head">
+        <div class="pname">Cody</div>
+        <div class="pbadge">GY Counter</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">GY Counter — Guard and Y (TE/H) pull backside instead of G+T</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Same as Connor — false step playside, plant and cut back off the G's kick-out</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Identical to Connor — open playside, mesh on cut-back, sell playside boot fake</div></div>
+        <div class="prow"><div class="plabel">Key Block</div><div class="pval">G kicks EMLOS, Y leads through hole — same read for RB as Connor</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Same QB execution as Connor — nothing changes pre or post mesh</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">After handoff → <strong>continue playside fake</strong>, pull defenders away</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">Y replaces T as the lead — RB reads the same way</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIGER -->
+    <div class="pcard counter">
+      <div class="pcard-head">
+        <div class="pname">Tiger</div>
+        <div class="pbadge">Dart</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">Dart — QB keeps and runs off the down blocks, pulling lineman leads</div></div>
+        <div class="prow"><div class="plabel">RB Role</div><div class="pval">Carry out the fake — sell the run fake hard away from the QB's path</div></div>
+        <div class="prow"><div class="plabel">QB Path</div><div class="pval">Open to the pull side → ride the fake mesh → pull and follow the lead blocker upfield</div></div>
+        <div class="prow"><div class="plabel">Key Block</div><div class="pval">Down blocks create the lane — lead puller kicks or leads through — QB reads his path</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">QB is the ball carrier — attack the designed gap with conviction</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Follow the puller — <strong>get vertical fast</strong>, don't dance behind the line</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">RB fake is critical — sell it like a give or the play loses its misdirection</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TOSS -->
+  <div class="sec-label">🔵 Toss — True Sweep · QB Pitches on Run · F Leads</div>
+  <div class="plays-grid" style="grid-template-columns:1fr 2fr;">
+
+    <!-- TODD -->
+    <div class="pcard sweep">
+      <div class="pcard-head">
+        <div class="pname">Todd</div>
+        <div class="pbadge">Toss Sweep</div>
+      </div>
+      <div class="pcard-body">
+        <div class="prow"><div class="plabel">Concept</div><div class="pval">True toss sweep — RB catches a pitch wide, F leads the edge</div></div>
+        <div class="prow"><div class="plabel">RB Aim</div><div class="pval">Get width fast, press the corner off the F's block — get vertical when the edge opens</div></div>
+        <div class="prow"><div class="plabel">QB Feet</div><div class="pval">Open to the toss side → gain depth → deliver a clean flat pitch to the RB → continue flat and sell a naked threat</div></div>
+        <div class="prow"><div class="plabel">Key Block</div><div class="pval">F leads and kicks the EMLOS or seals the edge — OL works to seal the second level</div></div>
+        <div class="pdecision">
+          <div class="drow"><div class="darr">▶</div><div class="dtext">Pitch must be <strong>clean and catchable</strong> — no bad pitches, no turnovers</div></div>
+          <div class="drow"><div class="darr">▶</div><div class="dtext">After pitch → <strong>continue flat</strong>, threaten the edge as a run threat</div></div>
+          <div class="drow"><div class="darr">⚠</div><div class="dtext" style="color:var(--yellow);font-size:0.7rem;">Pitch is the most dangerous exchange — get depth, get clean, deliver early</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOSS COACHING POINTS -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:8px;padding:6px 9px;display:flex;flex-direction:column;gap:6px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:1px;">🔑 Toss Pitch Mechanics</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.68rem;text-transform:uppercase;color:var(--white);margin-bottom:2px;">Pitch Path</div>
+          <div style="font-size:0.7rem;color:var(--light);line-height:1.35;">Open hips to the toss side and get depth — <strong style="color:var(--white);">2 steps back</strong> to create the proper pitch angle. Never pitch flat from the line — depth gives you a clean window and protects against a bad exchange.</div>
+        </div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.68rem;text-transform:uppercase;color:var(--white);margin-bottom:2px;">Pitch Timing</div>
+          <div style="font-size:0.7rem;color:var(--light);line-height:1.35;">Deliver the pitch <strong style="color:var(--white);">early</strong> — before you feel pressure from the EMLOS. A late pitch is a fumble waiting to happen. Get the ball out of your hands and into the RB's before the edge collapses.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTWORK TABLE -->
+  <div class="sec-label">⚡ QB Footwork by Play Family</div>
+  <div class="footwork">
+    <table>
+      <thead>
+        <tr>
+          <th>Family</th>
+          <th>Plays</th>
+          <th>QB Open</th>
+          <th>Mesh / Exchange</th>
+          <th>After Handoff</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fam">Power</td>
+          <td class="plays-list">Pauly · Peter</td>
+          <td>Playside — quick, flat step</td>
+          <td>Fast mesh, no ride — press the ball into RB's gut</td>
+          <td>Boot away — sell naked / boot threat</td>
+        </tr>
+        <tr>
+          <td class="fam">G-Lead</td>
+          <td class="plays-list">George</td>
+          <td>Playside — quick, flat step</td>
+          <td>Fast mesh — clear before G pulls through</td>
+          <td>Boot away — sell naked / boot threat</td>
+        </tr>
+        <tr>
+          <td class="fam">Counter</td>
+          <td class="plays-list counter">Connor · Cody</td>
+          <td>Playside with the flow — sell the misdirection</td>
+          <td>Mesh on RB's cut-back — stay on playside path</td>
+          <td>Continue playside — pull defenders away from cut</td>
+        </tr>
+        <tr>
+          <td class="fam">Dart</td>
+          <td class="plays-list counter">Tiger</td>
+          <td>Pull side — QB is the runner</td>
+          <td>Sell the fake mesh, pull — follow the lead blocker</td>
+          <td>Attack gap vertically — don't dance, get north-south</td>
+        </tr>
+        <tr>
+          <td class="fam">Toss</td>
+          <td class="plays-list sweep">Todd</td>
+          <td>Toss side — gain 2 steps depth</td>
+          <td>Deliver clean early pitch — lead with depth not flat</td>
+          <td>Continue flat — threaten the edge as a runner</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- COACHING POINTS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:8px;padding:6px 9px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin-bottom:3px;">⚡ The Pull is the Play</div>
+      <div style="font-size:0.7rem;color:var(--light);line-height:1.35;">Gap scheme creates the numbers advantage through the pull — not through reading a defender. <strong style="color:var(--white);">Trust the design.</strong> Your job is not to make a decision — it is to execute the exchange cleanly and on time. A clean fast handoff on the right track lets the puller do his job. <strong style="color:var(--white);">Don't think. Don't hesitate. Deliver the ball and run your fake.</strong></div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--yellow);border-radius:8px;padding:6px 9px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--yellow);margin-bottom:3px;">🎭 Counter = Misdirection — Sell It</div>
+      <div style="font-size:0.7rem;color:var(--light);line-height:1.35;">Connor and Cody live and die on your pre-snap and post-snap movement. <strong style="color:var(--white);">Your body going playside is what freezes the backside defenders.</strong> If you don't sell the flow, the counter has nowhere to go. Move with conviction playside before and after the mesh. <strong style="color:var(--white);">The best block you throw is your own body moving the wrong way.</strong></div>
+    </div>
+
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="sum-label">Quick Ref</div>
+    <div class="pills">
+      <span class="pill gap">Power: Pauly · Peter</span>
+      <span class="pill gap">G-Lead: George</span>
+      <span class="pill-sep">|</span>
+      <span class="pill counter">Counter: Connor · Cody</span>
+      <span class="pill counter">Dart: Tiger</span>
+      <span class="pill-sep">|</span>
+      <span class="pill sweep">Toss: Todd</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
