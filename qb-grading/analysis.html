@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QB Grading Analysis — QB Room v1.2</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0f1b2d;--navy2:#162438;--navy3:#1a2d44;
+  --gold:#f0a500;--white:#fff;--border:rgba(255,255,255,0.08);
+  --muted:rgba(255,255,255,0.58);--bg:#f5f3ee;
+  --green:#15803d;--red:#991b1b;
+}
+body{background:var(--navy);font-family:'Barlow',sans-serif;min-height:100vh;color:var(--white);}
+
+.nav{background:rgba(15,27,45,0.97);border-bottom:2px solid var(--gold);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:50px;position:sticky;top:0;z-index:100;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-icon{width:34px;height:34px;background:var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--navy);}
+.nav-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+.nav-links{display:flex;gap:5px;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;padding:4px 9px;border-radius:2px;border:1px solid rgba(255,255,255,0.18);transition:all .15s;}
+.nav-links a:hover{color:var(--gold);border-color:var(--gold);}
+
+.wrap{max-width:960px;margin:0 auto;padding:44px 24px 72px;}
+
+/* Page header */
+.ph{margin-bottom:36px;}
+.ph-eye{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px;}
+.ph-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(26px,4vw,42px);letter-spacing:2px;text-transform:uppercase;color:var(--gold);line-height:1;margin-bottom:4px;}
+.ph-sub{font-size:12px;color:var(--muted);line-height:1.6;max-width:700px;margin-bottom:16px;}
+.ph-meta{display:flex;gap:8px;flex-wrap:wrap;}
+.ph-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:2px;}
+.tag-gold{background:rgba(240,165,0,.14);color:var(--gold);border:.5px solid rgba(240,165,0,.3);}
+.tag-blue{background:rgba(59,130,246,.14);color:#93c5fd;border:.5px solid rgba(59,130,246,.3);}
+.tag-green{background:rgba(34,197,94,.14);color:#4ade80;border:.5px solid rgba(34,197,94,.3);}
+
+/* Sections */
+.sec{margin-bottom:44px;}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.sec-title::after{content:'';flex:1;height:1px;background:rgba(240,165,0,0.2);}
+p{font-size:12px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:10px;}
+p:last-child{margin-bottom:0;}
+strong{color:var(--white);font-weight:600;}
+
+/* Summary verdict box */
+.verdict{background:rgba(240,165,0,0.07);border:1.5px solid rgba(240,165,0,0.35);border-radius:6px;padding:20px 22px;margin-bottom:32px;}
+.verdict-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.verdict-body{font-size:12px;color:rgba(255,255,255,0.82);line-height:1.7;}
+
+/* Comparison grid */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+.compare-col{background:var(--navy2);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+.compare-head{padding:10px 14px;border-bottom:1px solid var(--border);}
+.compare-head-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.5px;text-transform:uppercase;}
+.compare-head-sub{font-size:9.5px;color:var(--muted);margin-top:2px;}
+.compare-body{padding:12px 14px;display:flex;flex-direction:column;gap:6px;}
+.ci{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:rgba(255,255,255,0.72);line-height:1.45;}
+.ci-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+
+/* Analysis table */
+.atbl{background:var(--navy2);border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-bottom:16px;}
+.atbl-hdr{display:grid;grid-template-columns:160px 90px 1fr 100px;gap:0;background:var(--navy3);border-bottom:1px solid var(--border);}
+.atbl-hdr div{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:8px 12px;}
+.atbl-row{display:grid;grid-template-columns:160px 90px 1fr 100px;gap:0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.atbl-row:last-child{border-bottom:none;}
+.atbl-row:nth-child(even){background:rgba(255,255,255,0.02);}
+.atbl-row div{padding:9px 12px;font-size:10.5px;color:var(--muted);border-right:1px solid rgba(255,255,255,0.04);}
+.atbl-row div:last-child{border-right:none;}
+.atbl-field{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:var(--white)!important;}
+.verdict-g{color:#4ade80!important;font-weight:700;}
+.verdict-y{color:#fde68a!important;font-weight:700;}
+.verdict-r{color:#fca5a5!important;font-weight:700;}
+
+/* Recommendation cards */
+.recs{display:flex;flex-direction:column;gap:12px;}
+.rec{background:var(--navy2);border:1px solid var(--border);border-radius:5px;padding:16px;border-left:3px solid;}
+.rec-r{border-left-color:#ef4444;}
+.rec-y{border-left-color:#f0a500;}
+.rec-g{border-left-color:#22c55e;}
+.rec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:5px;}
+.rec-r .rec-title{color:#fca5a5;}
+.rec-y .rec-title{color:var(--gold);}
+.rec-g .rec-title{color:#4ade80;}
+.rec-body{font-size:11px;color:var(--muted);line-height:1.6;}
+.rec-body strong{color:var(--white);}
+
+/* SOCKS mapping */
+.socks-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.scard{background:var(--navy2);border:1px solid var(--border);border-radius:5px;padding:14px;}
+.scard-field{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--gold);margin-bottom:4px;}
+.scard-maps{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;color:rgba(240,165,0,0.7);margin-bottom:5px;}
+.scard-body{font-size:10.5px;color:var(--muted);line-height:1.5;}
+.scard-gap{font-size:10px;color:#fca5a5;margin-top:5px;font-style:italic;}
+
+/* Proposed additions */
+.proposed{background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.25);border-radius:5px;padding:16px;margin-bottom:10px;}
+.proposed-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;color:#4ade80;margin-bottom:8px;}
+.proposed-body{font-size:11px;color:var(--muted);line-height:1.6;}
+.proposed-body strong{color:var(--white);}
+
+@media(max-width:700px){.compare,.socks-col{grid-template-columns:1fr;}.atbl-hdr,.atbl-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-brand" href="../index.html"><div class="nav-icon">QB</div><div class="nav-title">QB Room</div></a>
+  <nav class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../qb-grading/index.html">QB Grading</a>
+    <a href="../drills/drills.html">Drills</a>
+  </nav>
+</div>
+
+<div class="wrap">
+
+  <div class="ph">
+    <div class="ph-eye">QB Room · Research & Analysis</div>
+    <div class="ph-title">QB Grading System Analysis</div>
+    <div class="ph-sub">Are the existing columns (Pass Decision · Pass Pressure · Pass Pocket · Pass Release · Pass Throw · Run Decision · Run Fake · QB Impact · QB Note) adequate for the SOCKS system? Will they produce a PFF-style dashboard that accurately represents quarterback performance?</div>
+    <div class="ph-meta">
+      <span class="ph-tag tag-gold">v1.2</span>
+      <span class="ph-tag tag-blue">Research: PFF Methodology</span>
+      <span class="ph-tag tag-blue">High School QB Grading</span>
+      <span class="ph-tag tag-green">SOCKS Integration Analysis</span>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="verdict">
+    <div class="verdict-title">Bottom Line Verdict</div>
+    <div class="verdict-body">
+      The existing 9-column system is <strong>mostly adequate but has three meaningful gaps</strong> relative to what the SOCKS system actually develops and what a PFF-style dashboard needs to be accurate and actionable. The columns cover the execution side (throw quality, pocket, release) well — these map cleanly to PFF methodology. The gaps are on the <strong>pre-snap and situational side</strong>, which is exactly what SOCKS is built to develop. Specifically: there is no direct grade for pre-snap read quality, no separation between QB-caused and scheme-caused pressure, and no YAC/placement grade that captures where the ball was thrown — only whether it was thrown. These three additions would make the dashboard genuinely PFF-comparable and directly reflect what SOCKS is teaching at every stage.
+    </div>
+  </div>
+
+  <!-- HOW PFF ACTUALLY WORKS -->
+  <div class="sec">
+    <div class="sec-title">How PFF Grades Quarterbacks — What Actually Matters</div>
+    <p>PFF gives each player a grade from –2 to +2 on every play, with 0 representing the average or "expected" level of performance. The critical philosophical principle — and the one most relevant to your system — is this: <strong>the result of the play does not change the quarterback's grade.</strong></p>
+    <p>A pinpoint downfield pass that is dropped still earns the same positive grade. A completion on a reckless throw still earns a negative grade. This is the most important thing to internalize: PFF is grading the QB's contribution to production, not the outcome. A dropped pass on a perfect throw is still a perfect throw.</p>
+    <p>The PFF grading system isolates the quarterback's play — his decision, timing, and accuracy on a throw — all baked into the play-by-play grade. Misreading coverage and firing a pass to a linebacker results in the same grade whether the linebacker catches it for an interception or drops it.</p>
+    <p>PFF separates QB grading into distinct buckets: <strong>decision-making, accuracy/ball placement, pocket presence, and pressure performance.</strong> Grades are then converted to a 0–100 scale at the game and season level, with the average for every position meant to be a 60. For your purposes — high school development — the play-by-play grades are more valuable than the aggregate scale.</p>
+    <p>The two signature PFF metrics for QBs are <strong>Big-Time Throws</strong> (grades of +1.0 or better) and <strong>Turnover-Worthy Plays</strong> (grades of –1.0 or worse). Passes graded at –1.0 or worse receive the "turnover-worthy" label because interceptions occur on about 50% of such throws — and that percentage rises as the grade lowers. Your system already captures this with the Pass Decision column's Elite/Reckless scale, which is the correct instinct.</p>
+  </div>
+
+  <!-- COLUMN-BY-COLUMN ANALYSIS -->
+  <div class="sec">
+    <div class="sec-title">Column-by-Column Analysis — Adequate or Not?</div>
+
+    <div class="atbl">
+      <div class="atbl-hdr">
+        <div>Column</div>
+        <div>PFF Equivalent</div>
+        <div>Assessment</div>
+        <div>Verdict</div>
+      </div>
+      <div class="atbl-row">
+        <div class="atbl-field">PASS DECISION</div>
+        <div>PFF Play Grade (overall)</div>
+        <div>This is your most important column and it's well-designed. Elite/Good/Routine/Missed Better/Reckless maps directly to PFF's +2 through –2 scale. "Routine" = 0 (expected). "Missed Better" = –1. "Reckless" = –2/turnover-worthy. <strong>Grade process, not result</strong> — a reckless pass that falls incomplete is still Reckless.</div>
+        <div class="verdict-g">✓ Strong — keep</div>
+      </div>
+      <div class="atbl-row">
+        <div class="atbl-field">PASS THROW</div>
+        <div>PFF Accuracy / Ball Placement</div>
+        <div>Captures throw quality and accuracy — maps to PFF's accuracy component. PFF accounts for how much a completion asks of the receiver — whether the ball is presented on a plate versus requiring an impressive adjustment. "Pass Throw" should capture this: Elite Throw = receiver catches in stride, Poor Throw = receiver must fight for it. If it doesn't distinguish ball placement from pure accuracy, that's a gap.</div>
+        <div class="verdict-y">⚡ Adequate — needs clearer rubric</div>
+      </div>
+      <div class="atbl-row">
+        <div class="atbl-field">PASS POCKET</div>
+        <div>PFF Pocket Presence</div>
+        <div>Well-aligned. PFF evaluates pocket manipulation, stepping up, and whether sacks are QB-caused vs. OL-caused. Your Elite/Poor Pocket scale captures this. <strong>Key distinction:</strong> Poor Pocket should only fire when the QB causes the breakdown — not when the OL allows a clean sack. This matters for dashboard accuracy.</div>
+        <div class="verdict-g">✓ Strong — keep, clarify rubric</div>
+      </div>
+      <div class="atbl-row">
+        <div class="atbl-field">PASS RELEASE</div>
+        <div>Timing / Throw Clock</div>
+        <div>Release refers to how quickly the quarterback gets the ball out — it is a product of footwork and vision and includes the use of his pre-snap and post-snap thought processes. This is a valid stand-alone column. Elite Release = ball out before the break (1.8s). Poor Release = held into pressure. This directly develops the SOCKS throw clock at Stages 2–4. Keep it.</div>
+        <div class="verdict-g">✓ Strong — SOCKS timing aligned</div>
+      </div>
+      <div class="atbl-row">
+        <div class="atbl-field">PASS PRESSURE</div>
+        <div>PFF Pressure Context Flag</div>
+        <div>This is the most misused column in most systems. PFF treats pressure as a context flag, not a grade — it's used to split decision and accuracy data into clean-pocket vs. under-pressure groups. <strong>Your column is doing the right thing</strong> if it's recording context (Neutral/Pressure/Throwaway/etc.) rather than grading the QB for getting pressured. The dashboard should then compare Pass Decision and Pass Throw separately for pressured vs. clean reps.</div>
+        <div class="verdict-y">⚡ Adequate — must be context, not grade</div>
+      </div>
+      <div class="atbl-row">
+        <div class="atbl-field">RUN DECISION</div>
+        <div>PFF Run Grade (give/keep)</div>
+        <div>Covers the RPO give/keep decision and run execution — valid and important for your RPO-heavy system. Directly maps to SOCKS Stage 1 (Count + Key = the trigger for give vs. keep). Elite Run Decision = correct give/keep before the mesh point. Poor = late or wrong. Keep as is.</div>
+        <div class="verdict-g">✓ Strong — SOCKS Stage 1 aligned</div>
+      </div>
+      <div class="atbl-row">
+        <div class="atbl-field">RUN FAKE</div>
+        <div>PFF (no direct equivalent)</div>
+        <div>PFF doesn't grade run fakes as a stand-alone category, but this is one of the most developmentally important columns for a high school system. A QB who executes a fake that holds a linebacker is creating a block — that has real impact. Grade: Elite Fake = a named defender's eyes or feet moved. Spectator = QB handed off and stopped. Film is the only honest grade for this.</div>
+        <div class="verdict-g">✓ Strong — HS-specific value, keep</div>
+      </div>
+      <div class="atbl-row">
+        <div class="atbl-field">QB IMPACT</div>
+        <div>PFF "Big-Time Play" flag</div>
+        <div>Functions as a sparse flag for plays that matter beyond the normal grade columns — similar in intent to PFF's Big-Time Throw designation. The risk is grade inflation: if it's applied too often it loses meaning. Should be reserved for genuinely game-changing plays in either direction. The "Neutral Impact" default is correct — most plays should be neutral.</div>
+        <div class="verdict-y">⚡ Use sparingly — default = Neutral</div>
+      </div>
+      <div class="atbl-row">
+        <div class="atbl-field">QB NOTE</div>
+        <div>PFF Analyst Note</div>
+        <div>Free text field — useful for context that doesn't fit the dropdowns (e.g., "receiver ran wrong route," "coverage bust by DB," "bad snap"). Important for separating QB performance from surrounding noise. PFF uses analyst notes for exactly this purpose — flagging gray areas where assignment is unclear.</div>
+        <div class="verdict-g">✓ Keep — important for context</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE GAPS -->
+  <div class="sec">
+    <div class="sec-title">The Three Gaps — What's Missing for SOCKS + PFF Accuracy</div>
+
+    <div class="recs">
+
+      <div class="rec rec-r">
+        <div class="rec-title">Gap 1 — No Pre-Snap Read Grade (the most important missing piece)</div>
+        <div class="rec-body">
+          <strong>What's missing:</strong> None of the 9 columns directly grades the quality of the QB's pre-snap process — his coverage ID, shell read, key identification, and situational awareness. This is the entire SOCKS framework and it has no home in the current grading system.<br><br>
+          <strong>Why it matters for PFF accuracy:</strong> A QB who makes a correct throw on a wrong read is getting credit he didn't earn. A QB who makes a correct throw on a perfect pre-snap read should get more credit. The current system can't distinguish these two outcomes — they produce identical grades.<br><br>
+          <strong>Why it matters for SOCKS:</strong> Stage 2 (Safeties), Stage 3 (Leverage), and Stage 4 (Full SOCKS + Situational) are entirely about what happens before the snap. Without a pre-snap grade, your dashboard cannot tell you whether a QB's good decisions are happening because of SOCKS or in spite of it.<br><br>
+          <strong>Proposed addition:</strong> <code>PRE-SNAP READ</code> — Elite (2), Neutral (1), Poor (0). Elite = correct shell ID, coverage named, key identified, situation applied. Neutral = adequate. Poor = wrong coverage ID or no pre-snap verbalization. This single column would tie the dashboard directly to SOCKS stage development.
+        </div>
+      </div>
+
+      <div class="rec rec-r">
+        <div class="rec-title">Gap 2 — No Ball Placement / YAC Grade</div>
+        <div class="rec-body">
+          <strong>What's missing:</strong> Pass Throw grades whether the ball was thrown well. It does not grade <em>where</em> the ball was thrown — specifically whether placement created or eliminated yards after the catch.<br><br>
+          <strong>Why it matters for PFF accuracy:</strong> PFF accounts for how much a completion asks of the receiver. Ball placement that allows a receiver to catch without breaking stride earns more credit than a throw that forces a significant adjustment. A complete pass to the inside shoulder that forces the receiver to turn back toward the defense and lose 3 yards of YAC is not the same as a complete pass to the outside shoulder in stride.<br><br>
+          <strong>Why it matters for SOCKS:</strong> Stage 3 is specifically about reading leverage to identify WHERE the space is — and then throwing to that space. Without a YAC/placement grade, you have no way to measure whether your QB is actually applying the leverage read to his delivery point. Pass Throw says he completed it. YAC/Placement says he completed it to the right spot.<br><br>
+          <strong>Proposed addition:</strong> <code>BALL PLACEMENT</code> — Outside shoulder in stride (+), Catchable/neutral (0), Forced adjustment (–). Could be folded into Pass Throw as a modifier, or added as a stand-alone column for completions only (same as PFF's approach).
+        </div>
+      </div>
+
+      <div class="rec rec-y">
+        <div class="rec-title">Gap 3 — Pass Pressure Ambiguity (context vs. grade)</div>
+        <div class="rec-body">
+          <strong>What's missing:</strong> Clarity on whether Pass Pressure is recording a context (defense sent extra rushers) or grading the QB's response to pressure. These are two different things and conflating them corrupts the dashboard.<br><br>
+          <strong>The PFF approach:</strong> Pressure is a context flag. The QB's grade under pressure comes from his Pass Decision and Pass Throw scores on pressured plays — split separately in the dashboard. Whether he was pressured is the input; how he performed under it is the output.<br><br>
+          <strong>Current risk:</strong> If "Pressure" in Pass Pressure means "the QB was under pressure and it affected the play," that's grading him for something partly outside his control. If it means "the defense blitzed," that's correct context. The rubric needs to be explicit: <strong>Pass Pressure = what the defense did, not what the QB did.</strong> The QB's response to pressure is already captured in Pass Decision (did he get the ball out?), Pass Pocket (did he handle the pocket?), and Pass Release (did he get it out on time?).<br><br>
+          <strong>Proposed clarification:</strong> Rename to <code>PRESSURE CONTEXT</code> and make it a context-only flag: Neutral / Blitzed / Throwaway / Spike / Scramble / Sack. Then build dashboard splits — Pass Decision on Blitz plays vs. clean plays — rather than trying to grade pressure performance as a single column.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SOCKS INTEGRATION MAP -->
+  <div class="sec">
+    <div class="sec-title">SOCKS Stage → Column Integration Map</div>
+    <p style="margin-bottom:14px;">Every SOCKS stage should produce measurable improvement in specific grade columns. Here is how the current columns map — and where the gaps appear in red.</p>
+    <div class="socks-col">
+      <div class="scard">
+        <div class="scard-field">Stage 1 — Count + Key</div>
+        <div class="scard-maps">SOCKS: C + K → Give/Keep decision</div>
+        <div class="scard-body">The box count and key identification determines the RPO trigger. A QB mastering Stage 1 should show improvement in <strong>Run Decision</strong> (correct give/keep) and <strong>Pass Decision</strong> (correct trigger throw). These two columns capture Stage 1 development well.</div>
+      </div>
+      <div class="scard">
+        <div class="scard-field">Stage 2 — Safeties + Shell</div>
+        <div class="scard-maps">SOCKS: S → Shell ID → Blitz recognition</div>
+        <div class="scard-body">Shell identification (MOFO/MOFC) and blitz recognition should show in <strong>Pass Decision</strong> quality under pressure. But without a <strong>Pre-Snap Read</strong> grade, you can't confirm the improvement came from the shell read vs. luck or athleticism. This is Gap 1.</div>
+        <div class="scard-gap">⚠ Gap: No pre-snap grade captures shell ID improvement</div>
+      </div>
+      <div class="scard">
+        <div class="scard-field">Stage 3 — Corners + Space</div>
+        <div class="scard-maps">SOCKS: O + S → Leverage → YAC window</div>
+        <div class="scard-body">CB leverage reads should show in <strong>Pass Throw</strong> (better ball placement) and would ideally show in a <strong>Ball Placement/YAC</strong> grade. Without it, a QB who reads leverage correctly but delivers to the wrong shoulder gets the same Pass Throw grade as one who nails both. This is Gap 2.</div>
+        <div class="scard-gap">⚠ Gap: No YAC/Placement grade captures leverage-to-throw improvement</div>
+      </div>
+      <div class="scard">
+        <div class="scard-field">Stage 4 — Full SOCKS</div>
+        <div class="scard-maps">SOCKS: Full scan → Situation → Anticipation</div>
+        <div class="scard-body">Full SOCKS mastery should show across all columns — particularly <strong>Pass Decision</strong> moving toward Elite more often (anticipatory throws), and improved performance on 3rd down and in the red zone (situational filter). If Pre-Snap Read were added, Stage 4 QBs should show Pre-Snap = Elite on 80%+ of plays.</div>
+        <div class="scard-gap">⚠ Gap: Situational context (down, hash, score) has no dedicated column</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PFF-STYLE DASHBOARD ASSESSMENT -->
+  <div class="sec">
+    <div class="sec-title">Can the Current System Produce a PFF-Style Dashboard?</div>
+
+    <div class="compare" style="margin-bottom:20px;">
+      <div class="compare-col">
+        <div class="compare-head">
+          <div class="compare-head-title" style="color:#4ade80;">What the Current System Does Well</div>
+          <div class="compare-head-sub">Comparable to PFF methodology</div>
+        </div>
+        <div class="compare-body">
+          <div class="ci"><div class="ci-dot" style="background:#22c55e;"></div>Process over result — grading the throw, not the completion</div>
+          <div class="ci"><div class="ci-dot" style="background:#22c55e;"></div>Pass Decision scale (Elite/Reckless) mirrors PFF's BTT/TWP framework</div>
+          <div class="ci"><div class="ci-dot" style="background:#22c55e;"></div>Pocket presence column separates QB-caused from coverage-caused</div>
+          <div class="ci"><div class="ci-dot" style="background:#22c55e;"></div>Release timing is a legitimate standalone — release is a product of footwork and vision including pre-snap and post-snap thought processes</div>
+          <div class="ci"><div class="ci-dot" style="background:#22c55e;"></div>Pressure as context (if used correctly) enables clean vs. pressured splits</div>
+          <div class="ci"><div class="ci-dot" style="background:#22c55e;"></div>Run Fake is a high-school-specific addition PFF doesn't have — genuinely valuable</div>
+          <div class="ci"><div class="ci-dot" style="background:#22c55e;"></div>QB Note enables gray area documentation just like PFF's analyst notes</div>
+        </div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-head">
+          <div class="compare-head-title" style="color:#fca5a5;">Where the Dashboard Falls Short of PFF</div>
+          <div class="compare-head-sub">What would make it genuinely comparable</div>
+        </div>
+        <div class="compare-body">
+          <div class="ci"><div class="ci-dot" style="background:#ef4444;"></div>No pre-snap read grade — PFF's system is built on <em>process</em>, not just execution</div>
+          <div class="ci"><div class="ci-dot" style="background:#ef4444;"></div>No ball placement / YAC differentiation — PFF explicitly separates throw accuracy from placement quality</div>
+          <div class="ci"><div class="ci-dot" style="background:#ef4444;"></div>No situational filter — PFF's research shows grades on 3rd down, red zone, and 2-minute drill provide better predictive value</div>
+          <div class="ci"><div class="ci-dot" style="background:#f0a500;"></div>Pass Pressure may be functioning as a grade rather than a context flag — this corrupts pressure splits</div>
+          <div class="ci"><div class="ci-dot" style="background:#f0a500;"></div>QB Impact, if overused, dilutes the column's signal — should be a rare flag</div>
+          <div class="ci"><div class="ci-dot" style="background:#f0a500;"></div>No Big-Time Throw rate metric — PFF's BTT% is one of the most predictive QB statistics</div>
+        </div>
+      </div>
+    </div>
+
+    <p><strong>Bottom line:</strong> With the current 9 columns, you can produce a useful and meaningful dashboard. With three additions — Pre-Snap Read, Ball Placement, and a cleaner Pressure Context flag — you would have a dashboard that is genuinely comparable to PFF's methodology at the high school level, and more importantly, one that directly measures what SOCKS is built to develop at every stage.</p>
+  </div>
+
+  <!-- PROPOSED ADDITIONS -->
+  <div class="sec">
+    <div class="sec-title">Proposed Additions — Minimal, High-Value</div>
+
+    <div class="proposed">
+      <div class="proposed-title">Addition 1 — PRE-SNAP READ (required for SOCKS integration)</div>
+      <div class="proposed-body">
+        <strong>Column:</strong> PRE-SNAP READ<br>
+        <strong>Scale:</strong> Elite (2) / Neutral (1) / Poor (0)<br>
+        <strong>When to grade:</strong> Every play<br>
+        <strong>Elite (2):</strong> QB correctly identified the shell (MOFO/MOFC), named the coverage, identified the key, and applied situational context before the snap. Could verbalize if asked.<br>
+        <strong>Neutral (1):</strong> Adequate read. QB made the correct decision but the pre-snap process was not explicitly demonstrated or verifiable.<br>
+        <strong>Poor (0):</strong> Wrong coverage ID, wrong key, missed blitz indicator, or no visible pre-snap process.<br>
+        <strong>SOCKS link:</strong> Stage 1 = look for correct key ID (C+K). Stage 2 = shell ID quality (S). Stage 3 = leverage read applied (O). Stage 4 = situational context verbalized. Pre-Snap Read = Elite should increase as QB advances stages.
+      </div>
+    </div>
+
+    <div class="proposed">
+      <div class="proposed-title">Addition 2 — BALL PLACEMENT (required for Stage 3 measurement)</div>
+      <div class="proposed-body">
+        <strong>Column:</strong> BALL PLACEMENT (or fold into Pass Throw)<br>
+        <strong>Scale:</strong> Elite (+) / Neutral (0) / Poor (–)<br>
+        <strong>When to grade:</strong> Pass completions only — same as PFF's YAC component<br>
+        <strong>Elite (+):</strong> Outside shoulder, receiver catches in stride going away from the defender. Created YAC by design.<br>
+        <strong>Neutral (0):</strong> Catchable, receiver must stop or adjust slightly. No YAC benefit but no damage.<br>
+        <strong>Poor (–):</strong> Inside shoulder, behind receiver, or placement forced the receiver back toward the defense. Eliminated YAC.<br>
+        <strong>SOCKS link:</strong> Stage 3 — "leverage tells you WHERE to throw." A QB who reads the leverage correctly but throws to the wrong shoulder is a Stage 3 execution failure. This column catches it. Without it, that failure is invisible in the data.
+      </div>
+    </div>
+
+    <div class="proposed">
+      <div class="proposed-title">Clarification — PASS PRESSURE → PRESSURE CONTEXT (column rename + rubric fix)</div>
+      <div class="proposed-body">
+        <strong>Rename to:</strong> PRESSURE CONTEXT<br>
+        <strong>Scale:</strong> Neutral / Blitzed / Throwaway / Spike / Sack / Scramble / RPO Glance / Screen / Checkdown<br>
+        <strong>This is NOT a grade:</strong> It is a context tag that enables the dashboard to split Pass Decision and Pass Throw into clean-pocket vs. under-pressure groups. The QB's performance under pressure is already captured in the other columns — this just flags which plays were pressured.<br>
+        <strong>Dashboard impact:</strong> Add two summary stats — "Pass Decision avg (clean pocket)" and "Pass Decision avg (when blitzed)." The gap between those two numbers is your pressure performance metric, and it's far more informative than a single Pressure column grade.<br>
+        <strong>SOCKS link:</strong> Pressure Override applies at all stages. The clean vs. blitz split tells you whether the QB's hot route recognition is working. If his Pass Decision drops significantly on blitz plays, his Stage 2 pre-snap ID is the problem.
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL RECOMMENDATION -->
+  <div class="sec">
+    <div class="sec-title">Final Recommendation — What to Do</div>
+    <div class="recs">
+      <div class="rec rec-g">
+        <div class="rec-title">Keep as-is (strong, don't change)</div>
+        <div class="rec-body">
+          <strong>Pass Decision</strong> — your best column, directly mirrors PFF's most important QB metric.<br>
+          <strong>Pass Throw</strong> — solid, just needs the rubric to explicitly address ball placement direction.<br>
+          <strong>Pass Pocket</strong> — good, clarify that Poor Pocket = QB-caused only.<br>
+          <strong>Pass Release</strong> — unique value, directly tied to SOCKS throw clock.<br>
+          <strong>Run Decision + Run Fake</strong> — both valid, both SOCKS-aligned.<br>
+          <strong>QB Note</strong> — keep free text for gray areas.
+        </div>
+      </div>
+      <div class="rec rec-y">
+        <div class="rec-title">Fix rubric / rename (existing column, new clarity)</div>
+        <div class="rec-body">
+          <strong>Pass Pressure → Pressure Context:</strong> Make explicit it's a context flag, not a grade. The QB's response to pressure lives in Decision, Pocket, and Release — not here.<br>
+          <strong>QB Impact:</strong> Reserve for genuinely game-changing plays. If it's applied to more than 5–8% of plays, it's being overused and losing signal. Neutral Impact = the correct default.
+        </div>
+      </div>
+      <div class="rec rec-r">
+        <div class="rec-title">Add (fills the SOCKS gap, required for meaningful dashboard)</div>
+        <div class="rec-body">
+          <strong>PRE-SNAP READ (0–2):</strong> Elite / Neutral / Poor. Grade every play. This single column ties the dashboard directly to SOCKS stage development. A QB who advances from Stage 1 to Stage 4 should show Pre-Snap = Elite moving from 20% to 80%+ of plays over his career.<br><br>
+          <strong>BALL PLACEMENT (–/0/+):</strong> Outside shoulder in stride / Catchable / Forced adjustment. Grade completions only. This is the column that measures whether the QB is applying Stage 3 leverage reads to his delivery point — the most important and most invisible skill in your system.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERSION NOTE -->
+  <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:12px 16px;margin-top:20px;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px;">QB Room v1.2 — Grading Analysis</div>
+    <div style="font-size:10.5px;color:rgba(255,255,255,0.4);line-height:1.5;">Research sources: PFF Grading Methodology (pff.com), Coach and Coordinator QB Grading Systems, QB Country Film Study Guide, NCAA Decision-Making Research (PMC). Analysis based on the QB Grading v3.1 sheet column structure and the SOCKS QB System framework as of April 2026.</div>
+  </div>
+
+</div>
+</body>
+</html>
