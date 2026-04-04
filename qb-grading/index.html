@@ -3,82 +3,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QB Grading — QB Room</title>
+<title>QB Grading — QB Room v1.2</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{--navy:#0f1b2d;--navy2:#162438;--navy3:#1a2d44;--gold:#f0a500;--white:#fff;--muted:rgba(255,255,255,0.55);--border:rgba(255,255,255,0.08);}
+:root{
+  --navy:#0f1b2d;--navy2:#162438;--navy3:#1a2d44;
+  --gold:#f0a500;--white:#fff;--border:rgba(255,255,255,0.08);
+  --muted:rgba(255,255,255,0.58);
+  --g2:rgba(34,197,94,0.14);--g2t:#4ade80;--g2b:rgba(34,197,94,0.3);
+  --g1:rgba(34,197,94,0.08);--g1t:#86efac;
+  --n0:rgba(255,255,255,0.06);--n0t:rgba(255,255,255,0.65);
+  --m1:rgba(251,191,36,0.1);--m1t:#fde68a;--m1b:rgba(251,191,36,0.28);
+  --m2:rgba(239,68,68,0.1);--m2t:#fca5a5;--m2b:rgba(239,68,68,0.28);
+  --new-bg:rgba(34,197,94,0.06);--new-bdr:rgba(34,197,94,0.3);
+}
 body{background:var(--navy);font-family:'Barlow',sans-serif;min-height:100vh;color:var(--white);}
+
+/* NAV */
 .nav{background:rgba(15,27,45,0.97);border-bottom:2px solid var(--gold);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:50px;position:sticky;top:0;z-index:100;}
 .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
 .nav-icon{width:34px;height:34px;background:var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--navy);}
 .nav-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
-.nav-links{display:flex;gap:5px;}
+.nav-links{display:flex;gap:5px;flex-wrap:wrap;}
 .nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;padding:4px 9px;border-radius:2px;border:1px solid rgba(255,255,255,0.18);transition:all .15s;}
 .nav-links a:hover{color:var(--gold);border-color:var(--gold);}
 .nav-links a.active{background:var(--gold);color:var(--navy);border-color:var(--gold);}
-.wrap{max-width:1000px;margin:0 auto;padding:40px 24px 60px;}
-.page-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(28px,5vw,46px);letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
-.page-sub{font-size:12px;color:var(--muted);margin-bottom:32px;line-height:1.6;max-width:700px;}
 
-/* Sections */
-.sec{margin-bottom:36px;}
-.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
-.sec-title::after{content:'';flex:1;height:1px;background:rgba(240,165,0,0.2);}
+/* LAYOUT */
+.wrap{max-width:1020px;margin:0 auto;padding:40px 24px 72px;}
+.page-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(26px,4vw,44px);letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.page-sub{font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.6;max-width:740px;}
+.v-tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:2px;background:rgba(240,165,0,0.14);color:var(--gold);border:.5px solid rgba(240,165,0,0.3);margin-bottom:28px;}
 
-/* Cards */
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
+/* SECTIONS */
+.sec{margin-bottom:40px;}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sec-title::after{content:'';flex:1;height:1px;background:rgba(240,165,0,0.18);}
+p{font-size:11.5px;color:var(--muted);line-height:1.65;margin-bottom:8px;}
+p:last-child{margin-bottom:0;}
+
+/* QUICK LINKS */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:0;}
 .card{background:var(--navy2);border:1px solid var(--border);border-radius:5px;padding:16px;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:all .2s;}
 .card.link:hover{border-color:var(--gold);transform:translateY(-2px);}
-.card-icon{font-size:22px;}
-.card-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:15px;text-transform:uppercase;color:var(--white);}
+.card-icon{font-size:20px;}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;text-transform:uppercase;color:var(--white);}
 .card-desc{font-size:10.5px;color:var(--muted);line-height:1.6;flex:1;}
 .card-link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);}
 
-/* Grade field table */
-.field-table{background:var(--navy2);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
-.ft-hdr{background:var(--navy3);display:grid;grid-template-columns:110px 70px 1fr;gap:0;border-bottom:1px solid var(--border);}
-.ft-hdr div{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:8px 12px;}
-.ft-row{display:grid;grid-template-columns:110px 70px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.05);}
-.ft-row:last-child{border-bottom:none;}
-.ft-row:nth-child(odd){background:rgba(255,255,255,0.02);}
-.ft-field{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:var(--white);padding:9px 12px;}
-.ft-scale{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10.5px;padding:9px 12px;}
-.ft-rubric{font-size:10px;color:var(--muted);padding:9px 12px;line-height:1.5;}
-.ft-rubric strong{color:rgba(255,255,255,0.82);font-weight:600;}
-.ft-cat{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:7px 12px;grid-column:1/-1;background:var(--navy3);color:rgba(255,255,255,0.45);border-bottom:1px solid var(--border);}
+/* SCALE LEGEND */
+.scale-legend{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.sl{display:flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:0.5px;padding:4px 10px;border-radius:2px;}
+.sl-2{background:var(--g2);color:var(--g2t);border:.5px solid var(--g2b);}
+.sl-1{background:var(--g1);color:var(--g1t);border:.5px solid rgba(34,197,94,0.18);}
+.sl-0{background:var(--n0);color:var(--n0t);border:.5px solid rgba(255,255,255,0.12);}
+.sl-m1{background:var(--m1);color:var(--m1t);border:.5px solid var(--m1b);}
+.sl-m2{background:var(--m2);color:var(--m2t);border:.5px solid var(--m2b);}
+.sl-ctx{background:rgba(147,197,253,0.1);color:#93c5fd;border:.5px solid rgba(147,197,253,0.25);}
 
-/* SOCKS mapping table */
+/* COLUMN TABLE */
+.col-table{background:var(--navy2);border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+.col-hdr{display:grid;grid-template-columns:28px 55px 175px 80px 1fr;gap:0;background:var(--navy3);border-bottom:1px solid var(--border);}
+.col-hdr div{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:8px 10px;}
+.col-row{display:grid;grid-template-columns:28px 55px 175px 80px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.col-row:last-child{border-bottom:none;}
+.col-row.new-field{background:var(--new-bg);}
+.col-row.section-hdr{background:var(--navy3);}
+.col-row div{padding:8px 10px;font-size:10.5px;color:var(--muted);border-right:1px solid rgba(255,255,255,0.04);vertical-align:top;}
+.col-row div:last-child{border-right:none;}
+.col-letter{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;color:rgba(255,255,255,0.35)!important;}
+.col-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11.5px;color:var(--white)!important;}
+.col-name.is-new{color:#4ade80!important;}
+.col-scale{text-align:center;}
+.col-section{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35)!important;grid-column:1/-1;padding:6px 10px!important;}
+.new-badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:7.5px;letter-spacing:1px;text-transform:uppercase;padding:1px 5px;border-radius:2px;background:rgba(34,197,94,0.2);color:#4ade80;border:.5px solid rgba(34,197,94,0.4);margin-left:5px;vertical-align:middle;}
+
+/* RUBRIC DETAIL */
+.rubric-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.rubric-card{background:var(--navy2);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+.rubric-card.is-new{border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.04);}
+.rc-head{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.rc-col{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;color:rgba(255,255,255,0.35);letter-spacing:1px;}
+.rc-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--white);text-transform:uppercase;}
+.rc-when{font-size:9px;color:var(--muted);font-style:italic;}
+.rc-body{padding:10px 14px;display:flex;flex-direction:column;gap:4px;}
+.rc-row{display:flex;gap:8px;align-items:flex-start;font-size:10.5px;line-height:1.4;}
+.rc-grade{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;flex-shrink:0;width:26px;}
+.rc-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;flex-shrink:0;min-width:80px;}
+.rc-desc{color:var(--muted);}
+.rg-p2{color:var(--g2t);}.rg-p1{color:var(--g1t);}.rg-0{color:var(--n0t);}
+.rg-m1{color:var(--m1t);}.rg-m2{color:var(--m2t);}
+
+/* Context column */
+.ctx-pills{display:flex;flex-wrap:wrap;gap:4px;padding:10px 14px;}
+.ctx-pill{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:0.5px;padding:2px 7px;border-radius:2px;background:rgba(147,197,253,0.1);color:#93c5fd;border:.5px solid rgba(147,197,253,0.2);}
+
+/* SOCKS MAP */
 .socks-map{background:var(--navy2);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
-.sm-row{display:grid;grid-template-columns:130px 120px 1fr 100px;gap:0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.sm-hdr{display:grid;grid-template-columns:155px 140px 1fr 95px;background:var(--navy3);border-bottom:1px solid var(--border);}
+.sm-hdr div{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:8px 12px;}
+.sm-row{display:grid;grid-template-columns:155px 140px 1fr 95px;border-bottom:1px solid rgba(255,255,255,0.04);}
 .sm-row:last-child{border-bottom:none;}
-.sm-row:first-child{background:var(--navy3);border-bottom:1px solid var(--border);}
-.sm-row:first-child div{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
-.sm-row div{padding:8px 12px;font-size:10.5px;color:var(--muted);border-right:1px solid rgba(255,255,255,0.05);}
+.sm-row:nth-child(even){background:rgba(255,255,255,0.02);}
+.sm-row.new-row{background:rgba(34,197,94,0.04);}
+.sm-row div{padding:9px 12px;font-size:10.5px;color:var(--muted);border-right:1px solid rgba(255,255,255,0.04);}
 .sm-row div:last-child{border-right:none;}
-.sm-field{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:var(--white)!important;}
-.sm-socks{color:var(--gold)!important;font-family:'Barlow Condensed',sans-serif;font-weight:700;}
-.sm-stage{text-align:center;}
-.dot-s1{color:#22c55e!important;}.dot-s2{color:#3b82f6!important;}.dot-s3{color:#eab308!important;}.dot-s4{color:#ef4444!important;}
+.sm-col{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11.5px;color:var(--white)!important;}
+.sm-col.new{color:#4ade80!important;}
+.sm-socks{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:var(--gold)!important;}
+.sm-stage{text-align:center;font-weight:700;}
+.s1c{color:#22c55e!important;}.s2c{color:#3b82f6!important;}.s3c{color:#eab308!important;}.s4c{color:#ef4444!important;}
 
-/* Blitz codes */
-.blitz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;}
-.blitz-card{background:var(--navy2);border:1px solid var(--border);border-radius:4px;padding:10px 12px;}
-.blitz-code{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--gold);margin-bottom:2px;}
-.blitz-name{font-size:10px;font-weight:600;color:rgba(255,255,255,0.75);margin-bottom:2px;}
-.blitz-action{font-size:9.5px;color:var(--muted);line-height:1.4;}
+/* GOOGLE SHEETS SETUP */
+.setup-steps{display:flex;flex-direction:column;gap:10px;}
+.step{background:var(--navy2);border:1px solid var(--border);border-radius:5px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;}
+.step-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--gold);line-height:1;flex-shrink:0;min-width:28px;}
+.step-body{flex:1;}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;text-transform:uppercase;color:var(--white);margin-bottom:4px;}
+.step-desc{font-size:11px;color:var(--muted);line-height:1.6;}
+.step-code{font-family:monospace;font-size:10.5px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:3px;padding:6px 10px;margin-top:6px;color:#93c5fd;display:block;white-space:pre-wrap;}
+.step-new{border-left:3px solid #22c55e;}
 
-/* Grade letter chips */
-.grade-chips{display:flex;gap:6px;flex-wrap:wrap;}
-.gc{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;padding:4px 10px;border-radius:2px;}
-.gc-a{background:rgba(34,197,94,0.14);color:#4ade80;border:.5px solid rgba(34,197,94,0.3);}
-.gc-b{background:rgba(59,130,246,0.14);color:#93c5fd;border:.5px solid rgba(59,130,246,0.3);}
-.gc-c{background:rgba(251,191,36,0.14);color:#fde68a;border:.5px solid rgba(251,191,36,0.3);}
-.gc-d{background:rgba(251,146,60,0.14);color:#fdba74;border:.5px solid rgba(251,146,60,0.3);}
-.gc-f{background:rgba(239,68,68,0.14);color:#fca5a5;border:.5px solid rgba(239,68,68,0.3);}
+/* WORKFLOW */
+.workflow{display:flex;gap:0;background:var(--navy2);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+.wf-step{flex:1;padding:14px;border-right:1px solid var(--border);text-align:center;}
+.wf-step:last-child{border-right:none;}
+.wf-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--gold);line-height:1;margin-bottom:4px;}
+.wf-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;color:var(--white);margin-bottom:3px;}
+.wf-desc{font-size:9.5px;color:var(--muted);line-height:1.45;}
+
+@media(max-width:700px){
+  .col-hdr,.col-row{grid-template-columns:28px 140px 1fr;}
+  .col-hdr div:nth-child(2),.col-row div:nth-child(2),.col-hdr div:nth-child(4),.col-row div:nth-child(4){display:none;}
+  .sm-hdr,.sm-row{grid-template-columns:130px 1fr 80px;}
+  .sm-hdr div:nth-child(2),.sm-row div:nth-child(2){display:none;}
+  .rubric-grid{grid-template-columns:1fr;}
+  .workflow{flex-direction:column;}
+  .wf-step{border-right:none;border-bottom:1px solid var(--border);}
+}
 </style>
 </head>
 <body>
+
+<!-- NAV -->
 <div class="nav">
   <a class="nav-brand" href="../index.html"><div class="nav-icon">QB</div><div class="nav-title">QB Room</div></a>
   <nav class="nav-links">
@@ -87,218 +155,422 @@ body{background:var(--navy);font-family:'Barlow',sans-serif;min-height:100vh;col
     <a href="../play-library/index.html">Play Library</a>
     <a href="../drills/drills.html">Drills</a>
     <a href="index.html" class="active">QB Grading</a>
+    <a href="analysis.html">Analysis</a>
   </nav>
 </div>
 
 <div class="wrap">
-  <div class="page-title">QB Grading</div>
-  <div class="page-sub">Play-by-play film grading system using numeric scales tied directly to SOCKS stages. Every grade field maps to a grading category — and every grading category maps to specific SOCKS stage drills. Grade film → identify the stage gap → run the drill.</div>
 
-  <!-- Quick links -->
+  <div class="page-title">QB Grading</div>
+  <div class="page-sub">Play-by-play film grading system using a –2 to +2 scale across 11 columns. Grades what the QB did — not what the play resulted in. Every column ties directly to a SOCKS stage.</div>
+  <div class="v-tag">v1.2 — Added: Pre-Snap Read · Ball Placement</div>
+
+  <!-- QUICK LINKS -->
   <div class="sec">
     <div class="cards">
       <a class="card link" href="https://docs.google.com/spreadsheets/d/1jzkxHkyLdDzbkJbspcXlUZRX7ZDgui_J4Lo6oAaAl00/edit" target="_blank">
         <div class="card-icon">📊</div>
         <div class="card-title">Open Live Grading Sheet</div>
-        <div class="card-desc">The live QB Grading Sheet v3.1. Import a Hudl game, grade plays in Need Graded (cols Y–AF), move to Graded Plays, then build a Dashboard by jersey number.</div>
+        <div class="card-desc">The live QB Grading Sheet. Import Hudl → grade in Need Graded → move to Graded Plays → build Dashboard. Columns Y through AK.</div>
         <div class="card-link">Open Google Sheet ↗</div>
       </a>
       <div class="card">
         <div class="card-icon">📥</div>
         <div class="card-title">Workflow</div>
-        <div class="card-desc"><strong style="color:#fff;">1.</strong> Import Hudl Game — enter Game ID, comp level, Hudl URL<br><strong style="color:#fff;">2.</strong> Grade plays in Need Graded (numeric fields, cols Y–AF)<br><strong style="color:#fff;">3.</strong> Move Graded Plays — scores stay numeric<br><strong style="color:#fff;">4.</strong> Build Dashboard — jersey # or ALL</div>
+        <div class="card-desc"><strong style="color:#fff;">1.</strong> Import Hudl Game — paste game data into Need Graded<br><strong style="color:#fff;">2.</strong> Watch film, fill columns Y–AK (grade + context)<br><strong style="color:#fff;">3.</strong> Move Graded Plays — converts labels to scores<br><strong style="color:#fff;">4.</strong> Build Dashboard — jersey # or ALL</div>
       </div>
       <div class="card">
-        <div class="card-icon">🔗</div>
-        <div class="card-title">SOCKS Integration</div>
-        <div class="card-desc">Every grade field traces to a SOCKS stage. A low QB_SA score = Stage 2/3 problem. Low QB_DEC on 3rd down = Stage 3/4 situational gap. The grade tells you the drill to run next.</div>
+        <div class="card-icon">📐</div>
+        <div class="card-title">Grading Philosophy</div>
+        <div class="card-desc">Grade the QB's action — not the result. A perfect throw that is dropped is still +2. A reckless throw that falls incomplete is still –2. Zero = expected. Most plays should be 0.</div>
       </div>
-      <div class="card">
-        <div class="card-icon">📋</div>
-        <div class="card-title">Dashboard Grades</div>
-        <div class="card-desc">5 composite letter grades (A+ through F): Decision Making · Passing Execution · Run Game · Pressure Performance · Situational Awareness. Each computed from weighted field averages.</div>
-      </div>
-    </div>
-    <a class="card link" href="analysis.html">
+      <div class="card link" style="cursor:pointer;" onclick="window.location='analysis.html'">
         <div class="card-icon">🔬</div>
-        <div class="card-title">Grading System Analysis</div>
-        <div class="card-desc">Full research report — PFF methodology comparison, SOCKS integration map, gap analysis, and recommendations for the two columns that would make this a genuinely PFF-comparable dashboard.</div>
+        <div class="card-title">Grading Analysis</div>
+        <div class="card-desc">Full PFF comparison, SOCKS integration map, why Pre-Snap Read and Ball Placement were added, and what each column's grade tells you about which SOCKS stage to develop next.</div>
         <div class="card-link">Read Analysis →</div>
-      </a>
-    </div>
-
-  <!-- Grade fields -->
-  <div class="sec">
-    <div class="sec-title">Grade Fields — Numeric Scales</div>
-    <div class="field-table">
-      <div class="ft-hdr"><div>Field</div><div>Scale</div><div>Rubric</div></div>
-
-      <div class="ft-cat">── DECISION MAKING</div>
-      <div class="ft-row">
-        <div class="ft-field">QB_DEC</div>
-        <div class="ft-scale" style="color:#22c55e;">0–4</div>
-        <div class="ft-rubric"><strong>4=Optimal</strong> (anticipated, ball pre-loaded) &nbsp;·&nbsp; <strong>3=Correct</strong> (right read, right window) &nbsp;·&nbsp; <strong>2=Late/Safe</strong> (right read but slow) &nbsp;·&nbsp; <strong>1=Poor</strong> (questionable) &nbsp;·&nbsp; <strong>0=Turnover-Worthy</strong></div>
-      </div>
-      <div class="ft-row">
-        <div class="ft-field">QB_TURN</div>
-        <div class="ft-scale" style="color:#22c55e;">0–1</div>
-        <div class="ft-rubric"><strong>1=Clean</strong> (protected the ball) &nbsp;·&nbsp; <strong>0=Turnover-Worthy</strong> (INT, fumble, or near-miss that counts against ball security)</div>
-      </div>
-
-      <div class="ft-cat">── PASSING EXECUTION</div>
-      <div class="ft-row">
-        <div class="ft-field">QB_ACC</div>
-        <div class="ft-scale" style="color:#3b82f6;">0–3</div>
-        <div class="ft-rubric"><strong>3=Perfect</strong> (outside shoulder, receiver in stride) &nbsp;·&nbsp; <strong>2=Catchable</strong> (routine catch) &nbsp;·&nbsp; <strong>1=Off-target</strong> (receiver must adjust) &nbsp;·&nbsp; <strong>0=Miss/Uncatchable</strong></div>
-      </div>
-      <div class="ft-row">
-        <div class="ft-field">QB_POCK</div>
-        <div class="ft-scale" style="color:#3b82f6;">0–2</div>
-        <div class="ft-rubric"><strong>2=Elite</strong> (climbs/resets, delivers on time) &nbsp;·&nbsp; <strong>1=Neutral</strong> (held pocket, got ball out) &nbsp;·&nbsp; <strong>0=Poor</strong> (QB-caused: drifted, bailed, or created own pressure)</div>
-      </div>
-      <div class="ft-row">
-        <div class="ft-field">QB_YAC</div>
-        <div class="ft-scale" style="color:#3b82f6;">0–3</div>
-        <div class="ft-rubric"><strong>Completions only.</strong> &nbsp;3=Placement created significant YAC &nbsp;·&nbsp; 2=Neutral &nbsp;·&nbsp; 1=Placement limited YAC &nbsp;·&nbsp; 0=Placement severely limited YAC or forced receiver backward</div>
-      </div>
-
-      <div class="ft-cat">── RUN GAME</div>
-      <div class="ft-row">
-        <div class="ft-field">QB_RUN_DEC</div>
-        <div class="ft-scale" style="color:#eab308;">0–3</div>
-        <div class="ft-rubric"><strong>3=Safe</strong> (slide/OOB/secure carry) &nbsp;·&nbsp; <strong>2=OK</strong> (acceptable risk) &nbsp;·&nbsp; <strong>1=Risky</strong> (unnecessary exposure) &nbsp;·&nbsp; <strong>0=Dangerous</strong> (avoidable hit, fumble risk)</div>
-      </div>
-      <div class="ft-row">
-        <div class="ft-field">QB_RUN_ACC</div>
-        <div class="ft-scale" style="color:#eab308;">0–3</div>
-        <div class="ft-rubric"><strong>3=Perfect</strong> (ideal carry/cut, right track) &nbsp;·&nbsp; <strong>2=Good</strong> &nbsp;·&nbsp; <strong>1=Off-execution</strong> (missed cut, wrong path) &nbsp;·&nbsp; <strong>0=Poor/Missed read</strong></div>
-      </div>
-      <div class="ft-row">
-        <div class="ft-field">QB_FAKE</div>
-        <div class="ft-scale" style="color:#eab308;">0–2</div>
-        <div class="ft-rubric"><strong>2=Elite</strong> (full carry-out, a named defender's eyes/feet moved) &nbsp;·&nbsp; <strong>1=Neutral</strong> (standard fake, nobody bit) &nbsp;·&nbsp; <strong>0=Spectator</strong> (QB handed off and stopped — no sell)</div>
-      </div>
-
-      <div class="ft-cat">── SITUATIONAL AWARENESS</div>
-      <div class="ft-row">
-        <div class="ft-field">QB_SA</div>
-        <div class="ft-scale" style="color:#ef4444;">0–2</div>
-        <div class="ft-rubric"><strong>2=Elite</strong> (saw coverage, made correct pre-snap call, situation applied) &nbsp;·&nbsp; <strong>1=Neutral</strong> (adequate read, no explicit situational filter) &nbsp;·&nbsp; <strong>0=Poor</strong> (missed pre-snap read or wrong coverage ID)</div>
-      </div>
-
-      <div class="ft-cat">── PRESSURE CONTEXT FLAG (not a grade — used for splits)</div>
-      <div class="ft-row">
-        <div class="ft-field">BLITZ</div>
-        <div class="ft-scale" style="color:#94a3b8;">codes</div>
-        <div class="ft-rubric">0=Clean pocket &nbsp;·&nbsp; Y=Generic blitz &nbsp;·&nbsp; 1/2/4/5=Extra rushers (count) &nbsp;·&nbsp; BUCK/JABS/JAW/MA/MB/O=Named blitz packages &nbsp;·&nbsp; M/M1/M2=Man + pressure &nbsp;·&nbsp; Blank=treated as clean. Used to split ACC/DEC under pressure vs. clean pocket.</div>
       </div>
     </div>
   </div>
 
-  <!-- SOCKS Integration -->
+  <!-- SCALE -->
   <div class="sec">
-    <div class="sec-title">SOCKS Stage Integration — Grade → Stage → Drill</div>
-    <p style="font-size:11px;color:var(--muted);margin-bottom:12px;line-height:1.6;">Every low grade traces to a SOCKS stage gap. Use this table to identify which stage a QB needs to develop, then go to the Drill Library and filter by that stage and category.</p>
+    <div class="sec-title">The –2 to +2 Scale</div>
+    <div class="scale-legend">
+      <div class="sl sl-2">+2 &nbsp;Elite</div>
+      <div class="sl sl-1">+1 &nbsp;Good / Above Expected</div>
+      <div class="sl sl-0">&nbsp;0 &nbsp;Routine / Expected</div>
+      <div class="sl sl-m1">–1 &nbsp;Poor / Below Expected</div>
+      <div class="sl sl-m2">–2 &nbsp;Negative / Game-Harmful</div>
+      <div class="sl sl-ctx">— &nbsp;Context (no score)</div>
+    </div>
+    <p><strong style="color:#fff;">Zero is not average — zero is correct.</strong> A QB who executes the play exactly as designed earns a 0 on every column. Positive grades require doing something above what was required. Negative grades mean something below what the play demanded. Reserve +2 and –2 for genuinely exceptional or harmful plays — most plays are 0.</p>
+    <p>The scale matches the principle used by PFF at the professional level: grade the process and execution, never the outcome. A dropped pass on a +2 throw is still +2. A completion on a –2 decision is still –2.</p>
+  </div>
+
+  <!-- COLUMN REFERENCE -->
+  <div class="sec">
+    <div class="sec-title">All Grade Columns — Complete Reference</div>
+    <div class="col-table">
+      <div class="col-hdr">
+        <div>Col</div>
+        <div>Scale</div>
+        <div>Column Name</div>
+        <div>Grade When</div>
+        <div>What It Measures</div>
+      </div>
+
+      <!-- PASS PLAYS -->
+      <div class="col-row section-hdr"><div class="col-section">── PASS PLAYS (cols Y–AC)</div></div>
+
+      <div class="col-row">
+        <div class="col-letter">Y</div>
+        <div class="col-scale"><span style="color:#4ade80;">–2 to +2</span></div>
+        <div class="col-name">PASS DECISION</div>
+        <div style="font-size:9.5px;">Pass plays</div>
+        <div>Was the read correct? Did the QB go to the right receiver at the right time? Grades the decision and timing — not the throw quality. This is your most important column.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-letter">Z</div>
+        <div class="col-scale"><span style="color:#93c5fd;">Context</span></div>
+        <div class="col-name">PASS PRESSURE</div>
+        <div style="font-size:9.5px;">Pass plays</div>
+        <div>Context flag only — records what the defense did, not a QB grade. Used to split dashboard stats into clean-pocket vs. pressure groups. See pressure options below.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-letter">AA</div>
+        <div class="col-scale"><span style="color:#4ade80;">–2 to +2</span></div>
+        <div class="col-name">PASS POCKET</div>
+        <div style="font-size:9.5px;">Pass plays</div>
+        <div>Did the QB handle the pocket well? Elite = climbed, reset, delivered on time. Negative = QB-caused breakdown (drifted, bailed early, created his own pressure). Only grade Poor/Negative when the QB caused it — not the OL.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-letter">AB</div>
+        <div class="col-scale"><span style="color:#4ade80;">–2 to +2</span></div>
+        <div class="col-name">PASS RELEASE</div>
+        <div style="font-size:9.5px;">Pass plays</div>
+        <div>Did the ball come out on time? Elite Release = ball out before the break, on the last step of the drop. Negative Release = held into pressure or well past the window. Directly measures the SOCKS throw clock.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-letter">AC</div>
+        <div class="col-scale"><span style="color:#4ade80;">–2 to +2</span></div>
+        <div class="col-name">PASS THROW</div>
+        <div style="font-size:9.5px;">Pass plays</div>
+        <div>Was the throw accurate and catchable? Elite Throw = receiver catches in stride with no adjustment. Negative Throw = uncatchable or created a turnover risk. Grade the throw — not whether it was completed.</div>
+      </div>
+
+      <!-- RUN PLAYS -->
+      <div class="col-row section-hdr"><div class="col-section">── RUN PLAYS (cols AD–AE)</div></div>
+
+      <div class="col-row">
+        <div class="col-letter">AD</div>
+        <div class="col-scale"><span style="color:#4ade80;">–2 to +2</span></div>
+        <div class="col-name">RUN DECISION</div>
+        <div style="font-size:9.5px;">Run plays</div>
+        <div>Was the give/keep decision correct? Did the QB read the right key at the right time? Elite = correct decision made before the mesh point. Negative = wrong read or dangerous keep. Directly maps to SOCKS Stage 1 Count + Key.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-letter">AE</div>
+        <div class="col-scale"><span style="color:#4ade80;">–2 to +2</span></div>
+        <div class="col-name">RUN FAKE</div>
+        <div style="font-size:9.5px;">Run plays</div>
+        <div>Did the QB sell the fake? Elite Fake = a named defender's eyes or feet moved toward the fake. Negative = QB handed off and immediately stopped — no sell, no carry-out. Film is the only honest grade for this column.</div>
+      </div>
+
+      <!-- ALL PLAYS -->
+      <div class="col-row section-hdr"><div class="col-section">── ALL PLAYS (cols AF–AK)</div></div>
+
+      <div class="col-row">
+        <div class="col-letter">AF</div>
+        <div class="col-scale"><span style="color:#4ade80;">–2 to +2</span></div>
+        <div class="col-name">QB IMPACT</div>
+        <div style="font-size:9.5px;">All plays</div>
+        <div>Sparse flag for plays that were genuinely game-changing beyond the other grades. Default = 0 (Neutral Impact). Reserve +2 and –2 for truly rare plays. If more than 8% of plays have a non-zero Impact, it's being overused.</div>
+      </div>
+      <div class="col-row">
+        <div class="col-letter">AG</div>
+        <div class="col-scale"><span style="color:#93c5fd;">Text</span></div>
+        <div class="col-name">QB NOTE</div>
+        <div style="font-size:9.5px;">All plays</div>
+        <div>Free text for gray areas — dropped passes, wrong routes, bad snaps, coverage busts, anything that separates the QB's performance from surrounding noise. If you're not sure who to blame, note it here and grade 0.</div>
+      </div>
+
+      <!-- NEW FIELDS -->
+      <div class="col-row section-hdr"><div class="col-section">── NEW FIELDS v1.2 (cols AH–AI)</div></div>
+
+      <div class="col-row new-field">
+        <div class="col-letter">AH</div>
+        <div class="col-scale"><span style="color:#4ade80;">–2 to +2</span></div>
+        <div class="col-name is-new">PRE-SNAP READ <span class="new-badge">NEW</span></div>
+        <div style="font-size:9.5px;">All plays</div>
+        <div>Did the QB correctly identify the coverage, shell, key, and situational context before the snap? This is the SOCKS column — it grades what happens before the ball is hiked. Elite = correct shell ID, key named, situation applied. Negative = wrong coverage ID or no visible pre-snap process.</div>
+      </div>
+      <div class="col-row new-field">
+        <div class="col-letter">AI</div>
+        <div class="col-scale"><span style="color:#4ade80;">–2 to +2</span></div>
+        <div class="col-name is-new">BALL PLACEMENT <span class="new-badge">NEW</span></div>
+        <div style="font-size:9.5px;">Completions only</div>
+        <div>Was the ball delivered to the spot that creates yards after the catch? Elite = outside shoulder, receiver catches going away from the defender in stride. Negative = inside shoulder or behind, receiver must turn back toward the defense. Grade completions only — leave blank on incompletions.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RUBRIC DETAIL -->
+  <div class="sec">
+    <div class="sec-title">Full Rubric — All Grade Columns</div>
+    <div class="rubric-grid">
+
+      <div class="rubric-card">
+        <div class="rc-head">
+          <div><div class="rc-col">Col Y</div><div class="rc-name">Pass Decision</div><div class="rc-when">Grade on all pass plays</div></div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-row"><div class="rc-grade rg-p2">+2</div><div class="rc-label">Elite Pass</div><div class="rc-desc">Anticipated the coverage. Ball out before the break. Beat coverage with timing and placement. True anticipation throw.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-p1">+1</div><div class="rc-label">Good Pass</div><div class="rc-desc">Correct read. Above-baseline decision. QB did more than the play required.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-0">&nbsp;0</div><div class="rc-label">Routine Pass</div><div class="rc-desc">Expected read and decision for the concept. Baseline winning football. Most plays.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m1">–1</div><div class="rc-label">Missed Better</div><div class="rc-desc">Safe throw made, but a clearly better option was open and was missed.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m2">–2</div><div class="rc-label">Reckless Pass</div><div class="rc-desc">Forced into coverage. Turnover-worthy decision. Grade regardless of result — a dropped INT is still –2.</div></div>
+        </div>
+      </div>
+
+      <div class="rubric-card">
+        <div class="rc-head">
+          <div><div class="rc-col">Col Z</div><div class="rc-name">Pass Pressure</div><div class="rc-when">Context flag — not a grade</div></div>
+        </div>
+        <div class="ctx-pills">
+          <span class="ctx-pill">Neutral Pressure</span>
+          <span class="ctx-pill">Pressure</span>
+          <span class="ctx-pill">Drop</span>
+          <span class="ctx-pill">Spike</span>
+          <span class="ctx-pill">Throwaway</span>
+          <span class="ctx-pill">Hit as Throw</span>
+          <span class="ctx-pill">Wrong Route</span>
+          <span class="ctx-pill">Screen</span>
+          <span class="ctx-pill">RPO Glance</span>
+          <span class="ctx-pill">Checkdown</span>
+        </div>
+        <div style="padding:0 14px 10px;font-size:10px;color:var(--muted);line-height:1.5;">This is NOT a grade. It records what the defense did and what type of play it was. The dashboard uses this to split Pass Decision and Pass Throw into clean-pocket vs. pressured groups — giving you real pressure performance data.</div>
+      </div>
+
+      <div class="rubric-card">
+        <div class="rc-head">
+          <div><div class="rc-col">Col AA</div><div class="rc-name">Pass Pocket</div><div class="rc-when">Pass plays — QB-caused only</div></div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-row"><div class="rc-grade rg-p2">+2</div><div class="rc-label">Elite Pocket</div><div class="rc-desc">Climbed, reset, and delivered under duress. Elite movement that extended the play productively.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-p1">+1</div><div class="rc-label">Good Pocket</div><div class="rc-desc">Good feel for pressure. Avoided cleanly, delivered on target.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-0">&nbsp;0</div><div class="rc-label">Routine Pocket</div><div class="rc-desc">Standard presence. Expected footwork and composure for the concept.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m1">–1</div><div class="rc-label">Poor Pocket</div><div class="rc-desc">Unnecessary drift or early escape that limited the throw. QB-caused only.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m2">–2</div><div class="rc-label">Negative Pocket</div><div class="rc-desc">QB created his own pressure — panicked, drifted into the rush, or took an avoidable sack.</div></div>
+        </div>
+      </div>
+
+      <div class="rubric-card">
+        <div class="rc-head">
+          <div><div class="rc-col">Col AB</div><div class="rc-name">Pass Release</div><div class="rc-when">Pass plays — timing only</div></div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-row"><div class="rc-grade rg-p2">+2</div><div class="rc-label">Elite Release</div><div class="rc-desc">Ball out before the receiver's break. True anticipation. Throw clock used perfectly.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-p1">+1</div><div class="rc-label">Good Release</div><div class="rc-desc">On rhythm. Ball out on time for the concept. Drop matched the route.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-0">&nbsp;0</div><div class="rc-label">Routine Release</div><div class="rc-desc">Acceptable timing. Expected for the play type and route concept.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m1">–1</div><div class="rc-label">Poor Release</div><div class="rc-desc">Late. Waited to see the receiver open. Window was already narrowing.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m2">–2</div><div class="rc-label">Negative Release</div><div class="rc-desc">Held too long into pressure. Release caused the breakdown or the sack.</div></div>
+        </div>
+      </div>
+
+      <div class="rubric-card">
+        <div class="rc-head">
+          <div><div class="rc-col">Col AC</div><div class="rc-name">Pass Throw</div><div class="rc-when">Pass plays — accuracy + quality</div></div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-row"><div class="rc-grade rg-p2">+2</div><div class="rc-label">Elite Throw</div><div class="rc-desc">Perfect placement. Receiver catches in stride. Maximizes YAC or takes the defender completely out.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-p1">+1</div><div class="rc-label">Good Throw</div><div class="rc-desc">Accurate. Routine catch for the receiver. Ball in a good location.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-0">&nbsp;0</div><div class="rc-label">Routine Throw</div><div class="rc-desc">Catchable. Expected placement for the concept. Receiver may need a small adjustment.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m1">–1</div><div class="rc-label">Poor Throw</div><div class="rc-desc">Off-target or forced the receiver to make a difficult adjustment. Limited the play.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m2">–2</div><div class="rc-label">Negative Throw</div><div class="rc-desc">Uncatchable or caused a near-turnover. Grade –2 regardless of whether it was caught or intercepted.</div></div>
+        </div>
+      </div>
+
+      <div class="rubric-card">
+        <div class="rc-head">
+          <div><div class="rc-col">Col AD</div><div class="rc-name">Run Decision</div><div class="rc-when">Run plays — give/keep/pull read</div></div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-row"><div class="rc-grade rg-p2">+2</div><div class="rc-label">Elite Run Decision</div><div class="rc-desc">Perfect read. Created explosive play or numbers advantage. Decision made before the mesh point.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-p1">+1</div><div class="rc-label">Good Run Decision</div><div class="rc-desc">Correct give/pull/keep. Above baseline for the concept.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-0">&nbsp;0</div><div class="rc-label">Routine Run Decision</div><div class="rc-desc">Expected read for the scheme. Most RPO gives and keeps on clearly-triggered plays.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m1">–1</div><div class="rc-label">Poor Run Decision</div><div class="rc-desc">Questionable. Left yards on the field or forced an unnecessary risk.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m2">–2</div><div class="rc-label">Negative Run Decision</div><div class="rc-desc">Wrong read. Led to loss of yards or a dangerous situation for the ball carrier.</div></div>
+        </div>
+      </div>
+
+      <div class="rubric-card">
+        <div class="rc-head">
+          <div><div class="rc-col">Col AE</div><div class="rc-name">Run Fake</div><div class="rc-when">Run plays — mesh sell quality</div></div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-row"><div class="rc-grade rg-p2">+2</div><div class="rc-label">Elite Run Fake</div><div class="rc-desc">A named defender's eyes or feet moved toward the fake. Full carry-out past the linebackers. Film confirms it.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-p1">+1</div><div class="rc-label">Good Run Fake</div><div class="rc-desc">Solid carry-out sell. Affected a defender's responsibility even if no one fully bit.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-0">&nbsp;0</div><div class="rc-label">Routine Run Fake</div><div class="rc-desc">Neutral. Standard mesh. No fake required by the concept or nobody moved — but nothing wrong either.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m1">–1</div><div class="rc-label">Poor Run Fake</div><div class="rc-desc">Weak sell. Missed an opportunity to hold a second-level defender.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m2">–2</div><div class="rc-label">Negative Run Fake</div><div class="rc-desc">QB handed off and stopped. Spectator. No carry-out whatsoever. The defense knew immediately who had the ball.</div></div>
+        </div>
+      </div>
+
+      <div class="rubric-card">
+        <div class="rc-head">
+          <div><div class="rc-col">Col AF</div><div class="rc-name">QB Impact</div><div class="rc-when">All plays — sparse flag</div></div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-row"><div class="rc-grade rg-p2">+2</div><div class="rc-label">Elite Impact</div><div class="rc-desc">Genuine game-changing play. A true difference-maker that goes beyond the other grade columns.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-p1">+1</div><div class="rc-label">Positive Impact</div><div class="rc-desc">Strong positive contribution beyond what the grade columns captured.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-0">&nbsp;0</div><div class="rc-label">Neutral Impact</div><div class="rc-desc">Default for all plays. Most plays should be 0 here. If you're consistently giving non-zero, adjust standards.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m1">–1</div><div class="rc-label">Negative Impact</div><div class="rc-desc">A mistake that hurt the drive or the game beyond what the other columns captured.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m2">–2</div><div class="rc-label">Very Negative Impact</div><div class="rc-desc">Disastrous. Turnover-worthy or game-altering. Reserve for genuinely damaging plays.</div></div>
+        </div>
+      </div>
+
+      <!-- NEW FIELDS -->
+      <div class="rubric-card is-new">
+        <div class="rc-head">
+          <div><div class="rc-col">Col AH &nbsp;<span class="new-badge">NEW v1.2</span></div><div class="rc-name">Pre-Snap Read</div><div class="rc-when">All plays — SOCKS scan quality</div></div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-row"><div class="rc-grade rg-p2">+2</div><div class="rc-label">Elite Read</div><div class="rc-desc">Correct shell ID (MOFO/MOFC), coverage named, key identified, blitz recognized if present, situation applied (down, hash, score). Could verbalize if asked.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-p1">+1</div><div class="rc-label">Good Read</div><div class="rc-desc">Correct coverage ID and key. Pre-snap process visible and above baseline even if not fully verbalized.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-0">&nbsp;0</div><div class="rc-label">Routine Read</div><div class="rc-desc">Adequate pre-snap process. QB made the correct decision but the pre-snap work was standard — nothing explicitly demonstrated.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m1">–1</div><div class="rc-label">Poor Read</div><div class="rc-desc">Pre-snap process was incomplete — missed a key indicator, identified the wrong coverage, or missed the blitz tell.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m2">–2</div><div class="rc-label">Wrong / Missed</div><div class="rc-desc">Completely wrong coverage ID or zero visible pre-snap process. The decision was made with no SOCKS scan behind it.</div></div>
+        </div>
+      </div>
+
+      <div class="rubric-card is-new">
+        <div class="rc-head">
+          <div><div class="rc-col">Col AI &nbsp;<span class="new-badge">NEW v1.2</span></div><div class="rc-name">Ball Placement</div><div class="rc-when">Completions only — leave blank on incompletions</div></div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-row"><div class="rc-grade rg-p2">+2</div><div class="rc-label">Elite Placement</div><div class="rc-desc">Outside shoulder. Receiver catches going away from the defender in full stride. Maximized YAC by design.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-p1">+1</div><div class="rc-label">Good Placement</div><div class="rc-desc">Ball in a good location. Receiver catches cleanly with minimal adjustment. Minor YAC benefit.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-0">&nbsp;0</div><div class="rc-label">Routine Placement</div><div class="rc-desc">Catchable. Receiver may adjust slightly but catches without significant YAC benefit or loss.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m1">–1</div><div class="rc-label">Poor Placement</div><div class="rc-desc">Inside shoulder or high/low — receiver must stop, turn back, or fight for it. Limited YAC.</div></div>
+          <div class="rc-row"><div class="rc-grade rg-m2">–2</div><div class="rc-label">Negative Placement</div><div class="rc-desc">Ball placed so receiver had to turn directly back toward the defense. Eliminated all YAC. Dangerous in traffic.</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SOCKS INTEGRATION -->
+  <div class="sec">
+    <div class="sec-title">SOCKS Stage → Column Map</div>
+    <p style="margin-bottom:12px;">A QB who advances through SOCKS stages should show measurable improvement in specific grade columns. Use this to identify which stage gap a low grade represents, then filter the Drill Library by that stage and category.</p>
     <div class="socks-map">
-      <div class="sm-row"><div>Grade Field</div><div>SOCKS Element</div><div>What a Low Score Means</div><div>Stage to Address</div></div>
-      <div class="sm-row">
-        <div class="sm-field">QB_DEC (0–4)</div>
-        <div class="sm-socks">C + K (Count + Key)</div>
-        <div>QB is not identifying the key defender pre-snap or is late triggering after the key. The read is reactive, not anticipatory.</div>
-        <div class="sm-stage dot-s1">● Stage 1–2</div>
-      </div>
-      <div class="sm-row">
-        <div class="sm-field">QB_SA (0–2)</div>
-        <div class="sm-socks">S + C (Safeties + Situation)</div>
-        <div>QB is missing the shell read (MOFO/MOFC) or not applying situational context (down, hash, score) to his pre-snap call.</div>
-        <div class="sm-stage dot-s2">● Stage 2–3</div>
-      </div>
-      <div class="sm-row">
-        <div class="sm-field">QB_ACC (0–3)</div>
-        <div class="sm-socks">O + S (Corners + Space)</div>
-        <div>QB is placing the ball to the wrong spot — usually missing leverage-based placement. Not throwing receivers open; throwing to open receivers.</div>
-        <div class="sm-stage dot-s3">● Stage 3</div>
-      </div>
-      <div class="sm-row">
-        <div class="sm-field">QB_YAC (0–3)</div>
-        <div class="sm-socks">S — Space (Grass reads)</div>
-        <div>QB identified the window but delivered to the receiver's inside shoulder or body — not to the space that creates YAC. Leverage was read but not applied to placement.</div>
-        <div class="sm-stage dot-s3">● Stage 3</div>
-      </div>
-      <div class="sm-row">
-        <div class="sm-field">QB_POCK (0–2)</div>
-        <div class="sm-socks">Timing — Throw Clock</div>
-        <div>QB is holding the ball too long (Stage 1 timing) or drifting instead of stepping up. Pre-snap processing is not complete — holding causes pocket breakdown, not OL failure.</div>
-        <div class="sm-stage dot-s2">● Stage 2–4</div>
-      </div>
-      <div class="sm-row">
-        <div class="sm-field">QB_RUN_DEC (0–3)</div>
-        <div class="sm-socks">C + K (Count + Key)</div>
-        <div>Give/keep decision is wrong or late — QB is deciding at or after the mesh point instead of before it. The key read was not resolved pre-snap.</div>
-        <div class="sm-stage dot-s1">● Stage 1</div>
-      </div>
-      <div class="sm-row">
-        <div class="sm-field">QB_FAKE (0–2)</div>
-        <div class="sm-socks">Mesh Mechanics</div>
-        <div>QB handed off and stopped. No sell, no carry-out. The fake is a block — if it fools nobody, it is FAKE=0. Film reveals what the naked eye misses.</div>
-        <div class="sm-stage dot-s1">● Stage 1–3</div>
-      </div>
-      <div class="sm-row">
-        <div class="sm-field">DEC when blitzed</div>
-        <div class="sm-socks">Pressure Override</div>
-        <div>QB_DEC drops significantly under blitz = pressure override not internalized. Hot route is reactive (post-snap) instead of pre-loaded (pre-snap). Stage 2 for ID; Stage 4 for anticipation.</div>
-        <div class="sm-stage dot-s4">● Stage 2–4</div>
-      </div>
+      <div class="sm-hdr"><div>Column</div><div>SOCKS Element</div><div>What a Low Grade Means → Stage to Fix</div><div>Stage</div></div>
+      <div class="sm-row"><div class="sm-col">Pass Decision</div><div class="sm-socks">C + K · Count + Key</div><div>QB is not reading the key defender correctly or is late triggering. The decision is reactive, not anticipatory.</div><div class="sm-stage s1c">● Stage 1–2</div></div>
+      <div class="sm-row"><div class="sm-col">Run Decision</div><div class="sm-socks">C + K · Trigger read</div><div>Give/keep decision is wrong or made after the mesh point instead of before it. Key read was not resolved pre-snap.</div><div class="sm-stage s1c">● Stage 1</div></div>
+      <div class="sm-row"><div class="sm-col">Pass Release</div><div class="sm-socks">Timing · Throw Clock</div><div>QB is holding the ball past the throw clock window. Pre-snap processing is not complete before the snap — holding is a symptom of a slow scan.</div><div class="sm-stage s2c">● Stage 2</div></div>
+      <div class="sm-row"><div class="sm-col">Pass Pocket</div><div class="sm-socks">Timing · Pressure Override</div><div>QB is bailing or drifting instead of stepping up. Early pressure escape often traces to a slow pre-snap process forcing him to compensate post-snap.</div><div class="sm-stage s2c">● Stage 2–4</div></div>
+      <div class="sm-row"><div class="sm-col">Pass Throw</div><div class="sm-socks">O + S · Corners + Space</div><div>QB is making the right decision but not throwing accurately. Mechanics or release point issue. May also indicate he's throwing to the wrong window despite the correct read.</div><div class="sm-stage s3c">● Stage 3</div></div>
+      <div class="sm-row"><div class="sm-col">Run Fake</div><div class="sm-socks">Mesh Mechanics</div><div>QB is stopping after the handoff. The fake is a block — if nobody bites, it costs the offense a second-level blocker on every run play. Film is the only honest grade.</div><div class="sm-stage s1c">● Stage 1–3</div></div>
+      <div class="sm-row new-row"><div class="sm-col new">Pre-Snap Read</div><div class="sm-socks">S + O + C + K + S · Full scan</div><div>QB is missing or skipping the pre-snap scan. A –1 means a specific part of the SOCKS scan failed. A –2 means no visible scan at all. Traces directly to which stage letter is missing.</div><div class="sm-stage" style="color:#4ade80;">● All Stages</div></div>
+      <div class="sm-row new-row"><div class="sm-col new">Ball Placement</div><div class="sm-socks">S · Space · "Where to throw"</div><div>QB read the leverage correctly (good Pre-Snap Read) but delivered to the wrong spot. This is Stage 3 execution failure — leverage tells you where, but the throw didn't go there.</div><div class="sm-stage s3c">● Stage 3</div></div>
+      <div class="sm-row"><div class="sm-col">Pass Decision (blitz plays)</div><div class="sm-socks">Pressure Override</div><div>Pass Decision drops significantly on pressured plays = pressure override not internalized. Hot route is reactive (post-snap) instead of pre-loaded (pre-snap). Identified in Stage 2; mastered in Stage 4.</div><div class="sm-stage s4c">● Stage 2–4</div></div>
     </div>
   </div>
 
-  <!-- Dashboard letter grades -->
+  <!-- GOOGLE SHEETS SETUP -->
   <div class="sec">
-    <div class="sec-title">Dashboard — 5 Composite Letter Grades</div>
-    <div class="cards" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">
-      <div class="card">
-        <div class="card-title" style="font-size:13px;">Decision Making</div>
-        <div class="card-desc">Weighted QB_DEC avg (50%) + Elite DEC % — DEC=4 (25%) + Ball Security QB_TURN (25%)</div>
-        <div class="grade-chips"><span class="gc gc-a">A+ ≥88%</span><span class="gc gc-b">B ≥60%</span><span class="gc gc-f">F &lt;30%</span></div>
-      </div>
-      <div class="card">
-        <div class="card-title" style="font-size:13px;">Passing Execution</div>
-        <div class="card-desc">QB_ACC avg (40%) + QB_POCK avg (30%) + QB_YAC avg (30%)</div>
-        <div class="grade-chips"><span class="gc gc-a">A+ ≥88%</span><span class="gc gc-b">B ≥60%</span><span class="gc gc-f">F &lt;30%</span></div>
-      </div>
-      <div class="card">
-        <div class="card-title" style="font-size:13px;">Run Game</div>
-        <div class="card-desc">QB_RUN_DEC (50%) + QB_RUN_ACC (25%) + QB_FAKE (25%)</div>
-        <div class="grade-chips"><span class="gc gc-a">A+ ≥88%</span><span class="gc gc-b">B ≥60%</span><span class="gc gc-f">F &lt;30%</span></div>
-      </div>
-      <div class="card">
-        <div class="card-title" style="font-size:13px;">Pressure Performance</div>
-        <div class="card-desc">QB_ACC under blitz ÷ QB_ACC clean pocket. 95%+ = equally effective under pressure.</div>
-        <div class="grade-chips"><span class="gc gc-a">A+ ≥95%</span><span class="gc gc-b">B ≥75%</span><span class="gc gc-f">F &lt;55%</span></div>
-      </div>
-      <div class="card">
-        <div class="card-title" style="font-size:13px;">Situational Awareness</div>
-        <div class="card-desc">3rd Down DEC (30%) + Red Zone DEC (25%) + QB_SA avg (25%) + Elite DEC% (10%) + Ball Security (10%)</div>
-        <div class="grade-chips"><span class="gc gc-a">A+ ≥88%</span><span class="gc gc-b">B ≥60%</span><span class="gc gc-f">F &lt;30%</span></div>
-      </div>
-    </div>
-  </div>
+    <div class="sec-title">Adding Pre-Snap Read & Ball Placement to the Google Sheet</div>
+    <p style="margin-bottom:14px;">The two new columns need to be added to both the <strong style="color:#fff;">Need Graded</strong> and <strong style="color:#fff;">Graded Plays</strong> tabs. Here's exactly how to do it in about 5 minutes.</p>
+    <div class="setup-steps">
 
-  <!-- Blitz code reference -->
-  <div class="sec">
-    <div class="sec-title">Blitz Code Reference</div>
-    <div class="blitz-grid">
-      <div class="blitz-card"><div class="blitz-code">0 / blank</div><div class="blitz-name">Clean pocket</div><div class="blitz-action">Normal read progression. Contributes to clean pocket splits.</div></div>
-      <div class="blitz-card"><div class="blitz-code">Y</div><div class="blitz-name">Generic blitz (yes)</div><div class="blitz-action">Extra rusher confirmed. Hot route or quick read required.</div></div>
-      <div class="blitz-card"><div class="blitz-code">1 / 2 / 4 / 5</div><div class="blitz-name">Rusher count</div><div class="blitz-action">Number of extra rushers sent. Identify and adjust protection.</div></div>
-      <div class="blitz-card"><div class="blitz-code">BUCK</div><div class="blitz-name">Buck blitz (LB fire)</div><div class="blitz-action">Linebacker A/B gap fire. Check blitz pre-snap.</div></div>
-      <div class="blitz-card"><div class="blitz-code">JABS</div><div class="blitz-name">Jab blitz (DB off edge)</div><div class="blitz-action">DB coming off the edge. Hot route to opposite side.</div></div>
-      <div class="blitz-card"><div class="blitz-code">JAW</div><div class="blitz-name">Jaw blitz package</div><div class="blitz-action">Fast release required. Pre-snap ID is critical.</div></div>
-      <div class="blitz-card"><div class="blitz-code">MA / MB</div><div class="blitz-name">A-gap / B-gap blitz</div><div class="blitz-action">Inside gap fire. Slide protection, inside hot route.</div></div>
-      <div class="blitz-card"><div class="blitz-code">M / M1 / M2</div><div class="blitz-name">Man + pressure</div><div class="blitz-action">Beat man coverage with quick route. Fast release.</div></div>
-      <div class="blitz-card"><div class="blitz-code">MB W1</div><div class="blitz-name">Mike + walk-out</div><div class="blitz-action">Double-ID required. Hot route and protection adjustment.</div></div>
-      <div class="blitz-card"><div class="blitz-code">O</div><div class="blitz-name">Outside blitz</div><div class="blitz-action">Edge pressure. Inside hot route or RB screen.</div></div>
-      <div class="blitz-card"><div class="blitz-code">M2 SA</div><div class="blitz-name">Man 2 + safety blitz</div><div class="blitz-action">Safety-involved pressure. Check down quickly.</div></div>
+      <div class="step step-new">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Open the Need Graded tab</div>
+          <div class="step-desc">Go to your live grading sheet and click the <strong>Need Graded</strong> tab. Find column AG (QB NOTE). You're going to insert two new columns <em>before</em> QB NOTE — so QB NOTE slides to column AI and the new fields are AH (Pre-Snap Read) and AI… actually the cleanest approach is to add them <em>after</em> QB IMPACT (col AF) and before QB NOTE. That keeps all grade columns together.</div>
+        </div>
+      </div>
+
+      <div class="step step-new">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Insert two columns before QB NOTE</div>
+          <div class="step-desc">Click the column letter <strong>AG</strong> (QB NOTE header) to select the whole column. Right-click → <strong>Insert 2 columns left</strong>. Two blank columns will appear between QB IMPACT (AF) and QB NOTE. QB NOTE is now column AI.</div>
+        </div>
+      </div>
+
+      <div class="step step-new">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Name column AG — PRE-SNAP READ</div>
+          <div class="step-desc">Click cell AG1 and type: <span style="font-family:monospace;color:#4ade80;">PRE-SNAP READ</span><br>Format it to match your existing headers (same background color as QB IMPACT — light blue). Then add a data validation dropdown to AG2 and below:</div>
+          <span class="step-code">Dropdown options (in this order):
+Elite Read
+Good Read
+Routine Read
+Poor Read
+Missed / Wrong Read</span>
+          <div class="step-desc" style="margin-top:6px;">In Apps Script, the GRADE_MAP should convert these to: +2 / +1 / 0 / –1 / –2. Grade every play — pass and run.</div>
+        </div>
+      </div>
+
+      <div class="step step-new">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Name column AH — BALL PLACEMENT</div>
+          <div class="step-desc">Click cell AH1 and type: <span style="font-family:monospace;color:#4ade80;">BALL PLACEMENT</span><br>Same header formatting. Add dropdown to AH2 and below:</div>
+          <span class="step-code">Dropdown options (in this order):
+Elite Placement
+Good Placement
+Routine Placement
+Poor Placement
+Negative Placement</span>
+          <div class="step-desc" style="margin-top:6px;">Converts to: +2 / +1 / 0 / –1 / –2. <strong>Grade completions only</strong> — leave blank on incompletions, sacks, and run plays.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Mirror the same columns in Graded Plays</div>
+          <div class="step-desc">Click the <strong>Graded Plays</strong> tab and repeat steps 2–4 exactly. The column structure must match Need Graded exactly — the Apps Script moveGradedPlays() function copies by column index. If the columns don't match, grades will land in the wrong places.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="step-title">Update the GRADE_MAP in Code.gs (Apps Script)</div>
+          <div class="step-desc">Open Extensions → Apps Script. Find the GRADE_MAP object and add entries for the new labels so they convert correctly when plays are moved:</div>
+          <span class="step-code">// Add inside GRADE_MAP:
+'Elite Read':          2,
+'Good Read':           1,
+'Routine Read':        0,
+'Poor Read':          -1,
+'Missed / Wrong Read': -2,
+
+'Elite Placement':    2,
+'Good Placement':     1,
+'Routine Placement':  0,
+'Poor Placement':    -1,
+'Negative Placement': -2,</span>
+          <div class="step-desc" style="margin-top:6px;">Also update the column index map (the P object at the top of the script) to add: <span style="font-family:monospace;color:#4ade80;">PRE_SNAP_READ: 32, BALL_PLACEMENT: 33</span> — adjusting the exact numbers to match where the new columns landed (AG = index 32 if columns start at 0).</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <div class="step-title">Add to Dashboard (optional but recommended)</div>
+          <div class="step-desc">In the Dashboard tab, add two new summary rows:<br>
+          • <strong>Pre-Snap Read Avg</strong> — average of all PRE-SNAP READ values (all plays)<br>
+          • <strong>Ball Placement Avg</strong> — average of all BALL PLACEMENT values (completions only — filter where BALL PLACEMENT is not blank)<br><br>
+          These become your SOCKS dashboard metrics — Pre-Snap Read avg should climb as QBs advance stages. Ball Placement avg directly measures Stage 3 leverage-to-throw execution.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
