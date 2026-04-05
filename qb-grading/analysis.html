@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QB Grading Analysis — QB Room v1.2</title>
+<title>QB Grading Analysis — QB Room v2.0</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -17,10 +17,10 @@ body{background:var(--navy);font-family:'Barlow',sans-serif;min-height:100vh;col
 
 .nav{background:rgba(15,27,45,0.97);border-bottom:2px solid var(--gold);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:50px;position:sticky;top:0;z-index:100;}
 .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-icon{width:34px;height:34px;background:var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--navy);}
+.nav-icon{width:34px;height:34px;background:var(--gold);border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:var(--navy);}
 .nav-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
 .nav-links{display:flex;gap:5px;}
-.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;padding:4px 9px;border-radius:2px;border:1px solid rgba(255,255,255,0.18);transition:all .15s;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.8px;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;padding:4px 9px;border-radius:2px;border:1px solid rgba(255,255,255,0.18);transition:all .15s;}
 .nav-links a:hover{color:var(--gold);border-color:var(--gold);}
 
 .wrap{max-width:960px;margin:0 auto;padding:44px 24px 72px;}
@@ -29,7 +29,7 @@ body{background:var(--navy);font-family:'Barlow',sans-serif;min-height:100vh;col
 .ph{margin-bottom:36px;}
 .ph-eye{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px;}
 .ph-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(26px,4vw,42px);letter-spacing:2px;text-transform:uppercase;color:var(--gold);line-height:1;margin-bottom:4px;}
-.ph-sub{font-size:12px;color:var(--muted);line-height:1.6;max-width:700px;margin-bottom:16px;}
+.ph-sub{font-size:14.5px;color:var(--muted);line-height:1.6;max-width:700px;margin-bottom:16px;}
 .ph-meta{display:flex;gap:8px;flex-wrap:wrap;}
 .ph-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:2px;}
 .tag-gold{background:rgba(240,165,0,.14);color:var(--gold);border:.5px solid rgba(240,165,0,.3);}
@@ -38,25 +38,25 @@ body{background:var(--navy);font-family:'Barlow',sans-serif;min-height:100vh;col
 
 /* Sections */
 .sec{margin-bottom:44px;}
-.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
 .sec-title::after{content:'';flex:1;height:1px;background:rgba(240,165,0,0.2);}
-p{font-size:12px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:10px;}
+p{font-size:14.5px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:10px;}
 p:last-child{margin-bottom:0;}
 strong{color:var(--white);font-weight:600;}
 
 /* Summary verdict box */
 .verdict{background:rgba(240,165,0,0.07);border:1.5px solid rgba(240,165,0,0.35);border-radius:6px;padding:20px 22px;margin-bottom:32px;}
 .verdict-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.verdict-body{font-size:12px;color:rgba(255,255,255,0.82);line-height:1.7;}
+.verdict-body{font-size:14.5px;color:rgba(255,255,255,0.82);line-height:1.7;}
 
 /* Comparison grid */
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
 .compare-col{background:var(--navy2);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
 .compare-head{padding:10px 14px;border-bottom:1px solid var(--border);}
-.compare-head-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.5px;text-transform:uppercase;}
+.compare-head-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:0.5px;text-transform:uppercase;}
 .compare-head-sub{font-size:9.5px;color:var(--muted);margin-top:2px;}
 .compare-body{padding:12px 14px;display:flex;flex-direction:column;gap:6px;}
-.ci{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:rgba(255,255,255,0.72);line-height:1.45;}
+.ci{display:flex;align-items:flex-start;gap:8px;font-size:14px;color:rgba(255,255,255,0.72);line-height:1.45;}
 .ci-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
 
 /* Analysis table */
@@ -66,9 +66,9 @@ strong{color:var(--white);font-weight:600;}
 .atbl-row{display:grid;grid-template-columns:160px 90px 1fr 100px;gap:0;border-bottom:1px solid rgba(255,255,255,0.04);}
 .atbl-row:last-child{border-bottom:none;}
 .atbl-row:nth-child(even){background:rgba(255,255,255,0.02);}
-.atbl-row div{padding:9px 12px;font-size:10.5px;color:var(--muted);border-right:1px solid rgba(255,255,255,0.04);}
+.atbl-row div{padding:9px 12px;font-size:14.5px;color:var(--muted);border-right:1px solid rgba(255,255,255,0.04);}
 .atbl-row div:last-child{border-right:none;}
-.atbl-field{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:var(--white)!important;}
+.atbl-field{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:var(--white)!important;}
 .verdict-g{color:#4ade80!important;font-weight:700;}
 .verdict-y{color:#fde68a!important;font-weight:700;}
 .verdict-r{color:#fca5a5!important;font-weight:700;}
@@ -79,25 +79,25 @@ strong{color:var(--white);font-weight:600;}
 .rec-r{border-left-color:#ef4444;}
 .rec-y{border-left-color:#f0a500;}
 .rec-g{border-left-color:#22c55e;}
-.rec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:5px;}
+.rec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14.5px;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:5px;}
 .rec-r .rec-title{color:#fca5a5;}
 .rec-y .rec-title{color:var(--gold);}
 .rec-g .rec-title{color:#4ade80;}
-.rec-body{font-size:11px;color:var(--muted);line-height:1.6;}
+.rec-body{font-size:14px;color:var(--muted);line-height:1.6;}
 .rec-body strong{color:var(--white);}
 
 /* SOCKS mapping */
 .socks-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .scard{background:var(--navy2);border:1px solid var(--border);border-radius:5px;padding:14px;}
-.scard-field{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--gold);margin-bottom:4px;}
-.scard-maps{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;color:rgba(240,165,0,0.7);margin-bottom:5px;}
-.scard-body{font-size:10.5px;color:var(--muted);line-height:1.5;}
-.scard-gap{font-size:10px;color:#fca5a5;margin-top:5px;font-style:italic;}
+.scard-field{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:var(--gold);margin-bottom:4px;}
+.scard-maps{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:rgba(240,165,0,0.7);margin-bottom:5px;}
+.scard-body{font-size:14.5px;color:var(--muted);line-height:1.5;}
+.scard-gap{font-size:14px;color:#fca5a5;margin-top:5px;font-style:italic;}
 
 /* Proposed additions */
 .proposed{background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.25);border-radius:5px;padding:16px;margin-bottom:10px;}
-.proposed-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;color:#4ade80;margin-bottom:8px;}
-.proposed-body{font-size:11px;color:var(--muted);line-height:1.6;}
+.proposed-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14.5px;text-transform:uppercase;color:#4ade80;margin-bottom:8px;}
+.proposed-body{font-size:14px;color:var(--muted);line-height:1.6;}
 .proposed-body strong{color:var(--white);}
 
 @media(max-width:700px){.compare,.socks-col{grid-template-columns:1fr;}.atbl-hdr,.atbl-row{grid-template-columns:1fr;}}
@@ -121,7 +121,7 @@ strong{color:var(--white);font-weight:600;}
     <div class="ph-title">QB Grading System Analysis</div>
     <div class="ph-sub">Are the existing columns (Pass Decision · Pass Pressure · Pass Pocket · Pass Release · Pass Throw · Run Decision · Run Fake · QB Impact · QB Note) adequate for the SOCKS system? Will they produce a PFF-style dashboard that accurately represents quarterback performance?</div>
     <div class="ph-meta">
-      <span class="ph-tag tag-gold">v1.2</span>
+      <span class="ph-tag tag-gold">v2.0</span>
       <span class="ph-tag tag-blue">Research: PFF Methodology</span>
       <span class="ph-tag tag-blue">High School QB Grading</span>
       <span class="ph-tag tag-green">SOCKS Integration Analysis</span>
@@ -399,8 +399,8 @@ strong{color:var(--white);font-weight:600;}
 
   <!-- VERSION NOTE -->
   <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:12px 16px;margin-top:20px;">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px;">QB Room v1.2 — Grading Analysis</div>
-    <div style="font-size:10.5px;color:rgba(255,255,255,0.4);line-height:1.5;">Research sources: PFF Grading Methodology (pff.com), Coach and Coordinator QB Grading Systems, QB Country Film Study Guide, NCAA Decision-Making Research (PMC). Analysis based on the QB Grading v3.1 sheet column structure and the SOCKS QB System framework as of April 2026.</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px;">QB Room v2.0 — Grading Analysis</div>
+    <div style="font-size:14.5px;color:rgba(255,255,255,0.4);line-height:1.5;">Research sources: PFF Grading Methodology (pff.com), Coach and Coordinator QB Grading Systems, QB Country Film Study Guide, NCAA Decision-Making Research (PMC). Analysis based on the QB Grading v3.1 sheet column structure and the SOCKS QB System framework as of April 2026.</div>
   </div>
 
 </div>
